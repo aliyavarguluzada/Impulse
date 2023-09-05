@@ -7,5 +7,6 @@ namespace Impulse.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { } 
 
          // TODO: Models elave edilmelidi  
+         public 
     }
 }

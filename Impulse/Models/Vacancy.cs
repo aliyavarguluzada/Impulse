@@ -1,4 +1,6 @@
-﻿namespace Impulse.Models
+﻿using Microsoft.Identity.Client;
+
+namespace Impulse.Models
 {
     public class Vacancy
     {
@@ -12,12 +14,19 @@
         public int JobCategoryId { get; set; }
         public int EducationId { get; set; }
         public string Description { get; set; }
-        public string Company {  get; set; }
         public string CompanyLogoImage { get; set; }
         public string Experience { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime ExpireDate { get; set; }
         public DateTime? Created { get; set; }
         public DateTime? Updated { get; set; }
+
+        public virtual User UserStatus { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual JobType JobType { get; set; }
+        public virtual WorkForm WorkForm { get; set; }
+        public virtual City City { get; set; }
+        public virtual JobCategory JobCategory { get; set; }
+        public virtual Education Education { get; set; }
     }
 }
