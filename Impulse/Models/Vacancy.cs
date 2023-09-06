@@ -6,7 +6,6 @@ namespace Impulse.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int UserStatusId { get; set; }
         public int CompanyId { get; set; }
         public int JobTypeId { get; set; }
         public int WorkFormId { get; set; }
@@ -21,7 +20,6 @@ namespace Impulse.Models
         public DateTime? Created { get; set; }
         public DateTime? Updated { get; set; }
 
-        public virtual User UserStatus { get; set; }
         public virtual Company Company { get; set; }
         public virtual JobType JobType { get; set; }
         public virtual WorkForm WorkForm { get; set; }
