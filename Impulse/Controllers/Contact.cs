@@ -2,12 +2,11 @@
 
 namespace Impulse.Controllers
 {
-    public class HomeController : Controller
+    public class Contact : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
     }
 }

@@ -1,0 +1,48 @@
+@media only screen and (max-width:992px) {
+
+    /* About */
+    .about-content {
+        width: 100%!important;
+    }
+    .social-media {
+        display: flex!important;
+        flex-direction: row!important;
+    }
+    .social-media-icons {
+        width: 33%;
+    }
+    /* About End */
+    /* Footer */
+    .footer-border {
+        display: flex!important;
+        flex-direction: row!important;
+    }
+    .left-p {
+        width: 49%!important;
+    }
+    
+    .right-p {
+        width: 49%!important;
+    }
+
+    /* Footer End */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:992px) {}
+@media only screen and (max-width:992px) {}
