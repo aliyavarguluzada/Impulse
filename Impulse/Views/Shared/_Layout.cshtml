@@ -31,7 +31,7 @@
                         <a class="nav-link" href="@Url.Action("Index","Home")">Əsas</a>
                     </li>
                     <li class="nav-item nav-item">
-                        <a class="nav-link" href="/catalog.html">Kataloq</a>
+                        <a class="nav-link" href="@Url.Action("Index","Catalog")">Kataloq</a>
                     </li>
                     <li class="nav-item nav-item">
                         <a class="nav-link" href="vacancy.html">Vakansiyalar</a>
@@ -48,9 +48,9 @@
     </div>
     <!-- Navbar End-->
     <!-- Header End -->
-<main>
-    @RenderBody()
-</main>
+    <main>
+        @RenderBody()
+    </main>
     <!-- Footer -->
     <div class="footer">
         <div class="col-md-4">
