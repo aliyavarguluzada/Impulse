@@ -1,5 +1,7 @@
 ﻿using Impulse.Data;
+using Impulse.DTOs.SiteSettings;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Impulse.Controllers
 {
@@ -9,11 +11,21 @@ namespace Impulse.Controllers
 
         public HomeController(ApplicationDbContext context)
         {
-            context = _context;
+            _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var siteSettings = _context.SiteSettings.ToList();
+            var siteSettings = await _context
+                .SiteSettings
+                .Select(c => new SiteSettingsHomeIndexDto
+                {
+                    MainImage = c.MainImage,
+                    Title = c.Title,
+                    SecondaryImage = c.SecondaryImage,
+                    Description = c.Description
+                }).ToListAsync();
+
+
             // Dto dan almaq lazimdi melumatlari Select ele Dto yarat
             return View(siteSettings);
         }

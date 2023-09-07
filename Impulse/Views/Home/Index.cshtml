@@ -1,275 +1,280 @@
-﻿<!-- Main -->
-  <main>
+﻿@using Impulse.DTOs.SiteSettings;
+@model List<SiteSettingsHomeIndexDto>
+<!-- Main -->
+<main>
     <!-- Home -->
     <div class="main-body">
-      <div class="container">
-        <div class="row">
-          <!-- Left Column -->
-          <div class="col-lg-6">
-            <div class="main-info">
-              <div class="main-title text-primary">
-                <h1>
-                  Peşəkar
-                  <br />
-                  <b>CV Hazırlanması</b>
-                </h1>
-              </div>
-              <div></div>
+        <div class="container">
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-lg-6">
+                    <div class="main-info">
+                        <div class="main-title text-primary">
+                            @foreach (var Title in Model)
+                            {
+                                <h1>
+                                    @Title.Title
+                                </h1>
+                            }
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="main-desc">
+                        <p>
+                            Azərbaycanda ən sərfəli qiymətlərlə yalnız dizayndan ibarət
+                            deyil, həm də mükəmməl və uğurlu <b>CV hazırlayırıq.</b>
+                        </p>
+                    </div>
+                    <div class="button-div">
+                        <button class="btn btn-primary" type="submit">
+                            Nümunələrə Bax
+                        </button>
+                        <button class="btn btn-danger" type="submit">Əlaqə</button>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div class="col-lg-6 main-img-div">
+                    <div class="col-md-12">
+                        <img src="/images/home-image.webp" class="main-img" alt="Your Image" class="img-fluid" />
+                    </div>
+                </div>
             </div>
-            <div class="main-desc">
-              <p>
-                Azərbaycanda ən sərfəli qiymətlərlə yalnız dizayndan ibarət
-                deyil, həm də mükəmməl və uğurlu <b>CV hazırlayırıq.</b>
-              </p>
-            </div>
-            <div class="button-div">
-              <button class="btn btn-primary" type="submit">
-                Nümunələrə Bax
-              </button>
-              <button class="btn btn-danger" type="submit">Əlaqə</button>
-            </div>
-          </div>
-          <!-- Right Column -->
-          <div class="col-lg-6 main-img-div">
-            <div class="col-md-12">
-              <img src="/images/home-image.webp" class="main-img" alt="Your Image" class="img-fluid" />
-            </div>
-          </div>
         </div>
-      </div>
     </div>
     <!-- Home End -->
-
     <!-- Designs -->
     <div class="container designs-div">
-      <div class="container designs-title">
-        <h2 class="text-primary text-center">
-          Ən çox tələb görən CV dizaynları
-        </h2>
-      </div>
-      <div class="container">
-        <div class="container mt-4">
-          <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <!-- Bu hisse backend Foreach -->
-                <div class="row design-examples">
-                  <div class="col-md-4">
-                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 1" />
-                  </div>
-                  <div class="col-md-4">
-                    <img src="/images/cv-1.jpg" class="img-fluid" alt="Image 2" />
-                  </div>
-                  <div class="col-md-4">
-                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 3" />
-                  </div>
-                </div>
-              </div>
-              <!-- Backend Foreach -->
-              <!-- Add more carousel items with three images each as needed -->
-              <div class="carousel-item">
-                <div class="row design-examples">
-                  <div class="col-md-4">
-                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 4" />
-                  </div>
-                  <div class="col-md-4">
-                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 5" />
-                  </div>
-                  <div class="col-md-4">
-                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 6" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#imageCarousel" role="button" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#imageCarousel" role="button" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </a>
-          </div>
+        <div class="container designs-title">
+            <h2 class="text-primary text-center">
+                Ən çox tələb görən CV dizaynları
+            </h2>
         </div>
-      </div>
+        <div class="container">
+            <div class="container mt-4">
+                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <!-- Bu hisse backend Foreach -->
+                            <div class="row design-examples">
+                                <div class="col-md-4">
+                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 1" />
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="/images/cv-1.jpg" class="img-fluid" alt="Image 2" />
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 3" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Backend Foreach -->
+                        <!-- Add more carousel items with three images each as needed -->
+                        <div class="carousel-item">
+                            <div class="row design-examples">
+                                <div class="col-md-4">
+                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 4" />
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 5" />
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 6" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#imageCarousel" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#imageCarousel" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Designs End -->
     <!-- Discount -->
     <div class="wave-div">
-      <img src="/images/wave-img.png" alt="" />
+        <img src="/images/wave-img.png" alt="" />
     </div>
     <div class="container">
-      <div class="align-items-center x">
-        <div class="col-md-6">
-          <div class="discount-desc">
-            <div class="discount-ad text-primary">
-              <h3>Tələsin!</h3>
+        <div class="align-items-center x">
+            <div class="col-md-6">
+                <div class="discount-desc">
+                    <div class="discount-ad text-primary">
+                        <h3>Tələsin!</h3>
+                    </div>
+                    <div class="discount-ad text-primary">
+                        <h2>Endirim <br />Kampaniyası!</h2>
+                    </div>
+                    <div class="discount-ad text-primary">
+                        <h5>Vebsayt üzərindən sifariş edənlərə 10% ENDİRİM!</h5>
+                    </div>
+                    <div class="">
+                        <button class="btn btn-primary" type="submit">
+                            SİFARİŞ ET
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="discount-ad text-primary">
-              <h2>Endirim <br />Kampaniyası!</h2>
+            <div class="col-md-6">
+                <div class="row">
+                    <img src="/images/qiz.webp" class="img-fluid" alt="" />
+                </div>
             </div>
-            <div class="discount-ad text-primary">
-              <h5>Vebsayt üzərindən sifariş edənlərə 10% ENDİRİM!</h5>
-            </div>
-            <div class="">
-              <button class="btn btn-primary" type="submit">
-                SİFARİŞ ET
-              </button>
-            </div>
-          </div>
         </div>
-        <div class="col-md-6">
-          <div class="row">
-            <img src="/images/qiz.webp" class="img-fluid" alt="" />
-          </div>
-        </div>
-      </div>
     </div>
     <!--  -->
 
     <div class="container why-panel">
-      <div>
-        <h3 class="text-center">Niyə CV-World?</h3>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="border p-3 h-100 d-flex flex-column align-items-center justify-content-centers why-div">
-            <div>
-              <span><i aria-hidden="true" class="fas fa-star why-icons"></i></span>
-            </div>
-            <div>
-              <h3 class="text-primary text-center">
-                <span>99% müştəri məmnuniyyəti</span>
-              </h3>
-              <p class="text-center">
-                Bizim məqsədimiz yalnız dizayn olunmuş CV (Resume) tərtibi
-                deyil, həm də daxilində yerləşdirilən məlumatların
-                oxunaqlılığını artırmaq və sizi uğura <b>bir addım daha</b>
-                yaxınlaşdırmaqdır.
-              </p>
-            </div>
-            <div>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-            </div>
-          </div>
+        <div>
+            <h3 class="text-center">Niyə CV-World?</h3>
         </div>
-        <div class="col-md-4">
-          <div class="border p-3 h-100 d-flex flex-column align-items-center justify-content-centers why-div">
-            <div>
-              <span><i aria-hidden="true" class="fa-solid fa-clock why-icons"></i></span>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="border p-3 h-100 d-flex flex-column align-items-center justify-content-centers why-div">
+                    <div>
+                        <span><i aria-hidden="true" class="fas fa-star why-icons"></i></span>
+                    </div>
+                    <div>
+                        <h3 class="text-primary text-center">
+                            <span>99% müştəri məmnuniyyəti</span>
+                        </h3>
+                        <p class="text-center">
+                            Bizim məqsədimiz yalnız dizayn olunmuş CV (Resume) tərtibi
+                            deyil, həm də daxilində yerləşdirilən məlumatların
+                            oxunaqlılığını artırmaq və sizi uğura <b>bir addım daha</b>
+                            yaxınlaşdırmaqdır.
+                        </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                    </div>
+                </div>
             </div>
-            <div>
-              <h3 class="text-primary text-center">
-                <span>24 saat ərzində təhvil</span>
-              </h3>
-              <p class="text-center">
-                Operativlik komandamızın birinci prinsipidir. Qəbul edilən
-                sifarişlər maksimum <b>24 saat ərzində</b> tam hazırlanıb
-                təhvil verilir.
-              </p>
+            <div class="col-md-4">
+                <div class="border p-3 h-100 d-flex flex-column align-items-center justify-content-centers why-div">
+                    <div>
+                        <span><i aria-hidden="true" class="fa-solid fa-clock why-icons"></i></span>
+                    </div>
+                    <div>
+                        <h3 class="text-primary text-center">
+                            <span>24 saat ərzində təhvil</span>
+                        </h3>
+                        <p class="text-center">
+                            Operativlik komandamızın birinci prinsipidir. Qəbul edilən
+                            sifarişlər maksimum <b>24 saat ərzində</b> tam hazırlanıb
+                            təhvil verilir.
+                        </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                    </div>
+                </div>
             </div>
-            <div>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
+            <div class="col-md-4">
+                <div class="border p-3 h-100 d-flex flex-column align-items-center justify-content-centers why-div">
+                    <div>
+                        <span><i aria-hidden="true" class="fa-solid fa-circle-check why-icons"></i></span>
+                    </div>
+                    <div>
+                        <h3 class="text-primary text-center">
+                            <span>+56% uğura daha yaxın </span>
+                        </h3>
+                        <p class="text-center">
+                            Sadə formatlı CV-lər ilə müqayisədə xüsusi dizayn olunmuş CV
+                            (Resume) ilə siz, digər namizədlər arasında uğura daha yaxın
+                            olacaqsınız.
+                        </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                        <i class="fa-solid fa-star" style="color: #e73313"></i>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-4">
-          <div class="border p-3 h-100 d-flex flex-column align-items-center justify-content-centers why-div">
-            <div>
-              <span><i aria-hidden="true" class="fa-solid fa-circle-check why-icons"></i></span>
-            </div>
-            <div>
-              <h3 class="text-primary text-center">
-                <span>+56% uğura daha yaxın </span>
-              </h3>
-              <p class="text-center">
-                Sadə formatlı CV-lər ilə müqayisədə xüsusi dizayn olunmuş CV
-                (Resume) ilə siz, digər namizədlər arasında uğura daha yaxın
-                olacaqsınız.
-              </p>
-            </div>
-            <div>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-              <i class="fa-solid fa-star" style="color: #e73313"></i>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Why End-->
-
     <!-- About -->
     <div class="about  align-items-center">
-      <div class="container about-content">
-        <div class="about-title">
-          <h1 class="text-primary text-center">Haqqımızda</h1>
-        </div>
-        <div class="container about-desc">
-          <p class="">
-            Azərbaycanda ən sərfəli qiymətlərlə CV hazırlanması xidməti ilə
-            yalnız dizayndan ibarət deyil, həm də mükəmməl və uğurlu CV
-            hazırlayırıq. Müştərilərimizə CV-ni necə tərtib edəcəyimizi
-            müzakirə edib, işəgötürən üçün ən çox diqqət çəkəcək məzmunu
-            məsləhət görürük. Müştərilərimizin məqsədləri və arzularını
-            öyrənirik və bu nəticəyə çatana qədər çalışırıq.
-          </p>
-        </div>
-        <div class="container">
-          <h4>
-            <span class="text-primary">
-              Aşağıdakı əlaqə vasitələri ilə bizimlə cv hazırlanması üçün
-              əlaqə saxlaya bilərsiniz.
-            </span>
-          </h4>
-        </div>
-        <!--  -->
-        <div class="row social-media">
-          <div class="col-md-4 p-2 d-flex justify-content-center col-md4 social-media-icons">
-            <div class=" whatsapp-icon">
-              <span>
-                <a href="#">
-
-                  <i class="fa-brands fa-whatsapp"></i></span>
-              </a>
-
+        <div class="container about-content">
+            <div class="about-title">
+                <h1 class="text-primary text-center">Haqqımızda</h1>
             </div>
-          </div>
-          <!--  -->
-          <div class="col-md-4 p-2 d-flex justify-content-center col-md4 social-media-icons">
-            <div class="instagram-icon">
-              <span>
-                <a href="#">
-                  <i class="fa-brands fa-instagram"></i></span>
-              </a>
-
+            <div class="container about-desc">
+                <p class="">
+                    Azərbaycanda ən sərfəli qiymətlərlə CV hazırlanması xidməti ilə
+                    yalnız dizayndan ibarət deyil, həm də mükəmməl və uğurlu CV
+                    hazırlayırıq. Müştərilərimizə CV-ni necə tərtib edəcəyimizi
+                    müzakirə edib, işəgötürən üçün ən çox diqqət çəkəcək məzmunu
+                    məsləhət görürük. Müştərilərimizin məqsədləri və arzularını
+                    öyrənirik və bu nəticəyə çatana qədər çalışırıq.
+                </p>
             </div>
-          </div>
-          <!--  -->
-          <div class="col-md-4 p-2 d-flex justify-content-center col-md4 social-media-icons">
-            <div class="facebook-icon">
-              <span><a href="#">
-                  <i class="fa-brands fa-facebook"></i></span>
-              </a>
-
+            <div class="container">
+                <h4>
+                    <span class="text-primary">
+                        Aşağıdakı əlaqə vasitələri ilə bizimlə cv hazırlanması üçün
+                        əlaqə saxlaya bilərsiniz.
+                    </span>
+                </h4>
             </div>
-          </div>
-          <!--  -->
+            <!--  -->
+            <div class="row social-media">
+                <div class="col-md-4 p-2 d-flex justify-content-center col-md4 social-media-icons">
+                    <div class=" whatsapp-icon">
+                        <span>
+                            <a href="#">
+
+                                <i class="fa-brands fa-whatsapp"></i>
+                        </span>
+                        </a>
+
+                    </div>
+                </div>
+                <!--  -->
+                <div class="col-md-4 p-2 d-flex justify-content-center col-md4 social-media-icons">
+                    <div class="instagram-icon">
+                        <span>
+                            <a href="#">
+                                <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        </a>
+
+                    </div>
+                </div>
+                <!--  -->
+                <div class="col-md-4 p-2 d-flex justify-content-center col-md4 social-media-icons">
+                    <div class="facebook-icon">
+                        <span>
+                            <a href="#">
+                                <i class="fa-brands fa-facebook"></i>
+                        </span>
+                        </a>
+
+                    </div>
+                </div>
+                <!--  -->
+            </div>
         </div>
-      </div>
     </div>
     <!-- About End -->
-  </main>
-  <!-- Main End -->
+</main>
+<!-- Main End -->
