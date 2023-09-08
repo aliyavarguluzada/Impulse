@@ -1,5 +1,4 @@
-﻿@using Impulse.DTOs.SiteSettings;
-@model List<SiteSettingsHomeIndexDto>
+﻿@model HomeIndexVm
 <!-- Main -->
 <main>
     <!-- Home -->
@@ -10,20 +9,22 @@
                 <div class="col-lg-6">
                     <div class="main-info">
                         <div class="main-title text-primary">
-                            @foreach (var Title in Model)
+                            @foreach (var Title in Model.siteSettings)
                             {
                                 <h1>
                                     @Title.Title
                                 </h1>
                             }
                         </div>
-                        <div></div>
                     </div>
                     <div class="main-desc">
-                        <p>
-                            Azərbaycanda ən sərfəli qiymətlərlə yalnız dizayndan ibarət
-                            deyil, həm də mükəmməl və uğurlu <b>CV hazırlayırıq.</b>
-                        </p>
+                        @foreach (var item in Model.siteSettings)
+                        {
+
+                            <p>
+                                @item.Description
+                            </p>
+                        }
                     </div>
                     <div class="button-div">
                         <button class="btn btn-primary" type="submit">
@@ -34,9 +35,12 @@
                 </div>
                 <!-- Right Column -->
                 <div class="col-lg-6 main-img-div">
-                    <div class="col-md-12">
-                        <img src="/images/home-image.webp" class="main-img" alt="Your Image" class="img-fluid" />
-                    </div>
+                    @foreach (var image in Model.siteSettings)
+                    {
+                        <div class="col-md-12">
+                            <img src="@image.MainImage" class="main-img" alt="Your Image" class="img-fluid" />
+                        </div>
+                    }
                 </div>
             </div>
         </div>
