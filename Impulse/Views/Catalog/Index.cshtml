@@ -1,28 +1,22 @@
-﻿<!-- Main -->
+﻿@using Impulse.DTOs.Cvs
+@model List<CvsDto>
+<!-- Main -->
 <main>
     <!-- Catalog Main -->
     <div class="container">
         <figure>
             <div class="container mt-5">
                 <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="image-container">
-                            <img src="/images/cv-1.jpg" alt="Image 1" class="img-fluid image" data-toggle="modal"
-                                 data-target="#myModal1">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="image-container">
+                                <img src="@item.ImageName" alt="Image 1" class="img-fluid image" data-toggle="modal"
+                                     data-target="#myModal1">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="image-container">
-                            <img src="/images/cv.jpg" alt="Image 2" class="img-fluid image" data-toggle="modal"
-                                 data-target="#myModal2">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="image-container">
-                            <img src="/images/cv-1.jpg" alt="Image 3" class="img-fluid image" data-toggle="modal"
-                                 data-target="#myModal3">
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
 

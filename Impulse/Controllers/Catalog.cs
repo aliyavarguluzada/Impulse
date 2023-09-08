@@ -17,7 +17,7 @@ namespace Impulse.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var catalogImages = _context
+            var catalogImages = await _context
                 .Cvs
                 .Select(c => new CvsDto
                 {
