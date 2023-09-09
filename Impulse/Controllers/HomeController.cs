@@ -35,7 +35,7 @@ namespace Impulse.Controllers
                     CvId = c.Id,
                     MainPage = c.MainPage,
                     ImageName = c.ImageName
-                }).ToListAsync();
+                }).Take(3).ToListAsync();
 
             var vm = new HomeIndexVm
             {

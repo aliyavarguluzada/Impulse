@@ -60,30 +60,27 @@
                         <div class="carousel-item active">
                             <!-- Bu hisse backend Foreach -->
                             <div class="row design-examples">
-                                <div class="col-md-4">
-                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 1" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="/images/cv-1.jpg" class="img-fluid" alt="Image 2" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 3" />
-                                </div>
+                                @foreach (var item in Model.Cvs)
+                                {
+                                    <div class="col-md-4">
+                                        <img src="~/images/@item.ImageName" class="img-fluid" alt="Image 1" />
+                                    </div>
+                                }
+
+
                             </div>
                         </div>
                         <!-- Backend Foreach -->
                         <!-- Add more carousel items with three images each as needed -->
                         <div class="carousel-item">
                             <div class="row design-examples">
-                                <div class="col-md-4">
-                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 4" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 5" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="/images/cv.jpg" class="img-fluid" alt="Image 6" />
-                                </div>
+                                @foreach (var item in Model.Cvs)
+                                {
+                                    <div class="col-md-4">
+                                        <img src="~/images/@item.ImageName" class="img-fluid" alt="Image 1" />
+                                    </div>
+                                }
+
                             </div>
                         </div>
                     </div>

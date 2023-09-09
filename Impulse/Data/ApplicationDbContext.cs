@@ -20,5 +20,6 @@ namespace Impulse.Data
         public DbSet<SiteSetting> SiteSettings { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<WorkForm> WorkForms { get; set; }
+        public DbSet<SecondarySiteSettings> SecondarySiteSettings { get; set; }
     }
 }
