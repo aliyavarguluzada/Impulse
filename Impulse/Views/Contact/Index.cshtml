@@ -72,24 +72,23 @@
                             Təklif və iradlarınız üçün:
                         </h3>
                     </div>
-                    <form method="post" action="@Url.Action("Index","Contact")" >
+                    <form method="post" action="@Url.Action("Index","Contact")">
                         <div class="mb-3">
                             <label id="email" for="exampleFormControlInput1" class="form-label">Email Adres</label>
-                            <input name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                            <input required name="email" type="email" class="form-control" id="exampleFormControlInput1"
                                    placeholder="Email Addres">
                         </div>
                         <div class="mb-3">
                             <label id="subject" for="exampleFormControlInput1" class="form-label">Mövzu</label>
-                            <input name="subject" type="text" class="form-control" id="exampleFormControlInput1"
+                            <input required name="subject" type="text" class="form-control" id="exampleFormControlInput1"
                                    placeholder="Mövzu">
                         </div>
                         <div class="mb-3">
                             <label id="description" for="exampleFormControlTextarea1" class="form-label">Qeyd</label>
-                            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea required name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <input type="submit" action="@Url.Action("Index","Contact")" class="btn btn-primary" placeholder="Göndər">
-@*                         <button type="button" class="btn btn-primary">Göndər</button>
- *@                    </form>
+                    </form>
                 </div>
             </div>
         </div>

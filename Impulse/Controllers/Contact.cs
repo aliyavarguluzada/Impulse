@@ -23,9 +23,10 @@ namespace Impulse.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string email, string subject, string description)
         {
-            //var contactInfo = await _context
-            //    .Contacts
-            //    .ToListAsync();
+            if(email is null)
+            {
+                Console.WriteLine("Email is empty");
+            }
 
             var contactInfo = new ContactInfo
             {
