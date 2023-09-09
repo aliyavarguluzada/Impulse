@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Impulse.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230909111714_Secondary2")]
-    partial class Secondary2
+    [Migration("20230909162421_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,6 +111,31 @@ namespace Impulse.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("CompanySocials");
+                });
+
+            modelBuilder.Entity("Impulse.Models.ContactInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactsInfos");
                 });
 
             modelBuilder.Entity("Impulse.Models.Cv", b =>

@@ -110,6 +110,31 @@ namespace Impulse.Migrations
                     b.ToTable("CompanySocials");
                 });
 
+            modelBuilder.Entity("Impulse.Models.ContactInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactsInfos");
+                });
+
             modelBuilder.Entity("Impulse.Models.Cv", b =>
                 {
                     b.Property<int>("Id")
