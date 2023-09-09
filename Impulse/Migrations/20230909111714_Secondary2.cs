@@ -1,15 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Impulse.Migrations
 {
     /// <inheritdoc />
-    public partial class Secondary1 : Migration
+    public partial class Secondary2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
+
             migrationBuilder.CreateTable(
                 name: "SecondarySiteSettings",
                 columns: table => new
@@ -18,6 +21,7 @@ namespace Impulse.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TitleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DescName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -26,11 +30,23 @@ namespace Impulse.Migrations
                 });
         }
 
+
+
+
+
+
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+
+
+
+
             migrationBuilder.DropTable(
                 name: "SecondarySiteSettings");
+
+
+
         }
     }
 }

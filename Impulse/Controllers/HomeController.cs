@@ -1,5 +1,6 @@
 ﻿using Impulse.Data;
 using Impulse.DTOs.Cvs;
+using Impulse.DTOs.SecondarySiteSettings;
 using Impulse.DTOs.SiteSettings;
 using Impulse.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
@@ -37,10 +38,20 @@ namespace Impulse.Controllers
                     ImageName = c.ImageName
                 }).Take(3).ToListAsync();
 
+            var secondarySettings = await _context
+                .SecondarySiteSettings
+                .Select(c => new SecondarySiteSettingsDto
+                {
+                    DescName = c.DescName,
+                    TitleName = c.TitleName,
+                    Description = c.Description
+                }).ToListAsync();
+
             var vm = new HomeIndexVm
             {
                 siteSettings = siteSettings,
-                Cvs = cvs
+                Cvs = cvs,
+                SecondarySiteSettings = secondarySettings
             };
 
             // Dto dan almaq lazimdi melumatlari Select ele Dto yarat

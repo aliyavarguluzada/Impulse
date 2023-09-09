@@ -106,15 +106,18 @@
         <div class="align-items-center x">
             <div class="col-md-6">
                 <div class="discount-desc">
-                    <div class="discount-ad text-primary">
-                        <h3>Tələsin!</h3>
-                    </div>
-                    <div class="discount-ad text-primary">
-                        <h2>Endirim <br />Kampaniyası!</h2>
-                    </div>
-                    <div class="discount-ad text-primary">
-                        <h5>Vebsayt üzərindən sifariş edənlərə 10% ENDİRİM!</h5>
-                    </div>
+                    @foreach (var item in Model.SecondarySiteSettings)
+                    {
+                        <div class="discount-ad text-primary">
+                            <h3>@item.TitleName</h3>
+                        </div>
+                        <div class="discount-ad text-primary">
+                            <h2>@item.DescName</h2>
+                        </div>
+                        <div class="discount-ad text-primary">
+                            <h5>@item.Description</h5>
+                        </div>
+                    }
                     <div class="">
                         <button class="btn btn-primary" type="submit">
                             SİFARİŞ ET
@@ -124,7 +127,10 @@
             </div>
             <div class="col-md-6">
                 <div class="row">
-                    <img src="/images/qiz.webp" class="img-fluid" alt="" />
+                    @foreach (var item in Model.siteSettings)
+                    {
+                        <img src="~/images/@item.SecondaryImage" class="img-fluid" alt="" />
+                    }
                 </div>
             </div>
         </div>

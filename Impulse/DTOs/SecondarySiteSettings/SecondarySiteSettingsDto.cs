@@ -1,8 +1,7 @@
-﻿namespace Impulse.Models
+﻿namespace Impulse.DTOs.SecondarySiteSettings
 {
-    public class SecondarySiteSettings
+    public class SecondarySiteSettingsDto
     {
-        public int Id { get; set; }
         public string TitleName { get; set; }
         public string DescName { get; set; }
         public string Description { get; set; }

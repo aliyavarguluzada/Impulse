@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Impulse.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230907114532_Initial")]
-    partial class Initial
+    [Migration("20230909111714_Secondary2")]
+    partial class Secondary2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -206,6 +206,35 @@ namespace Impulse.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("JobTypes");
+                });
+
+            modelBuilder.Entity("Impulse.Models.SecondarySiteSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DescName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SecondarySiteSettings");
                 });
 
             modelBuilder.Entity("Impulse.Models.SiteSetting", b =>
