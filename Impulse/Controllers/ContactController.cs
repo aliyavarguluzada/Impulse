@@ -2,16 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Impulse.Models;
+using System.Net;
 
 namespace Impulse.Controllers
 {
-    public class Contact : Controller
+    public class ContactController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public Contact(ApplicationDbContext context)
+        private readonly ILogger<ContactController> _logger;
+
+        public ContactController(ApplicationDbContext context, ILogger<ContactController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -21,9 +25,9 @@ namespace Impulse.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string email, string subject, string description)
+        public async Task<JsonResult> Index(string email, string subject, string description)
         {
-            if(email is null)
+            if (email is null)
             {
                 Console.WriteLine("Email is empty");
             }
@@ -35,9 +39,16 @@ namespace Impulse.Controllers
                 Description = description
 
             };
+
             await _context.AddAsync(contactInfo);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Contact");
+
+            return Json(new
+            {
+                status = HttpStatusCode.OK,
+                data = contactInfo
+            });
+            //return RedirectToAction("Index", "Contact");
         }
     }
 }

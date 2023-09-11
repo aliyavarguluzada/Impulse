@@ -87,7 +87,8 @@
                             <label id="description" for="exampleFormControlTextarea1" class="form-label">Qeyd</label>
                             <textarea required name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                        <input type="submit" action="@Url.Action("Index","Contact")" class="btn btn-primary" placeholder="Göndər">
+                        <button type="button" class="btn btn-primary" id="btn_add">Add</button>
+                        <input type="submit" id="input-add" class="btn btn-primary" placeholder="Göndər">
                     </form>
                 </div>
             </div>
@@ -95,3 +96,33 @@
     </div>
 </main>
 <!-- Main End -->
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btn_add").click(function () {
+                let email = $("#email").val();
+                let subject = $("#subject").val();
+                let description = $("#description").val();
+
+
+                $.ajax({
+                    url: "/Contact/Index",
+                    method: "post",
+                    type: "json",
+                    data: {
+                        email: email,
+                        subject: subject,
+                        description: description
+                    },
+                    success: function (response) {
+                        if (response.status == 200) {
+                            alert("Operation Successfull");
+                        }
+                    }
+                });
+                event.preventDefault();
+
+            });
+        });
+    </script>
+}
