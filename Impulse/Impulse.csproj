@@ -7,16 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\" />
-    <Folder Include="Areas\Company\DTOs\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Company\Models\" />
-    <Folder Include="Areas\Company\Views\Login\" />
-    <Folder Include="Areas\Company\Views\Register\" />
     <Folder Include="Filters\" />
     <Folder Include="Enums\" />
     <Folder Include="Components\" />
     <Folder Include="wwwroot\admin\" />
-    <Folder Include="wwwroot\company\" />
   </ItemGroup>
 
   <ItemGroup>

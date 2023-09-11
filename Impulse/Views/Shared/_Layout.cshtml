@@ -37,7 +37,7 @@
                         <a class="nav-link" href="vacancy.html">Vakansiyalar</a>
                     </li>
                     <li class="nav-item nav-item">
-                        <a class="nav-link" href="share-vacancy.html">Qeydiyyatdan keç</a>
+                        <a class="nav-link" href="@Url.Action("Register","Account", new {area = "Company"})">Qeydiyyatdan keç</a>
                     </li>
                     <li class="nav-item nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Contact")">Əlaqə</a>
@@ -72,13 +72,14 @@
     </div>
     <!-- Footer End -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    @*     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    *@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="~/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

@@ -14,6 +14,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie();
 
 var app = builder.Build();
+
+
+
+app.MapControllerRoute("Admin",
+                      "{area:exists}/{controller=Account}/{action=Register}");
+
+app.MapControllerRoute("Company",
+                      "{area:exists}/{controller=Account}/{action=Register}");
+
+
+
 app.MapControllerRoute("default",
     "{controller=Home}/{action=Index}");
 
