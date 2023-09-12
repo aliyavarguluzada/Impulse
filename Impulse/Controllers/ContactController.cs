@@ -48,7 +48,6 @@ namespace Impulse.Controllers
                 status = HttpStatusCode.OK,
                 data = contactInfo
             });
-            //return RedirectToAction("Index", "Contact");
         }
     }
 }

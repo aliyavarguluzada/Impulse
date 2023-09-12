@@ -72,23 +72,23 @@
                             Təklif və iradlarınız üçün:
                         </h3>
                     </div>
-                    <form method="post" action="@Url.Action("Index","Contact")">
+                    <form>
                         <div class="mb-3">
-                            <label id="email" for="exampleFormControlInput1" class="form-label">Email Adres</label>
-                            <input required name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                            <label for="exampleFormControlInput1" class="form-label">Email Adres</label>
+                            <input required name="email" type="email" class="form-control" id="email"
                                    placeholder="Email Addres">
                         </div>
                         <div class="mb-3">
-                            <label id="subject" for="exampleFormControlInput1" class="form-label">Mövzu</label>
-                            <input required name="subject" type="text" class="form-control" id="exampleFormControlInput1"
+                            <label for="exampleFormControlInput1" class="form-label">Mövzu</label>
+                            <input required name="subject" type="text" class="form-control" id="subject"
                                    placeholder="Mövzu">
                         </div>
                         <div class="mb-3">
-                            <label id="description" for="exampleFormControlTextarea1" class="form-label">Qeyd</label>
-                            <textarea required name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label for="exampleFormControlTextarea1" class="form-label">Qeyd</label>
+                            <textarea required name="description" class="form-control" id="description" rows="3"></textarea>
                         </div>
                         <button type="button" class="btn btn-primary" id="btn_add">Add</button>
-                        <input type="submit" id="input-add" class="btn btn-primary" placeholder="Göndər">
+
                     </form>
                 </div>
             </div>
@@ -104,11 +104,10 @@
                 let subject = $("#subject").val();
                 let description = $("#description").val();
 
-
                 $.ajax({
                     url: "/Contact/Index",
                     method: "post",
-                    type: "json",
+                    dataType: "json",
                     data: {
                         email: email,
                         subject: subject,
@@ -120,7 +119,6 @@
                         }
                     }
                 });
-                event.preventDefault();
 
             });
         });
