@@ -24,32 +24,20 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public async Task<IActionResult> Register()
         {
-            var companyUser = await _context
-               .Users
-               .Select(c => new CompanyAccountDto
-               {
-                   UserId = c.Id,
-                   Name = c.Name,
-                   Phone = c.Phone,
-                   UserRoleId = c.UserRoleId
-               })
-               .Where(c => c.UserRoleId == (int)UserRoleEnum.Company)
-               .FirstOrDefaultAsync();
-
-            return View(companyUser);
+            return View(new CompanyAccountDto());
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(CompanyAccountDto dto)
         {
+            // TODO: Input validations elave etmek  lazimdi
 
             User user = new User
             {
-                Id = dto.UserId,
                 Name = dto.Name,
                 Phone = dto.Phone,
-                Email = dto.Email
-
+                Email = dto.Email,
+                UserRoleId = (int)UserRoleEnum.Company
             };
 
             using (SHA256 sha256 = SHA256.Create())
@@ -64,7 +52,7 @@ namespace Impulse.Areas.Company.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account", new { area = "Company" });
         }
     }
 }
