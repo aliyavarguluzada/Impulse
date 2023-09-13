@@ -2,9 +2,9 @@
 
 namespace Impulse.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class AccountController : Controller
     {
-        [Area("Admin")]
         public IActionResult Login()
         {
             return View();

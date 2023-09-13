@@ -2,9 +2,9 @@
 
 namespace Impulse.Areas.Company.Controllers
 {
+    [Area("Company")]
     public class AccountController : Controller
     {
-        [Area("Company")]
         public IActionResult Register()
         {
             return View();
