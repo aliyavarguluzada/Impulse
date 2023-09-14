@@ -54,5 +54,17 @@ namespace Impulse.Areas.Company.Controllers
 
             return RedirectToAction("Login", "Account", new { area = "Company" });
         }
+
+
+
+        //public async Task<IActionResult> Login(string email, string password)
+        //{
+        //    var user = await _context
+        //        .Users
+        //        .Select(c => new CompanyAccountDto
+        //        {
+        //            N
+        //        })
+        //}
     }
 }
