@@ -4,6 +4,7 @@ using Impulse.Enums;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -56,15 +57,44 @@ namespace Impulse.Areas.Company.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            //if (HttpContext.User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+            return View();
+        }
 
-        //public async Task<IActionResult> Login(string email, string password)
-        //{
-        //    var user = await _context
-        //        .Users
-        //        .Select(c => new CompanyAccountDto
-        //        {
-        //            N
-        //        })
-        //}
+
+
+        [HttpPost]
+        public async Task<IActionResult> Login(string email, string password)
+        {
+            var user = await _context
+                .Users
+                .Select(c => new CompanyAccountDto
+                {
+                    Email = c.Email
+
+                }).FirstOrDefaultAsync();
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                var buffer = Encoding.UTF8.GetBytes(password);
+                var hash = sha256.ComputeHash(buffer);
+
+                if (!user.Password.SequenceEqual(hash))
+                {
+                    ModelState.AddModelError("", "Passwords do not match");
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+
+
+            return RedirectToAction();
+        }
     }
 }
