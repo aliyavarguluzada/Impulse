@@ -30,7 +30,7 @@
                     <div class="form-content">
 
                         <h1 class="">Register</h1>
-                        <p class="signup-link register">Already have an account? <a href="@Url.Action("Login","Account", new {area="Company"})">Log in</a></p>
+                        <p class="signup-link register">Already have an account? <a href="@Url.Action("Register","Account", new {area="Company"})">Log in</a></p>
                         <form method="post" class="text-left">
                             <div class="form">
                                 @Html.ValidationSummary(true)
@@ -82,7 +82,7 @@
 
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="" action="@Url.Action("Register","Account")">Get Started!</button>
+                                        <button type="submit" class="btn btn-primary" value="" action="@Url.Action("Login","Account", new {area="Company"})">Get Started!</button>
                                     </div>
 
                                 </div>

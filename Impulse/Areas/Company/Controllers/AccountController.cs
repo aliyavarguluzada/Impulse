@@ -58,9 +58,9 @@ namespace Impulse.Areas.Company.Controllers
             {
                 return View();
             }
-            _context.AddAsync(user);
+            await _context.AddAsync(user);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("Login", "Account", new { area = "Company" });
         }
@@ -69,10 +69,7 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            //if (HttpContext.User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+
             return View();
         }
 
