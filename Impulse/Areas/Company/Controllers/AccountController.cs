@@ -37,9 +37,9 @@ namespace Impulse.Areas.Company.Controllers
 
 
             if (!ModelState.IsValid)
-            {
                 return View(registerRequest);
-            }
+
+
 
             User user = new User
             {
@@ -80,18 +80,18 @@ namespace Impulse.Areas.Company.Controllers
 
 
             if (!ModelState.IsValid)
-            {
                 return View(this);
-            }
+
+
             var user = await _context
                 .Users
                 .Where(c => c.Email == loginRequest.Email)
                 .FirstOrDefaultAsync();
 
             if (user is null)
-            {
                 return RedirectToAction("Register", "Account", new { area = "Company" });
-            }
+
+
 
             using (SHA256 sha256 = SHA256.Create())
             {
