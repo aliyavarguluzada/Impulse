@@ -34,6 +34,8 @@ namespace Impulse.Areas.Company.Controllers
         public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {
             // TODO: Input validations elave etmek  lazimdi
+
+
             if (!ModelState.IsValid)
             {
                 return View(registerRequest);
@@ -54,10 +56,7 @@ namespace Impulse.Areas.Company.Controllers
 
                 user.Password = hash;
             }
-            if (user.Email == registerRequest.Email)
-            {
-                return View();
-            }
+
             await _context.AddAsync(user);
 
             await _context.SaveChangesAsync();
@@ -83,7 +82,6 @@ namespace Impulse.Areas.Company.Controllers
                 .Select(c => new LoginRequest
                 {
                     Email = c.Email
-                    //Password = c.Password
 
                 }).FirstOrDefaultAsync();
 
