@@ -15,7 +15,8 @@ namespace Impulse.Core.Requests
 
         [Required(ErrorMessage = "Şifrə boş qala bilməz.")]
         [StringLength(16, ErrorMessage = "Must be between 3 and 16 characters", MinimumLength = 3)]
-
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+        ErrorMessage = "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.")]
         public string Password { get; set; }
 
 

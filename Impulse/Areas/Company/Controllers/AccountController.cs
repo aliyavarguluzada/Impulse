@@ -33,7 +33,6 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {
-            // TODO: Input validations elave etmek  lazimdi
 
 
             if (!ModelState.IsValid)
