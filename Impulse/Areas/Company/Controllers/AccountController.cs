@@ -77,24 +77,32 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(this);
+            }
             var user = await _context
                 .Users
-                .Select(c => new LoginRequest
-                {
-                    Email = c.Email
+                .Where(c => c.Email == loginRequest.Email)
+                .FirstOrDefaultAsync();
 
-                }).FirstOrDefaultAsync();
+            if (user is null)
+            {
+                return RedirectToAction("Register", "Account", new { area = "Company" });
+            }
 
             using (SHA256 sha256 = SHA256.Create())
             {
                 var buffer = Encoding.UTF8.GetBytes(loginRequest.Password);
                 var hash = sha256.ComputeHash(buffer);
 
-                //if (!user.Password.SequenceEqual(hash))
-                //{
-                //    ModelState.AddModelError("", "Passwords do not match");
-                //    return RedirectToAction("Index", "Home");
-                //}
+                if (!user.Password.SequenceEqual(hash))
+                {
+                    ModelState.AddModelError("", "Passwords do not match");
+                    return RedirectToAction("Login", "Account", new { area = "Company" });
+                }
             }
 
 
