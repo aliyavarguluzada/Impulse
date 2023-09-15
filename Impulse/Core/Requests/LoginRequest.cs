@@ -7,7 +7,7 @@ namespace Impulse.Core.Requests
     {
         [Required]
         [EmailAddress]
-        [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Must be a valid email")]
+        [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Emailin strukturu yanlışdır")]
 
         public string Email { get; set; }
 

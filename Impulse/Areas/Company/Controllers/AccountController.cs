@@ -80,7 +80,10 @@ namespace Impulse.Areas.Company.Controllers
 
 
             if (!ModelState.IsValid)
-                return View(this);
+            {
+                ModelState.AddModelError("", "");
+                return View();
+            }
 
 
             var user = await _context
@@ -88,8 +91,12 @@ namespace Impulse.Areas.Company.Controllers
                 .Where(c => c.Email == loginRequest.Email)
                 .FirstOrDefaultAsync();
 
+
             if (user is null)
-                return RedirectToAction("Register", "Account", new { area = "Company" });
+            {
+                ModelState.AddModelError("", "Belə bir istifadəçi yoxdur");
+                return View(loginRequest);
+            }
 
 
 
@@ -100,8 +107,8 @@ namespace Impulse.Areas.Company.Controllers
 
                 if (!user.Password.SequenceEqual(hash))
                 {
-                    ModelState.AddModelError("", "Passwords do not match");
-                    return RedirectToAction("Login", "Account", new { area = "Company" });
+                    ModelState.AddModelError("", "Şifrə yanlışdır");
+                    return View(loginRequest);
                 }
             }
 
