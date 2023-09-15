@@ -1,4 +1,6 @@
-﻿using Impulse.Data;
+﻿using Azure.Core;
+using Impulse.Core.Requests;
+using Impulse.Data;
 using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
 using Impulse.Models;
@@ -25,30 +27,37 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public async Task<IActionResult> Register()
         {
-            return View(new CompanyAccountDto());
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(CompanyAccountDto dto)
+        public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {
             // TODO: Input validations elave etmek  lazimdi
+            if (!ModelState.IsValid)
+            {
+                return View(registerRequest);
+            }
 
             User user = new User
             {
-                Name = dto.Name,
-                Phone = dto.Phone,
-                Email = dto.Email,
+                Name = registerRequest.Name,
+                Phone = registerRequest.Phone,
+                Email = registerRequest.Email,
                 UserRoleId = (int)UserRoleEnum.Company
             };
 
             using (SHA256 sha256 = SHA256.Create())
             {
-                var buffer = Encoding.UTF8.GetBytes(dto.Password);
+                var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
                 var hash = sha256.ComputeHash(buffer);
 
                 user.Password = hash;
             }
-
+            if (user.Email == registerRequest.Email)
+            {
+                return View();
+            }
             _context.AddAsync(user);
 
             _context.SaveChanges();
@@ -70,26 +79,27 @@ namespace Impulse.Areas.Company.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
             var user = await _context
                 .Users
-                .Select(c => new CompanyAccountDto
+                .Select(c => new LoginRequest
                 {
                     Email = c.Email
+                    //Password = c.Password
 
                 }).FirstOrDefaultAsync();
 
             using (SHA256 sha256 = SHA256.Create())
             {
-                var buffer = Encoding.UTF8.GetBytes(password);
+                var buffer = Encoding.UTF8.GetBytes(loginRequest.Password);
                 var hash = sha256.ComputeHash(buffer);
 
-                if (!user.Password.SequenceEqual(hash))
-                {
-                    ModelState.AddModelError("", "Passwords do not match");
-                    return RedirectToAction("Index", "Home");
-                }
+                //if (!user.Password.SequenceEqual(hash))
+                //{
+                //    ModelState.AddModelError("", "Passwords do not match");
+                //    return RedirectToAction("Index", "Home");
+                //}
             }
 
 

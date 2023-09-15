@@ -9,7 +9,7 @@ namespace Impulse.Core.Requests
 
         [Required(ErrorMessage = "E-poçt boş qala bilməz.")]
         [EmailAddress(ErrorMessage = "Düzgün e-poçt daxil edin.")]
-        [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Must be a valid email")]
+        [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Düzgün e-poçt daxil edin.")]
 
         public string Email { get; set; }
 
@@ -18,6 +18,8 @@ namespace Impulse.Core.Requests
 
         public string Password { get; set; }
 
+
+        public string? Phone {  get; set; }
 
         [Required(ErrorMessage = "Təkrar şifrə boş qala bilməz.")]
         [Compare("Password", ErrorMessage = "Təkrar şifrə düzgün deyil.")]
