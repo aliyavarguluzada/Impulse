@@ -7,24 +7,24 @@ namespace Impulse.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult AdminLogin()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(AdminLoginRequest loginRequest)
+        public async Task<IActionResult> AdminLogin(AdminLoginRequest loginRequest)
         {
             return RedirectToAction();
         }
 
         [HttpGet]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> AdminRegister()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Register(AdminRegisterRequest registerRequest)
+        public async Task<IActionResult> AdminRegister(AdminRegisterRequest registerRequest)
         {
             return View();
         }
