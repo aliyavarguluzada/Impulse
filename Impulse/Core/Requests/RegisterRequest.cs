@@ -24,7 +24,7 @@ namespace Impulse.Core.Requests
 
         [Required(ErrorMessage = "Təkrar şifrə boş qala bilməz.")]
         [Compare("Password", ErrorMessage = "Təkrar şifrə düzgün deyil.")]
-        [StringLength(16, ErrorMessage = "Must be between 8 and 16 characters", MinimumLength = 8)]
+        [StringLength(16, ErrorMessage = "Must be between 3 and 16 characters", MinimumLength = 3)]
 
         public string ConfirmPassword { get; set; }
 

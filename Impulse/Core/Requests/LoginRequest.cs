@@ -13,7 +13,7 @@ namespace Impulse.Core.Requests
 
         [Required]
         [PasswordPropertyText]
-        [StringLength(16, ErrorMessage = "Must be between 8 and 16 characters", MinimumLength = 8)]
+        [StringLength(16, ErrorMessage = "Must be between 3 and 16 characters", MinimumLength = 3)]
 
         public string Password { get; set; }
     }
