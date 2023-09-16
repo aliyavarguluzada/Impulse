@@ -1,4 +1,5 @@
 ﻿using Impulse.Core.Requests;
+using Impulse.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Impulse.Areas.Admin.Controllers
@@ -6,6 +7,13 @@ namespace Impulse.Areas.Admin.Controllers
     [Area("Admin")]
     public class AccountController : Controller
     {
+        public readonly ApplicationDbContext _context;
+
+        public AccountController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public IActionResult AdminLogin()
         {
@@ -15,6 +23,7 @@ namespace Impulse.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminLogin(AdminLoginRequest loginRequest)
         {
+
             return RedirectToAction();
         }
 
