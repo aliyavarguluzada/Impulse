@@ -4,67 +4,42 @@
 <main>
     <!-- Catalog Main -->
     <div class="container">
-        <figure>
-            <div class="container mt-5">
-                <div class="row">
 
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-md-4 mb-4">
-                            <div class="image-container">
-                                <img src="~/images/@item.ImageName" alt="Image 1" class="img-fluid image" data-toggle="modal"
-                                     data-target="#myModal1">
-                            </div>
+        <div class="container mt-5">
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="image-container">
+                            <img src="~/images/@item.ImageName" alt="" class="img-fluid image" data-toggle="modal"
+                                 data-target="#myModal1">
                         </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
+        </div>
 
-            <!-- Modal for Image 1 -->
+        <!-- Modal for Image 1 -->
+        @foreach (var image in Model)
+        {
             <div class="modal fade" id="myModal1">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Image 1</h4>
+                            <h4 class="modal-title">Image</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <img src="/images/cv-1.jpg" alt="Image 1" class="img-fluid enlarged-image">
+                            <img src="~/images/@image.ImageName" alt="Image" class="img-fluid enlarged-image">
                         </div>
                     </div>
                 </div>
             </div>
+        }
 
-            <!-- Modal for Image 2 -->
-            <div class="modal fade" id="myModal2">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Image 2</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="/images/cv.jpg" alt="Image 2" class="img-fluid enlarged-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Modal for Image 3 -->
-            <div class="modal fade" id="myModal3">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Image 3</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="/images/cv-1.jpg" alt="Image 3" class="img-fluid enlarged-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Catalog Main End -->
+        <!-- Catalog Main End -->
 </main>
 <!-- Main End -->

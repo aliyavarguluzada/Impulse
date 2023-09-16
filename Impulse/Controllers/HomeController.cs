@@ -54,7 +54,6 @@ namespace Impulse.Controllers
                 SecondarySiteSettings = secondarySettings
             };
 
-            // Dto dan almaq lazimdi melumatlari Select ele Dto yarat
             return View(vm);
         }
 
