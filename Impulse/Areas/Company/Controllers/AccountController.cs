@@ -33,34 +33,45 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {
-
-
-            if (!ModelState.IsValid)
-                return View(registerRequest);
-
-
-
-            User user = new User
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                Name = registerRequest.Name,
-                Phone = registerRequest.Phone,
-                Email = registerRequest.Email,
-                UserRoleId = (int)UserRoleEnum.Company
-            };
+                try
+                {
 
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
-                var hash = sha256.ComputeHash(buffer);
+                    if (!ModelState.IsValid)
+                        return View(registerRequest);
 
-                user.Password = hash;
+
+
+                    User user = new User
+                    {
+                        Name = registerRequest.Name,
+                        Phone = registerRequest.Phone,
+                        Email = registerRequest.Email,
+                        UserRoleId = (int)UserRoleEnum.Company
+                    };
+
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
+                        var hash = sha256.ComputeHash(buffer);
+
+                        user.Password = hash;
+                    }
+
+                    await _context.AddAsync(user);
+                    await _context.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
             }
-
-            await _context.AddAsync(user);
-
-            await _context.SaveChangesAsync();
-
             return RedirectToAction("Login", "Account", new { area = "Company" });
+
         }
 
 
