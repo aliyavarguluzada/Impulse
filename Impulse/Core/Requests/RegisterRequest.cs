@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Impulse.Core.Requests
+namespace Impulse.Core.Requests// aop aspect oriented programming
 {
     public class RegisterRequest
     {

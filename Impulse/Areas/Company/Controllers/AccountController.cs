@@ -4,6 +4,7 @@ using Impulse.Data;
 using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
 using Impulse.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -124,7 +125,7 @@ namespace Impulse.Areas.Company.Controllers
 
 
 
-            return RedirectToAction();
+            return RedirectToAction("Add-Vacancy", "Home", new { area = "Company" });
         }
     }
 }
