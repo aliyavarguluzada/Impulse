@@ -22,7 +22,8 @@ app.MapControllerRoute("Admin",
 app.MapControllerRoute("Company",
                       "{area:exists}/{controller=Account}/{action=Register}");
 
-
+app.MapControllerRoute("Company",
+                     "{area:exists}/{controller=CompanyHome}/{action=AddVacancy}");
 
 
 app.MapControllerRoute("default",

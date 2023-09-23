@@ -125,7 +125,7 @@ namespace Impulse.Areas.Company.Controllers
 
 
 
-            return RedirectToAction("Add-Vacancy", "Home", new { area = "Company" });
+            return RedirectToAction("AddVacancy", "CompanyHome", new { area = "Company" });
         }
     }
 }
