@@ -1,24 +1,24 @@
 /* Defaults */
 /* Defaults */
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: regular;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: regular;
 }
 
 @font-face {
-  font-family: regular;
-  src: url(/fonts/Roboto-Medium.ttf);
+    font-family: regular;
+    src: url(/fonts/Roboto-Medium.ttf);
 }
 
 @font-face {
-  font-family: Medium-Italic;
-  src: url(/fonts/Roboto-MediumItalic.ttf);
+    font-family: Medium-Italic;
+    src: url(/fonts/Roboto-MediumItalic.ttf);
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 /* Defaults End */
@@ -31,53 +31,53 @@ html {
     height: 50px!important;
 } */
 .logo img {
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
 }
 
 .nav-item {
-  margin-left: 20px;
-  margin-right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.nav-item a {
-  font-family: regular;
-}
+    .nav-item a {
+        font-family: regular;
+    }
 
 /* Navbar End */
 /* Header End */
 /* Main */
 .main-body {
-  background-color: #f9fbfc;
+    background-color: #f9fbfc;
 }
 
 .main-img-div {
-  /* width: 100%; */
-  height: 100%;
+    /* width: 100%; */
+    height: 100%;
 }
 
 .main-img {
-  width: 92%;
-  height: 95%;
+    width: 92%;
+    height: 95%;
 }
 
 /* Todo .main-desc padding faizle verilib ola biler deyismek lazim olsun */
 .main-title {
-  padding: 15% 15% 10% 15%;
+    padding: 15% 15% 10% 15%;
 }
 
 /* Todo .main-desc padding faizle verilib ola biler deyismek lazim olsun */
 .main-desc {
-  padding: 1% 15% 0% 15%;
+    padding: 1% 15% 0% 15%;
 }
 
 .button-div {
-  padding: 1% 15% 0% 15%;
+    padding: 1% 15% 0% 15%;
 }
 
-.button-div button:nth-child(1) {
-  margin-right: 5%;
-}
+    .button-div button:nth-child(1) {
+        margin-right: 5%;
+    }
 
 /* Main End */
 
@@ -85,112 +85,110 @@ html {
 
 /* Designs */
 .designs-div {
-  padding: 2% 0% 2% 0%;
+    padding: 2% 0% 2% 0%;
 }
 
 .design-examples img {
-  width: 95% !important;
-  height: auto;
+    width: 95% !important;
+    height: auto;
 }
 
 /* Designs End */
 
 /* Discount */
 .wave-div {
-  padding: 3% 0% 2% 0%;
+    padding: 3% 0% 2% 0%;
 }
 
-.wave-div img {
-  width: 100%;
-}
+    .wave-div img {
+        width: 100%;
+    }
 
 .discount-ad {
-  width: fit-content;
+    width: fit-content;
 }
 
 .why-icons {
-  font-size: xx-large;
-  padding: 15px;
+    font-size: xx-large;
+    padding: 15px;
 }
 
 .x {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /* Discount End */
 
 /* Why-panel */
 .why-panel {
-  padding: 5%;
+    padding: 5%;
 }
 
 .why-div {
-  border-radius: 10px !important;
+    border-radius: 10px !important;
 }
 
 /* Why-panel End */
 
 /* About */
 .about {
-  background-image: url(/images/hero11-free-img.png);
-  background-color: #f9f9f9;
-  /* opacity: .68; */
-  padding-bottom: 5%;
-  background-position: center;
-  /* Todo  */
-  /* mix-blend-mode: luminosity; */
-  /* Todo  */
-  /* height: 100vh; */
-  display: flex;
-  align-items: center;
+    background-image: url(/images/hero11-free-img.png);
+    background-color: #f9f9f9;
+    /* opacity: .68; */
+    padding-bottom: 5%;
+    background-position: center;
+    /* Todo  */
+    /* mix-blend-mode: luminosity; */
+    /* Todo  */
+    /* height: 100vh; */
+    display: flex;
+    align-items: center;
 }
 
 .about-content {
-  width: 50%;
+    width: 50%;
 }
 
 .about-title {
-  padding-top: 10%;
+    padding-top: 10%;
 }
 
 .about-desc {
-  padding-top: 15%;
-  padding-bottom: 15%;
+    padding-top: 15%;
+    padding-bottom: 15%;
 }
 
-.about-desc p {
-  line-height: 200%;
-  font-size: large;
-  font-family: Medium-Italic;
-}
+    .about-desc p {
+        line-height: 200%;
+        font-size: large;
+        font-family: Medium-Italic;
+    }
 
 .social-media span i {
-  font-size: xx-large;
+    font-size: xx-large;
 }
 
-.social-media span i.fa-whatsapp {
-  background-color: #39d675 !important;
-  color: #f9fbfc;
+    .social-media span i.fa-whatsapp {
+        background-color: #39d675 !important;
+        color: #f9fbfc;
+        border-radius: 50%;
+        padding: 10px;
+    }
 
-  border-radius: 50%;
-  padding: 10px;
-}
+    .social-media span i.fa-instagram {
+        background-color: #c746dc;
+        color: #f9fbfc;
+        border-radius: 50%;
+        padding: 10px;
+    }
 
-.social-media span i.fa-instagram {
-  background-color: #c746dc;
-  color: #f9fbfc;
-  border-radius: 50%;
-  padding: 10px;
-}
-
-.social-media span i.fa-facebook {
-  background-color: #4d69a2;
-  color: #f9fbfc;
-
-  border-radius: 50%;
-  padding: 10px;
-}
+    .social-media span i.fa-facebook {
+        background-color: #4d69a2;
+        color: #f9fbfc;
+        border-radius: 50%;
+        padding: 10px;
+    }
 
 /* About End */
 
@@ -198,36 +196,35 @@ html {
 
 /* Footer */
 .footer {
-  background-color: #313131;
+    background-color: #313131;
 }
 
-.footer img {
-  width: 20%;
-  height: 20%;
-}
+    .footer img {
+        width: 20%;
+        height: 20%;
+    }
 
 .footer-border {
-  border-top: 1px solid #f9fbfc;
-  background-color: #313131;
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
+    border-top: 1px solid #f9fbfc;
+    background-color: #313131;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
 }
 
-.footer-border .left-p {
-  display: flex;
-  flex-direction: row !important;
-}
+    .footer-border .left-p {
+        display: flex;
+        flex-direction: row !important;
+    }
 
-.footer-border .right-p {
-  display: flex;
+    .footer-border .right-p {
+        display: flex;
+        flex-direction: row-reverse;
+    }
 
-  flex-direction: row-reverse;
-}
-
-.footer-border p {
-  color: #f9fbfc;
-}
+    .footer-border p {
+        color: #f9fbfc;
+    }
 
 /* Footer End */
 
@@ -242,84 +239,92 @@ html {
 /* Catalog */
 
 .image-container {
-  text-align: center;
+    text-align: center;
 }
 
 /* Enlarged image styling */
 .modal-lg .modal-content .modal-body .enlarged-image {
-  max-width: 100%;
-  max-height: calc(100vh - 120px);
-  /* Adjust the value to control the height */
-  margin: 0 auto;
-  display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 120px);
+    /* Adjust the value to control the height */
+    margin: 0 auto;
+    display: block;
 }
 
 .modal-header .close {
-  border: none;
-  background-color: transparent;
-  color: #313131;
-  /* Change the color as needed */
-  font-size: 24px;
-  font-weight: bold;
-  opacity: 1;
-  padding: 0;
+    border: none;
+    background-color: transparent;
+    color: #313131;
+    /* Change the color as needed */
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 1;
+    padding: 0;
 }
 
 /* Remove modal background and border */
 .modal-lg .modal-content {
-  background: none;
-  border: none;
-  box-shadow: none;
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
 /* Center the image within the modal */
 .modal-lg .modal-dialog {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
 
 /* Catalog End */
 
 /* Contact */
 .contact-main {
-  padding-top: 30px;
-  padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 40px;
 }
 
 .contact-input {
-  padding: 10px;
-  border: 1px solid #E1E2E2;
-  border-radius: 6px;
+    padding: 10px;
+    border: 1px solid #E1E2E2;
+    border-radius: 6px;
 }
 
-.contact-input form {
-  padding: 30px;
+    .contact-input form {
+        padding: 30px;
+    }
+
+.social-contact-icons {
+    padding: 20px 0px 20px 0px;
 }
-.social-contact-icons{
-  padding: 20px 0px 20px 0px;
-}
+
 .input-title {
-  padding: 15px 30px 15px 30px;
+    padding: 15px 30px 15px 30px;
 }
 
 .contact-main-h1 {
-  padding: 20px 0px 20px 0px;
+    padding: 20px 0px 20px 0px;
 }
 
 .contact-main-p {
-  padding: 20px 0px 20px 0px;
-  color: #313131;
-
+    padding: 20px 0px 20px 0px;
+    color: #313131;
 }
 
 .contact-icons {
-  padding: 35px;
+    padding: 35px;
 }
 
-.contact-icons i {
-  font-size: 25px;
-}
+    .contact-icons i {
+        font-size: 25px;
+    }
 
 /* Contact End */
+/* Add-Vacancy */
+
+.add-vacancy {
+    padding: 15px;
+}
+
+/* End Add-Vacancy */

@@ -1,107 +1,120 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vakansiya Əlavə edin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-          crossorigin="anonymous" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/company/css/style.css" />
-    <link rel="stylesheet" href="~/company/css/media.css" />
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/media.css" />
+  </head>
+  <body>
     <!-- Main -->
 
     <main>
-        <div class="container">
-            <div>
-                <h1 class="text-primary">Vakansiya Haqqında Məlumat</h1>
-            </div>
+      <div class="container">
+        <div>
+          <h1 class="text-primary">Vakansiya Haqqında Məlumat</h1>
         </div>
-        <div class="container mt-5 add-vacancy">
-            <form action="" method="post">
-                <div class="form-group">
-                    <label for="vacancy-name">Vakansiyanın Adı:</label>
-                    <input required type="text" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="workForm">İş Forması:</label>
-                    <select class="form-control" id="workForm">
-                        <option value="remote">Remote</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="atWork">At Work</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="workType">İş Tipi:</label>
-                    <select class="form-control" id="workType">
-                        <option value="fullTime">Full Time</option>
-                        <option value="partTime">Part Time</option>
-                        <option value="freelance">Freelance</option>
-                        <option value="experienceProgram">Təcrübə Proqramı</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="description">Vakansiya üçün açıqlama:</label>
-                    <textarea required
-                              class="form-control"
-                              id="description"
-                              rows="5"></textarea>
-                </div>
+      </div>
+      <div class="container mt-5 add-vacancy">
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="vacancy-name">Vakansiyanın Adı:</label>
+            <input required type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="workForm">İş Forması:</label>
+            <select class="form-control" id="workForm">
+              <option value="remote">Remote</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="atWork">At Work</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="workType">İş Tipi:</label>
+            <select class="form-control" id="workType">
+              <option value="fullTime">Full Time</option>
+              <option value="partTime">Part Time</option>
+              <option value="freelance">Freelance</option>
+              <option value="experienceProgram">Təcrübə Proqramı</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="description">Vakansiya üçün açıqlama:</label>
+            <textarea
+              required
+              class="form-control"
+              id="description"
+              rows="5"
+            ></textarea>
+          </div>
 
-                <div class="form-group">
-                    <label for="logo">Loqo:</label>
-                    <div class="custom-file">
-                        <input required
-                               type="file"
-                               class="custom-file-input"
-                               id="logo"
-                               accept=".jpeg, .jpg, .png" />
-                        <label class="custom-file-label" for="logo">Choose file</label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+          <div class="form-group">
+            <label for="logo">Loqo:</label>
+            <div class="custom-file">
+              <input
+                required
+                type="file"
+                class="custom-file-input"
+                id="logo"
+                accept=".jpeg, .jpg, .png"
+              />
+              <label class="custom-file-label" for="logo">Choose file</label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </main>
     <!-- Main End -->
+
     <!-- Footer -->
 
     <div class="footer">
-        <div class="col-md-4">
-            <div class="container-sm">
-                <img src="/images/logo.png" alt="" />
-            </div>
+      <div class="col-md-4">
+        <div class="container-sm">
+          <img src="/images/logo.png" alt="" />
         </div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
     </div>
     <div class="footer-border row">
-        <div class="col-md-4 left-p">
-            <p>Copyright © 2023</p>
-        </div>
-        <div class="col-md-4 right-p">
-            <p>CV-Land</p>
-        </div>
+      <div class="col-md-4 left-p">
+        <p>Copyright © 2023</p>
+      </div>
+      <div class="col-md-4 right-p">
+        <p>CV-Land</p>
+      </div>
     </div>
     <!-- Footer End -->
     <!-- Still not sure if the code below works or not  -->
-    <script src="~/company/js/main.js"></script>
+    <script src="/js/main.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="~/company/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-</body>
+    <script src="/js/main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
