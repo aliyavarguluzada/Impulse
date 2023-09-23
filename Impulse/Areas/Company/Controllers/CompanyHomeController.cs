@@ -41,9 +41,16 @@ namespace Impulse.Areas.Company.Controllers
                     Vacancy vacancy = new()
                     {
                         Name = addRequest.VacancyName,
-                        Description = addRequest.Description
+                        Description = addRequest.Description,
+                        Email = addRequest.Email,
+                        StartDate = DateTime.Now,
+                        ExpireDate = DateTime.Now.AddDays(30)
+
 
                     };
+                    await _context.AddAsync(vacancy);
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
                 }
                 catch (Exception)
                 {
@@ -52,7 +59,7 @@ namespace Impulse.Areas.Company.Controllers
                 }
             }
 
-            return RedirectToAction("");
+            return View();
         }
     }
 }
