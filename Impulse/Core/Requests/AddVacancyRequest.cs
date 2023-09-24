@@ -11,9 +11,9 @@ namespace Impulse.Core.Requests
 
         public string Description { get; set; }
 
-        [Required]
+        //[Required]
 
-        public string Logo { get; set; }
+        //public string Logo { get; set; }
 
         [Required(ErrorMessage = "Düzgün Email daxil edin")]
         [EmailAddress(ErrorMessage = "Düzgün Email daxil edin")]
