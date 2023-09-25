@@ -44,7 +44,7 @@ namespace Impulse.Areas.Company.Controllers
                         Description = addRequest.Description,
                         Email = addRequest.Email,
                         StartDate = DateTime.Now,
-                        ExpireDate = DateTime.Now.AddDays(30)
+                        ExpireDate = DateTime.Now.AddDays(30) // Hangfire
 
 
                     };

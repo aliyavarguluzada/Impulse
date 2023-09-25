@@ -13,7 +13,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="image-container">
                             <img src="~/images/@item.ImageName" alt="" class="img-fluid image" data-toggle="modal"
-                                 data-target="#myModal1">
+                                 data-target="#myModal_@item.CvId">
                         </div>
                     </div>
                 }
@@ -23,7 +23,7 @@
         <!-- Modal for Image 1 -->
         @foreach (var image in Model)
         {
-            <div class="modal fade" id="myModal1">
+            <div class="modal fade" id="myModal_@image.CvId">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">

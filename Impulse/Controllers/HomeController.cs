@@ -36,7 +36,7 @@ namespace Impulse.Controllers
                     CvId = c.Id,
                     MainPage = c.MainPage,
                     ImageName = c.ImageName
-                }).Take(3).ToListAsync();
+                }).OrderBy(c => c.CvId).Take(3).ToListAsync();
 
             var secondarySettings = await _context
                 .SecondarySiteSettings
