@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Impulse.ViewModels.Company
+@model CompanyInfoVm
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -36,42 +39,59 @@
                 <div class="form-group">
                     <label for="workForm">İş Forması:</label>
                     <select class="form-control" id="workForm">
-                        <option value="remote">Remote</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="atWork">At Work</option>
+                        @foreach (var workForm in Model.workForms)
+                        {
+                            <option value="" id="@workForm.WorkFormId">@workForm.WorkFormName</option>
+                            @* <option value="hybrid">Hybrid</option>
+                        <option value="atWork">At Work</option> *@
+                        }
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="workType">İş Tipi:</label>
                     <select class="form-control" id="workType">
-                        <option value="fullTime">Full Time</option>
-                        <option value="partTime">Part Time</option>
+                        @foreach (var Jobtype in Model.jobTypes)
+                        {
+                            <option value="" id="@Jobtype.JobTypeId">@Jobtype.JobTypeName</option>
+
+                        }
+                        @*  <option value="partTime">Part Time</option>
                         <option value="freelance">Freelance</option>
-                        <option value="experienceProgram">Təcrübə Proqramı</option>
+                        <option value="experienceProgram">Təcrübə Proqramı</option> *@
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="workType">İşin kateqoriyası:</label>
                     <select class="form-control" id="workType">
-                        <option value="">Proqramlaşdırma</option>
-                        <option value="">DevOps</option>
-                        <option value="">Maliyyə</option>
+                        @foreach (var jobCategory in Model.jobCategories)
+                        {
+                            <option value="">@jobCategory.JobCategoryName</option>
+                        }
+                        @*  <option value="">DevOps</option>
+                        <option value="">Maliyyə</option> *@
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="workType">Şəhər:</label>
                     <select class="form-control" id="workType">
-                        <option value="">Bakı</option>
-                        <option value="">Gəncə</option>
-                        <option value="">Neftçala</option>
+                        @foreach (var City in Model.cities)
+                        {
+                            <option value="" id="@City.CityId">@City.CityName</option>
+                        }
+                       @*  <option value="">Gəncə</option>
+                        <option value="">Neftçala</option> *@
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="workType">Təcrübə:</label>
                     <select class="form-control" id="workType">
-                        <option value="">1 ildən 3 ilə kimi</option>
+                        @foreach (var Experience in Model.experiences)
+                        {
+                            <option value="" id="@Experience.ExperienceId">@Experience.ExperienceName</option>
+                        }
+                        @*   <option value="">1 ildən 3 ilə kimi</option>
                         <option value="">5 il</option>
-                        <option value="">1 ildən az</option>
+                        <option value="">1 ildən az</option> *@
                     </select>
                 </div>
                 <div class="form-group">

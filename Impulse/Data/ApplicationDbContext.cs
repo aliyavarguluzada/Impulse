@@ -22,5 +22,6 @@ namespace Impulse.Data
         public DbSet<WorkForm> WorkForms { get; set; }
         public DbSet<SecondarySiteSettings> SecondarySiteSettings { get; set; }
         public DbSet<ContactInfo> ContactsInfos { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
     }
 }
