@@ -4,16 +4,20 @@ using Impulse.Data;
 using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
 using Impulse.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace Impulse.Areas.Company.Controllers
 {
     [Area("Company")]
+    [MyAuth("Company")]
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -122,10 +126,31 @@ namespace Impulse.Areas.Company.Controllers
                     return View(loginRequest);
                 }
             }
+            var claims = new List<Claim>
+            {
+                new Claim("Name",user.Name),
+                new Claim("Email", user.Email),
+                new Claim("RoleId", user.UserRoleId.ToString()),
+                new Claim("Id", user.Id.ToString())
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
 
 
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity));
 
             return RedirectToAction("AddVacancy", "CompanyHome", new { area = "Company" });
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

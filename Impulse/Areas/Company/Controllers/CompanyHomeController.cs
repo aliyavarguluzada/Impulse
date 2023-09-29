@@ -1,6 +1,5 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
-using Impulse.DTOs.CompanyAccount;
 using Impulse.DTOs.CompanyInfo;
 using Impulse.Models;
 using Impulse.ViewModels.Company;
@@ -29,70 +28,15 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public async Task<IActionResult> AddVacancy()
         {
-            var jobTypes = await _context
-                        .JobTypes
-                        .Select(c => new JobTypeDto
-                        {
-                            JobTypeId = c.Id,
-                            JobTypeName = c.Name
 
-                        }).ToListAsync();
-
-            var workForms = await _context
-                .WorkForms
-                .Select(c => new WorkFormDto
-                {
-                    WorkFormId = c.Id,
-                    WorkFormName = c.Name
-
-                }).ToListAsync();
-
-            var educations = await _context
-                .Educations
-                .Select(c => new EducationDto
-                {
-                    EducationId = c.Id,
-                    EducationName = c.Name
-                }).ToListAsync();
-
-            var jobCategories = await _context
-                .JobCategories
-                .Select(c => new JobCategoryDto
-                {
-                    JobCategoryId = c.Id,
-                    JobCategoryName = c.Name
-
-                }).ToListAsync();
-
-            var cities = await _context
-                        .Cities
-                        .Select(c => new CityDto
-                        {
-                            CityId = c.Id,
-                            CityName = c.Name
-                        }).
-                        ToListAsync();
-
-            var experiences = await _context
-                .Experiences
-                .Select(c => new ExperienceDto
-                {
-                    ExperienceId = c.Id,
-                    ExperienceName = c.Name
-                }).ToListAsync();
-
-            CompanyInfoVm vm = new()
-            {
-                workForms = workForms,
-                educations = educations,
-                jobCategories = jobCategories,
-                jobTypes = jobTypes,
-                cities = cities,
-                experiences = experiences
-            };
-            return View(vm);
+            return View();
         }
 
+        //
+        //
+        //  TempData ya yig bazadaki infolari
+        //
+        //
         [HttpPost]
         public async Task<IActionResult> AddVacancy(AddVacancyRequest addRequest)
         {
@@ -100,60 +44,9 @@ namespace Impulse.Areas.Company.Controllers
             {
                 try
                 {
-                    if (!ModelState.IsValid)
-                        return View(addRequest);
+                    //if (!ModelState.IsValid)
+                    //    return View(addRequest);
 
-                    //var jobTypes = await _context
-                    //    .JobTypes
-                    //    .Select(c => new JobTypeDto
-                    //    {
-                    //        JobTypeId = c.Id,
-                    //        JobTypeName = c.Name
-
-                    //    }).ToListAsync();
-
-                    //var workForms = await _context
-                    //    .WorkForms
-                    //    .Select(c => new WorkFormDto
-                    //    {
-                    //        WorkFormId = c.Id,
-                    //        WorkFormName = c.Name
-
-                    //    }).ToListAsync();
-
-                    //var educations = await _context
-                    //    .Educations
-                    //    .Select(c => new EducationDto
-                    //    {
-                    //        EducationId = c.Id,
-                    //        EducationName = c.Name
-                    //    }).ToListAsync();
-
-                    //var jobCategories = await _context
-                    //    .JobCategories
-                    //    .Select(c => new JobCategoryDto
-                    //    {
-                    //        JobCategoryId = c.Id,
-                    //        JobCategoryName = c.Name
-
-                    //    }).ToListAsync();
-
-                    //var cities = await _context
-                    //    .Cities
-                    //    .Select(c => new CityDto
-                    //    {
-                    //        CityId = c.Id,
-                    //        CityName = c.Name
-                    //    }).
-                    //    ToListAsync();
-                    //var experiences = await _context
-                    //                .Experiences
-                    //                 .Select(c => new ExperienceDto
-                    //                 {
-                    //                     ExperienceId = c.Id,
-                    //                     ExperienceName = c.Name
-
-                    //                 }).ToListAsync();
 
                     Vacancy vacancy = new()
                     {
@@ -161,10 +54,27 @@ namespace Impulse.Areas.Company.Controllers
                         Description = addRequest.Description,
                         Email = addRequest.Email,
                         StartDate = DateTime.Now,
-                        ExpireDate = DateTime.Now.AddDays(30) // Hangfire
+                        ExpireDate = DateTime.Now.AddDays(30), // Hangfire
+
 
 
                     };
+
+                    if (addRequest.Logo != null && addRequest.Logo.Length > 0)
+                    {
+                        // Save the file to a location (e.g., wwwroot/images/logos)
+                        var fileName = Guid.NewGuid() + Path.GetExtension(addRequest.Logo.FileName);
+                        var filePath = Path.Combine("wwwroot/images/logos", fileName);
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await addRequest.Logo.CopyToAsync(fileStream);
+                        }
+
+                        // Set the logo file path in the vacancy model
+                        vacancy.LogoFilePath = filePath;
+                    }
+
                     await _context.AddAsync(vacancy);
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();

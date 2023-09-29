@@ -15,7 +15,8 @@ namespace Impulse.Models
         public string? Email { get; set; }
         public string Description { get; set; }
         public string CompanyLogoImage { get; set; }
-        public string Experience { get; set; }
+        public int ExperienceId { get; set; }
+        public string LogoFilePath { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime ExpireDate { get; set; }
         public DateTime? Created { get; set; }
@@ -27,5 +28,6 @@ namespace Impulse.Models
         public virtual City City { get; set; }
         public virtual JobCategory JobCategory { get; set; }
         public virtual Education Education { get; set; }
+        public virtual Experience Experience { get; set; }
     }
 }
