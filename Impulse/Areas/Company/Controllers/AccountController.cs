@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -53,7 +54,7 @@ namespace Impulse.Areas.Company.Controllers
                         Name = registerRequest.Name,
                         Phone = registerRequest.Phone,
                         Email = registerRequest.Email,
-                        UserRoleId = (int)UserRoleEnum.Company
+                        UserRoleId = (int)UserRoleEnum.Company,
                     };
 
                     using (SHA256 sha256 = SHA256.Create())
@@ -126,11 +127,16 @@ namespace Impulse.Areas.Company.Controllers
                     return View(loginRequest);
                 }
             }
+
+            
+
+
             var claims = new List<Claim>
             {
                 new Claim("Name",user.Name),
                 new Claim("Email", user.Email),
                 new Claim("RoleId", user.UserRoleId.ToString()),
+                new Claim("Role", name),
                 new Claim("Id", user.Id.ToString())
             };
 
@@ -144,7 +150,10 @@ namespace Impulse.Areas.Company.Controllers
             return RedirectToAction("AddVacancy", "CompanyHome", new { area = "Company" });
         }
 
-
+        private string GetNameFromEnumValue(UserRoleEnum value)
+        {
+            throw new NotImplementedException();
+        }
 
         [HttpGet]
         public async Task<IActionResult> Logout()
