@@ -32,90 +32,109 @@
         </div>
         <div class="container mt-5 add-vacancy">
             <form asp-action="AddVacancy" enctype="multipart/form-data" method="post" @Url.Action("AddVacancy", "CompanyHome", new {area="Company"})>
+
+                @Html.ValidationSummary(true)
                 <div class="form-group">
+
                     <label for="vacancy-name">Vakansiyanın Adı:</label>
+                    @Html.ValidationMessageFor(c => c.VacancyName)
                     <input required type="text" class="form-control" name="vacancyname" />
-                </div> <div class="form-group">
-                    <label for="company-name">Şirkət Adı:</label>
-                    <input required type="text" class="form-control" name="companyname" />
-                </div>
-                <div class="form-group">
-                    <label for="workForm">İş Forması:</label>
-                    <select class="form-control" id="workForm">
-                        @* @foreach (var workForm in Model)
-                        {
-                            <option value="" id="@workForm.WorkFormId">@workForm.WorkFormName</option>
-                        } *@
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="workType">İş Tipi:</label>
-                    <select class="form-control" id="workType">
-                       @*  @foreach (var Jobtype in Model)
-                        {
-                            <option value="" id="@Jobtype.JobTypeId">@Jobtype.JobTypeName</option>
 
-                        } *@
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="workType">İşin kateqoriyası:</label>
-                    <select class="form-control" id="workType">
-                       @*  @foreach (var jobCategory in Model)
-                        {
-                            <option value="">@jobCategory.JobCategoryName</option>
-                        } *@
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="workType">Şəhər:</label>
-                    <select class="form-control" id="workType">
-                        @* @foreach (var City in Model)
-                        {
-                            <option value="" id="@City.CityId">@City.CityName</option>
-                        } *@
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="workType">Təcrübə:</label>
-                    <select class="form-control" id="workType">
-                       @*  @foreach (var Experience in Model)
-                        {
-                            <option value="" id="@Experience.ExperienceId">@Experience.ExperienceName</option>
-                        } *@
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="description">Vakansiya üçün açıqlama:</label>
-                    <textarea required
-                              class="form-control"
-                              id="description"
-                              rows="5"
-                              name="description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input required
-                           type="email"
-                           class="form-control"
-                           id="email"
-                           placeholder="example@example.com"
-                           name="email" />
-                </div>
-                <div class="form-group">
-                    <label for="logo">Loqo:</label>
-                    <div class="custom-file">
-                        <input required
-                               type="file"
-                               asp-for="Logo"
-                               class="custom-file-input"
-                               id="logo"
-                               accept=".jpeg, .jpg, .png" />
-                        <label class="custom-file-label" for="logo">Choose file</label>
+                    <div class="form-group">
+                        <label for="workForm">İş Forması:</label>
+                        <select class="form-control" id="WorkForms" name="WorkForms">
+                            @foreach (var workForm in Model.WorkForms)
+                            {
+                                <option value="@workForm.WorkFormId">@workForm.WorkFormName</option>
+                            }
+                        </select>
                     </div>
+                    <div class="form-group">
+                        <label for="workType">İş Tipi:</label>
+                        <select class="form-control" id="workType" name="JobTypes">
+                            @foreach (var jobType in Model.JobTypes)
+                            {
+                                <option value="@jobType.JobTypeId">@jobType.JobTypeName</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="workType">İşin kateqoriyası:</label>
+                        <select class="form-control" id="JobType" name="JobCategories">
+
+                            @foreach (var jobCategory in Model.JobCategories)
+                            {
+                                <option value="@jobCategory.JobCategoryId">@jobCategory.JobCategoryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="workType">Şəhər:</label>
+                        <select class="form-control" id="workType" name="Cities">
+                            @foreach (var City in Model.Cities)
+                            {
+                                <option value="@City.CityId">@City.CityName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="workType">Təcrübə:</label>
+                        <select class="form-control" id="workType" name="Experiences">
+                            @foreach (var Experience in Model.Experiences)
+                            {
+                                <option value="@Experience.ExperienceId">@Experience.ExperienceName</option>
+                            }
+
+                        </select>
+                    </div>  <div class="form-group">
+                        <label for="workType">Təhsil:</label>
+                        <select class="form-control" id="workType" name="Educations">
+                            @foreach (var Experience in Model.Educations)
+                            {
+                                <option value="@Experience.EducationId">@Experience.EducationName</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Vakansiya üçün açıqlama:</label>
+                        @Html.ValidationMessageFor(c => c.Description)
+
+                        <textarea required
+                                  class="form-control"
+                                  id="description"
+                                  rows="5"
+                                  name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        @Html.ValidationMessageFor(c => c.Email)
+
+                        <input required
+                               type="email"
+                               class="form-control"
+                               id="email"
+                               placeholder="example@example.com"
+                               name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="logo">Loqo:</label>
+                        <div class="custom-file">
+                            <input required
+                                   type="file"
+                                   asp-for="Logo"
+                                   class="custom-file-input"
+                                   id="logo"
+                                   name="logo"
+                                   accept=".jpeg, .jpg, .png" />
+                            <label class="custom-file-label" for="logo">Choose file</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </main>

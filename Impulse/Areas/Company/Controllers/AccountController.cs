@@ -18,7 +18,7 @@ using System.Text;
 namespace Impulse.Areas.Company.Controllers
 {
     [Area("Company")]
-    [MyAuth("Company")]
+    //[MyAuth("Company")]
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -128,7 +128,7 @@ namespace Impulse.Areas.Company.Controllers
                 }
             }
 
-            
+
 
 
             var claims = new List<Claim>
@@ -136,7 +136,6 @@ namespace Impulse.Areas.Company.Controllers
                 new Claim("Name",user.Name),
                 new Claim("Email", user.Email),
                 new Claim("RoleId", user.UserRoleId.ToString()),
-                new Claim("Role", name),
                 new Claim("Id", user.Id.ToString())
             };
 

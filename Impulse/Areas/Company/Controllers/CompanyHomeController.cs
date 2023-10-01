@@ -28,8 +28,71 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public async Task<IActionResult> AddVacancy()
         {
+            AddVacancyRequest request = new();
 
-            return View();
+            var workForms = await _context
+                .WorkForms
+                .Select(c => new WorkFormDto
+                {
+                    WorkFormId = c.Id,
+                    WorkFormName = c.Name
+                }).ToListAsync();
+
+            var jobTypes = await _context
+                .JobTypes
+                .Select(c => new JobTypeDto
+                {
+                    JobTypeId = c.Id,
+                    JobTypeName = c.Name
+
+                }).ToListAsync();
+
+            var jobCategories = await _context
+                .JobCategories
+                .Select(c => new JobCategoryDto
+                {
+                    JobCategoryId = c.Id,
+                    JobCategoryName = c.Name
+
+                }).ToListAsync();
+
+            var cities = await _context
+                .Cities
+                .Select(c => new CityDto
+                {
+                    CityId = c.Id,
+                    CityName = c.Name
+
+                }).ToListAsync();
+
+
+            var educations = await _context
+                .Educations
+                .Select(c => new EducationDto
+                {
+                    EducationId = c.Id,
+                    EducationName = c.Name
+
+                }).ToListAsync();
+
+            var experiences = await _context
+               .Experiences
+                .Select(c => new ExperienceDto
+                {
+                    ExperienceId = c.Id,
+                    ExperienceName = c.Name
+
+                }).ToListAsync();
+
+
+            request.WorkForms = workForms;
+            request.JobTypes = jobTypes;
+            request.JobCategories = jobCategories;
+            request.Cities = cities;
+            request.Educations = educations;
+            request.Experiences = experiences;
+
+            return View(request);
         }
 
         //
@@ -47,6 +110,16 @@ namespace Impulse.Areas.Company.Controllers
                     //if (!ModelState.IsValid)
                     //    return View(addRequest);
 
+                    //if (addRequest.Cities == null || addRequest.Cities.Count == 0 ||
+                    //    addRequest.Educations == null || addRequest.Educations.Count == 0 ||
+                    //    addRequest.Experiences == null || addRequest.Experiences.Count == 0 ||
+                    //    addRequest.JobCategories == null || addRequest.JobCategories.Count == 0 ||
+                    //    addRequest.JobTypes == null || addRequest.JobTypes.Count == 0 ||
+                    //    addRequest.WorkForms == null || addRequest.WorkForms.Count == 0)
+                    //{
+                    //    ModelState.AddModelError(string.Empty, "Select values for all required fields.");
+                    //    return View(addRequest);
+                    //}
 
                     Vacancy vacancy = new()
                     {
@@ -55,8 +128,12 @@ namespace Impulse.Areas.Company.Controllers
                         Email = addRequest.Email,
                         StartDate = DateTime.Now,
                         ExpireDate = DateTime.Now.AddDays(30), // Hangfire
-
-
+                        CityId = addRequest.Cities.First().CityId,
+                        EducationId = addRequest.Educations.First().EducationId,
+                        ExperienceId = addRequest.Experiences.First().ExperienceId,
+                        JobCategoryId = addRequest.JobCategories.First().JobCategoryId,
+                        JobTypeId = addRequest.JobTypes.First().JobTypeId,
+                        WorkFormId = addRequest.WorkForms.First().WorkFormId
 
                     };
 
@@ -78,6 +155,10 @@ namespace Impulse.Areas.Company.Controllers
                     await _context.AddAsync(vacancy);
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
+                }
+                catch (NullReferenceException)
+                {
+                    transaction.Rollback();
                 }
                 catch (Exception)
                 {
