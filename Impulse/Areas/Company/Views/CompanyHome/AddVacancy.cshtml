@@ -42,45 +42,45 @@
 
                     <div class="form-group">
                         <label for="workForm">İş Forması:</label>
-                        <select class="form-control" id="WorkForms" name="WorkForms">
+                        <select asp-for="WorkFormId" class="form-control" id="WorkForms" name="WorkForms">
                             @foreach (var workForm in Model.WorkForms)
                             {
-                                <option value="@workForm.WorkFormId">@workForm.WorkFormName</option>
+                                <option selected="@workForm.WorkFormId" value="@workForm.WorkFormId">@workForm.WorkFormName</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="workType">İş Tipi:</label>
-                        <select class="form-control" id="workType" name="JobTypes">
+                        <label for="JobType">İş Tipi:</label>
+                        <select asp-for="JobTypeId" class="form-control" id="jobType" name="JobTypes">
                             @foreach (var jobType in Model.JobTypes)
                             {
-                                <option value="@jobType.JobTypeId">@jobType.JobTypeName</option>
+                                <option selected="@jobType.JobTypeId" value="@jobType.JobTypeId">@jobType.JobTypeName</option>
                             }
 
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="workType">İşin kateqoriyası:</label>
-                        <select class="form-control" id="JobType" name="JobCategories">
+                        <label for="JobType">İşin kateqoriyası:</label>
+                        <select asp-for="JobTypeId" class="form-control" id="JobType" name="JobCategories">
 
                             @foreach (var jobCategory in Model.JobCategories)
                             {
-                                <option value="@jobCategory.JobCategoryId">@jobCategory.JobCategoryName</option>
+                                <option selected="@jobCategory.JobCategoryId" value="@jobCategory.JobCategoryId">@jobCategory.JobCategoryName</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="workType">Şəhər:</label>
-                        <select class="form-control" id="workType" name="Cities">
+                        <label for="City">Şəhər:</label>
+                        <select asp-for="CityId" class="form-control" id="workType" name="Cities">
                             @foreach (var City in Model.Cities)
                             {
-                                <option value="@City.CityId">@City.CityName</option>
+                                <option selected="@City.CityId" value="@City.CityId">@City.CityName</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="workType">Təcrübə:</label>
-                        <select class="form-control" id="workType" name="Experiences">
+                        <label for="Experience">Təcrübə:</label>
+                        <select asp-for="ExperienceId" class="form-control" id="workType" name="Experiences">
                             @foreach (var Experience in Model.Experiences)
                             {
                                 <option value="@Experience.ExperienceId">@Experience.ExperienceName</option>
@@ -88,11 +88,11 @@
 
                         </select>
                     </div>  <div class="form-group">
-                        <label for="workType">Təhsil:</label>
-                        <select class="form-control" id="workType" name="Educations">
-                            @foreach (var Experience in Model.Educations)
+                        <label for="Education">Təhsil:</label>
+                        <select asp-for="EducationId" class="form-control" id="workType" name="Educations">
+                            @foreach (var Education in Model.Educations)
                             {
-                                <option value="@Experience.EducationId">@Experience.EducationName</option>
+                                <option selected="@Education.EducationId" value="@Education.EducationId">@Education.EducationName</option>
                             }
 
                         </select>

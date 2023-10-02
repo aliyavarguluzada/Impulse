@@ -107,6 +107,16 @@ namespace Impulse.Areas.Company.Controllers
             {
                 try
                 {
+                    if (String.IsNullOrEmpty(addRequest.VacancyName))
+                        ModelState.AddModelError("VacancyName", "The vacancy name is required.");
+
+                    if (String.IsNullOrEmpty(addRequest.Description))
+                        ModelState.AddModelError("Description", "The Description is required.");
+
+                    if (String.IsNullOrEmpty(addRequest.Email))
+                        ModelState.AddModelError("Email", "Email is required");
+
+
                     //if (!ModelState.IsValid)
                     //    return View(addRequest);
 
@@ -121,6 +131,7 @@ namespace Impulse.Areas.Company.Controllers
                     //    return View(addRequest);
                     //}
 
+
                     Vacancy vacancy = new()
                     {
                         Name = addRequest.VacancyName,
@@ -128,18 +139,20 @@ namespace Impulse.Areas.Company.Controllers
                         Email = addRequest.Email,
                         StartDate = DateTime.Now,
                         ExpireDate = DateTime.Now.AddDays(30), // Hangfire
-                        CityId = addRequest.Cities.First().CityId,
-                        EducationId = addRequest.Educations.First().EducationId,
-                        ExperienceId = addRequest.Experiences.First().ExperienceId,
-                        JobCategoryId = addRequest.JobCategories.First().JobCategoryId,
-                        JobTypeId = addRequest.JobTypes.First().JobTypeId,
-                        WorkFormId = addRequest.WorkForms.First().WorkFormId
+
+                        EducationId = addRequest.WorkFormId,
+
+                        ExperienceId = addRequest.ExperienceId,
+                        JobCategoryId = addRequest.JobCategoryId,
+                        JobTypeId = addRequest.JobTypeId,
+                        WorkFormId = addRequest.WorkFormId,
+                        CityId = addRequest.CityId
+                        /////
 
                     };
 
                     if (addRequest.Logo != null && addRequest.Logo.Length > 0)
                     {
-                        // Save the file to a location (e.g., wwwroot/images/logos)
                         var fileName = Guid.NewGuid() + Path.GetExtension(addRequest.Logo.FileName);
                         var filePath = Path.Combine("wwwroot/images/logos", fileName);
 
@@ -148,7 +161,6 @@ namespace Impulse.Areas.Company.Controllers
                             await addRequest.Logo.CopyToAsync(fileStream);
                         }
 
-                        // Set the logo file path in the vacancy model
                         vacancy.LogoFilePath = filePath;
                     }
 

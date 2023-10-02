@@ -1,5 +1,6 @@
 ﻿using Impulse.DTOs.CompanyInfo;
 using Impulse.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace Impulse.Core.Requests
@@ -26,6 +27,14 @@ namespace Impulse.Core.Requests
         public List<CityDto> Cities { get; set; }
         public List<ExperienceDto> Experiences { get; set; }
         public List<EducationDto> Educations { get; set; }
+
+        public int WorkFormId { get; set; }
+        public int JobTypeId { get; set; }
+        public int JobCategoryId { get; set; }
+        public int CityId { get; set; }
+        public int EducationId { get; set; }
+        public int ExperienceId { get; set; }
+
 
     }
 }
