@@ -3,6 +3,7 @@ using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
+using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -18,15 +19,18 @@ using System.Text;
 namespace Impulse.Areas.Company.Controllers
 {
     [Area("Company")]
-    //[MyAuth("Company")]
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-        public AccountController(ApplicationDbContext context)
+        public AccountController(ApplicationDbContext context,
+                                    IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
+
         }
 
 
@@ -143,16 +147,13 @@ namespace Impulse.Areas.Company.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme);
 
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+            await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
 
             return RedirectToAction("AddVacancy", "CompanyHome", new { area = "Company" });
         }
 
-        private string GetNameFromEnumValue(UserRoleEnum value)
-        {
-            throw new NotImplementedException();
-        }
+
 
         [HttpGet]
         public async Task<IActionResult> Logout()

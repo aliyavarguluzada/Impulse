@@ -1,6 +1,46 @@
-﻿namespace Impulse.Filters
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Impulse.Filters
 {
-    public class MyAuth
+    public class MyAuth : Attribute, IAsyncAuthorizationFilter
     {
+
+        private readonly string Role;
+        public MyAuth(string role)
+        {
+            Role = role;
+        }
+        public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
+        {
+
+            bool isAuthenticated = context.HttpContext.User.Identity.IsAuthenticated;
+
+            if (!isAuthenticated)
+            {
+                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
+
+                return;
+            }
+
+            var roleClaim = context.HttpContext.User.Claims.Where(c => c.Type == "RoleId").FirstOrDefault();
+
+            if (roleClaim == null)
+            {
+                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
+
+                return;
+            }
+
+
+            if (roleClaim.Value != Role)
+            {
+
+                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
+                return;
+
+            }
+        }
+
     }
 }

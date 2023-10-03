@@ -1,14 +1,17 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.DTOs.CompanyInfo;
+using Impulse.Filters;
 using Impulse.Models;
 using Impulse.ViewModels.Company;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Impulse.Areas.Company.Controllers
 {
     [Area("Company")]
+    [MyAuth("Company")]
     public class CompanyHomeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -97,7 +100,7 @@ namespace Impulse.Areas.Company.Controllers
 
         //
         //
-        //  TempData ya yig bazadaki infolari
+        //  
         //
         //
         [HttpPost]
@@ -107,6 +110,8 @@ namespace Impulse.Areas.Company.Controllers
             {
                 try
                 {
+
+
                     if (String.IsNullOrEmpty(addRequest.VacancyName))
                         ModelState.AddModelError("VacancyName", "The vacancy name is required.");
 
@@ -117,20 +122,20 @@ namespace Impulse.Areas.Company.Controllers
                         ModelState.AddModelError("Email", "Email is required");
 
 
-                    //if (!ModelState.IsValid)
-                    //    return View(addRequest);
 
-                    //if (addRequest.Cities == null || addRequest.Cities.Count == 0 ||
-                    //    addRequest.Educations == null || addRequest.Educations.Count == 0 ||
-                    //    addRequest.Experiences == null || addRequest.Experiences.Count == 0 ||
-                    //    addRequest.JobCategories == null || addRequest.JobCategories.Count == 0 ||
-                    //    addRequest.JobTypes == null || addRequest.JobTypes.Count == 0 ||
-                    //    addRequest.WorkForms == null || addRequest.WorkForms.Count == 0)
-                    //{
-                    //    ModelState.AddModelError(string.Empty, "Select values for all required fields.");
-                    //    return View(addRequest);
-                    //}
+                    if (addRequest.Cities == null || addRequest.Cities.Count == 0 ||
+                        addRequest.Educations == null || addRequest.Educations.Count == 0 ||
+                        addRequest.Experiences == null || addRequest.Experiences.Count == 0 ||
+                        addRequest.JobCategories == null || addRequest.JobCategories.Count == 0 ||
+                        addRequest.JobTypes == null || addRequest.JobTypes.Count == 0 ||
+                        addRequest.WorkForms == null || addRequest.WorkForms.Count == 0)
+                    {
+                        ModelState.AddModelError(string.Empty, "Select values for all required fields.");
+                        return View(addRequest);
+                    }
 
+                    if (!ModelState.IsValid)
+                        return View(addRequest);
 
                     Vacancy vacancy = new()
                     {
@@ -141,12 +146,15 @@ namespace Impulse.Areas.Company.Controllers
                         ExpireDate = DateTime.Now.AddDays(30), // Hangfire
 
                         EducationId = addRequest.WorkFormId,
-
                         ExperienceId = addRequest.ExperienceId,
                         JobCategoryId = addRequest.JobCategoryId,
                         JobTypeId = addRequest.JobTypeId,
                         WorkFormId = addRequest.WorkFormId,
                         CityId = addRequest.CityId
+
+
+
+
                         /////
 
                     };

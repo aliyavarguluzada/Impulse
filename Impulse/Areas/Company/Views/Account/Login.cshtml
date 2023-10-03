@@ -35,6 +35,12 @@
 
                         <form class="text-left" method="post">
                             <div class="form">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <p>@User.Identity.Name</p>
+                                    <p>@User.Claims.Where(i => i.Type == "Email").FirstOrDefault().Value</p>
+                                }
+                               
                                 @Html.ValidationSummary(true)
 
                                 <div id="username-field" class="field-wrapper input">
