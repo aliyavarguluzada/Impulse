@@ -1,17 +1,11 @@
-﻿using Azure.Core;
-using Impulse.Core.Requests;
+﻿using Impulse.Core.Requests;
 using Impulse.Data;
-using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
-using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -97,7 +91,10 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-
+            if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("AddVacancy", "CompanyHome", new { area = "Company" });
+            }
 
             if (!ModelState.IsValid)
             {

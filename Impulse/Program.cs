@@ -27,6 +27,9 @@ var app = builder.Build();
 app.MapControllerRoute("Admin",
                       "{area:exists}/{controller=Account}/{action=AdminLogin}");
 
+app.MapControllerRoute("Admin",
+                        "{area:exists}/{controller=Dashboard}/{action=Index}");
+
 app.MapControllerRoute("Company",
                       "{area:exists}/{controller=Account}/{action=Register}");
 
