@@ -47,3 +47,9 @@ app.UseAuthorization();
 
 
 app.Run();
+
+
+
+// TODO: interface e bax istifade et ViewComponentlere ayir Controlleri  loglama qalib input validation ele
+// MyAuth problemlidi redirect elemir AddVacany islemir evvel request icindekiler null idi (elnen yazilanlardan basqa)
+// indi Count = 0 gelir View da Model.WorkForms falan null gelir

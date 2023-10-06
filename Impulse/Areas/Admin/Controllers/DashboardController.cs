@@ -38,6 +38,9 @@ namespace Impulse.Areas.Admin.Controllers
                         return View(request);
                     }
 
+
+                    // TODO: asagidakilari interface e yigmaq lazimdi
+
                     var optCity = new City()
                     {
                         Name = request.JobType
@@ -68,6 +71,8 @@ namespace Impulse.Areas.Admin.Controllers
                         Name = request.Experience
                     };
 
+                    // TODO: isdese asagidaki commentleri sil  
+
                     //await _context.AddAsync(optCity);
                     //await _context.AddAsync(optJobType);
                     //await _context.AddAsync(optJobCategory);
@@ -75,7 +80,12 @@ namespace Impulse.Areas.Admin.Controllers
                     //await _context.AddAsync(optEducation);
                     //await _context.AddAsync(optExperience);
 
-                    var objectsToCreate = new object[] { optCity, optJobType, optJobCategory, optWorkForm, optEducation, optExperience };
+                    var objectsToCreate = new object[] { optCity,
+                                                            optJobType,
+                                                                 optJobCategory,
+                                                                     optWorkForm,
+                                                                        optEducation,
+                                                                            optExperience };
 
                     foreach (var obj in objectsToCreate)
                     {
