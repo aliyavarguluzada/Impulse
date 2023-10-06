@@ -1,15 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Impulse.Core.Requests;
+using Impulse.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Impulse.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class DashboardController : Controller
     {
-        [Area("Admin")]
+        private readonly ApplicationDbContext _context;
+        
+
+        public DashboardController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(OptionsRequest request)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+
+
+
+
+            return RedirectToAction("index");
         }
     }
 }
