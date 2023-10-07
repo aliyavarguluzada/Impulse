@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Impulse.Areas.Company.Controllers
 {
     [Area("Company")]
-    [MyAuth("Company")]
+    //[MyAuth("Company")]
     public class CompanyHomeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -31,7 +31,7 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public async Task<IActionResult> AddVacancy()
         {
-            AddVacancyRequest request = new();
+            //AddVacancyRequest request = new();
 
             var workForms = await _context
                 .WorkForms
@@ -87,22 +87,25 @@ namespace Impulse.Areas.Company.Controllers
 
                 }).ToListAsync();
 
+            ViewBag.JobTypes = jobTypes;
+            ViewBag.JobCategories = jobCategories;
+            ViewBag.Experiences = experiences;
+            ViewBag.WorkForms = workForms;
+            ViewBag.Cities = cities;
+            ViewBag.Educations = educations;
 
-            request.WorkForms = workForms;
-            request.JobTypes = jobTypes;
-            request.JobCategories = jobCategories;
-            request.Cities = cities;
-            request.Educations = educations;
-            request.Experiences = experiences;
 
-            return View(request);
+            //request.WorkForms = workForms;
+            //request.JobTypes = jobTypes;
+            //request.JobCategories = jobCategories;
+            //request.Cities = cities;
+            //request.Educations = educations;
+            //request.Experiences = experiences;
+
+            return View();
         }
 
-        //
-        //
-        //  
-        //
-        //
+
         [HttpPost]
         public async Task<IActionResult> AddVacancy(AddVacancyRequest addRequest)
         {
@@ -123,16 +126,16 @@ namespace Impulse.Areas.Company.Controllers
 
 
 
-                    if (addRequest.Cities == null || addRequest.Cities.Count == 0 ||
-                        addRequest.Educations == null || addRequest.Educations.Count == 0 ||
-                        addRequest.Experiences == null || addRequest.Experiences.Count == 0 ||
-                        addRequest.JobCategories == null || addRequest.JobCategories.Count == 0 ||
-                        addRequest.JobTypes == null || addRequest.JobTypes.Count == 0 ||
-                        addRequest.WorkForms == null || addRequest.WorkForms.Count == 0)
-                    {
-                        ModelState.AddModelError(string.Empty, "Select values for all required fields.");
-                        return View(addRequest);
-                    }
+                    //if (addRequest.Cities == null || addRequest.Cities.Count == 0 ||
+                    //    addRequest.Educations == null || addRequest.Educations.Count == 0 ||
+                    //    addRequest.Experiences == null || addRequest.Experiences.Count == 0 ||
+                    //    addRequest.JobCategories == null || addRequest.JobCategories.Count == 0 ||
+                    //    addRequest.JobTypes == null || addRequest.JobTypes.Count == 0 ||
+                    //    addRequest.WorkForms == null || addRequest.WorkForms.Count == 0)
+                    //{
+                    //    ModelState.AddModelError(string.Empty, "Select values for all required fields.");
+                    //    return View(addRequest);
+                    //}
 
                     if (!ModelState.IsValid)
                         return View(addRequest);
@@ -169,7 +172,7 @@ namespace Impulse.Areas.Company.Controllers
                             await addRequest.Logo.CopyToAsync(fileStream);
                         }
 
-                        vacancy.LogoFilePath = filePath;
+                        vacancy.CompanyLogoImage = fileName;
                     }
 
                     await _context.AddAsync(vacancy);

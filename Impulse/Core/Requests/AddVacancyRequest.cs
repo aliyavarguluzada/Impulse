@@ -21,12 +21,12 @@ namespace Impulse.Core.Requests
         [Required(ErrorMessage ="Logo üçün fayl daxil edin")]
         public IFormFile Logo { get; set; }
 
-        public List<WorkFormDto> WorkForms { get; set; }
-        public List<JobTypeDto> JobTypes { get; set; }
-        public List<JobCategoryDto> JobCategories { get; set; }
-        public List<CityDto> Cities { get; set; }
-        public List<ExperienceDto> Experiences { get; set; }
-        public List<EducationDto> Educations { get; set; }
+        //public List<WorkFormDto> WorkForms { get; set; }
+        //public List<JobTypeDto> JobTypes { get; set; }
+        //public List<JobCategoryDto> JobCategories { get; set; }
+        //public List<CityDto> Cities { get; set; }
+        //public List<ExperienceDto> Experiences { get; set; }
+        //public List<EducationDto> Educations { get; set; }
 
         public int WorkFormId { get; set; }
         public int JobTypeId { get; set; }
