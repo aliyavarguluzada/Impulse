@@ -1,7 +1,4 @@
-﻿using Impulse.DTOs.CompanyInfo;
-using Impulse.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Impulse.Core.Requests
 {
