@@ -191,7 +191,7 @@ namespace Impulse.Areas.Company.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Index", "Home", new { area = "default" });
         }
     }
 }
