@@ -172,6 +172,7 @@ namespace Impulse.Areas.Company.Controllers
                             await addRequest.Logo.CopyToAsync(fileStream);
                         }
 
+                        vacancy.LogoFilePath = fileName;
                         vacancy.CompanyLogoImage = fileName;
                     }
 
