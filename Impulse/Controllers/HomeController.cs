@@ -38,20 +38,20 @@ namespace Impulse.Controllers
             //        ImageName = c.ImageName
             //    }).OrderBy(c => c.CvId).Take(3).ToListAsync();
 
-            var secondarySettings = await _context
-                .SecondarySiteSettings
-                .Select(c => new SecondarySiteSettingsDto
-                {
-                    DescName = c.DescName,
-                    TitleName = c.TitleName,
-                    Description = c.Description
-                }).ToListAsync();
+            //var secondarySettings = await _context
+            //    .SecondarySiteSettings
+            //    .Select(c => new SecondarySiteSettingsDto
+            //    {
+            //        DescName = c.DescName,
+            //        TitleName = c.TitleName,
+            //        Description = c.Description
+            //    }).ToListAsync();
 
             var vm = new HomeIndexVm
             {
-                siteSettings = siteSettings,
-                Cvs = cvs,
-                SecondarySiteSettings = secondarySettings
+                //siteSettings = siteSettings,
+                //Cvs = cvs,
+                //SecondarySiteSettings = secondarySettings
             };
 
             return View(vm);
