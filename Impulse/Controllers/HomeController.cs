@@ -19,15 +19,15 @@ namespace Impulse.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var siteSettings = await _context
-                .SiteSettings
-                .Select(c => new SiteSettingsHomeIndexDto
-                {
-                    MainImage = c.MainImage,
-                    Title = c.Title,
-                    SecondaryImage = c.SecondaryImage,
-                    Description = c.Description
-                }).ToListAsync();
+            //var siteSettings = await _context
+            //    .SiteSettings
+            //    .Select(c => new SiteSettingsHomeIndexDto
+            //    {
+            //        MainImage = c.MainImage,
+            //        Title = c.Title,
+            //        SecondaryImage = c.SecondaryImage,
+            //        Description = c.Description
+            //    }).ToListAsync();
 
             var cvs = await _context
                 .Cvs

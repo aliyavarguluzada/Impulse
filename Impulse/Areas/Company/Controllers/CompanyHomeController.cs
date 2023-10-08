@@ -1,10 +1,7 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.DTOs.CompanyInfo;
-using Impulse.Filters;
 using Impulse.Models;
-using Impulse.ViewModels.Company;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

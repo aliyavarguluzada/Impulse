@@ -2,7 +2,6 @@
 using Impulse.Data;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
 
 namespace Impulse.Areas.Admin.Controllers
 {
@@ -71,7 +70,7 @@ namespace Impulse.Areas.Admin.Controllers
                         Name = request.Experience
                     };
 
-                    // TODO: isdese asagidaki commentleri sil  
+                    // TODO: isdese asagidaki commentleri sil
 
                     //await _context.AddAsync(optCity);
                     //await _context.AddAsync(optJobType);
