@@ -29,14 +29,14 @@ namespace Impulse.Controllers
             //        Description = c.Description
             //    }).ToListAsync();
 
-            var cvs = await _context
-                .Cvs
-                .Select(c => new CvsDto
-                {
-                    CvId = c.Id,
-                    MainPage = c.MainPage,
-                    ImageName = c.ImageName
-                }).OrderBy(c => c.CvId).Take(3).ToListAsync();
+            //var cvs = await _context
+            //    .Cvs
+            //    .Select(c => new CvsDto
+            //    {
+            //        CvId = c.Id,
+            //        MainPage = c.MainPage,
+            //        ImageName = c.ImageName
+            //    }).OrderBy(c => c.CvId).Take(3).ToListAsync();
 
             var secondarySettings = await _context
                 .SecondarySiteSettings
