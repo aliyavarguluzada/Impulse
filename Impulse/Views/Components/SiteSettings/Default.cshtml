@@ -1,0 +1,12 @@
+﻿@model List<SiteSettingsHomeIndexDto>
+
+<div class="main-info">
+    <div class="main-title text-primary">
+        @foreach (var Title in Model)
+        {
+            <h1>
+                @Title.Title
+            </h1>
+        }
+    </div>
+</div> 

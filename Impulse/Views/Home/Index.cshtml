@@ -7,7 +7,7 @@
             <div class="row">
                 <!-- Left Column -->
                 <div class="col-lg-6">
-                    <div class="main-info">
+                    @* <div class="main-info">
                         <div class="main-title text-primary">
                             @foreach (var Title in Model.siteSettings)
                             {
@@ -16,7 +16,8 @@
                                 </h1>
                             }
                         </div>
-                    </div>
+                    </div> *@
+                    @await Component.InvokeAsync("SiteSettings");
                     <div class="main-desc">
                         @foreach (var item in Model.siteSettings)
                         {
