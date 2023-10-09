@@ -1,0 +1,45 @@
+﻿@model List<SiteSettingsHomeIndexDto>
+<div class="main-body">
+    <div class="container">
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-lg-6">
+                <div class="main-info">
+                    <div class="main-title text-primary">
+                        @foreach (var Title in Model)
+                        {
+                            <h1>
+                                @Title.Title
+                            </h1>
+                        }
+                    </div>
+                </div>
+                @await Component.InvokeAsync("SiteSettings");
+                <div class="main-desc">
+                    @foreach (var item in Model)
+                    {
+
+                        <p>
+                            @item.Description
+                        </p>
+                    }
+                </div>
+                <div class="button-div">
+                    <button class="btn btn-primary" action="@Url.Action("Index", "Catalog") type="submit">
+                        Nümunələrə Bax
+                    </button>
+                    <button class="btn btn-danger" action="@Url.Action("Index", "Contact") type="submit">Əlaqə</button>
+                </div>
+            </div>
+            <!-- Right Column -->
+            <div class="col-lg-6 main-img-div">
+                @foreach (var image in Model)
+                {
+                    <div class="col-md-12">
+                        <img src="~/images/@image.MainImage" class="main-img" alt="Your Image" class="img-fluid" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

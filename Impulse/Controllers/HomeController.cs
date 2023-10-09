@@ -47,14 +47,14 @@ namespace Impulse.Controllers
             //        Description = c.Description
             //    }).ToListAsync();
 
-            var vm = new HomeIndexVm
-            {
-                //siteSettings = siteSettings,
-                //Cvs = cvs,
-                //SecondarySiteSettings = secondarySettings
-            };
+            //var vm = new HomeIndexVm
+            //{
+            //    //siteSettings = siteSettings,
+            //    //Cvs = cvs,
+            //    //SecondarySiteSettings = secondarySettings
+            //};
 
-            return View(vm);
+            return View();
         }
 
     }

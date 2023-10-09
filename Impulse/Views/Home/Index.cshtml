@@ -1,13 +1,15 @@
-﻿@model HomeIndexVm
-<!-- Main -->
+﻿@* @model HomeIndexVm
+ *@<!-- Main -->
 <main>
+    @await Component.InvokeAsync("SiteSettings")
+
     <!-- Home -->
-    <div class="main-body">
+   @*  <div class="main-body">
         <div class="container">
             <div class="row">
                 <!-- Left Column -->
                 <div class="col-lg-6">
-                    @* <div class="main-info">
+                    <div class="main-info">
                         <div class="main-title text-primary">
                             @foreach (var Title in Model.siteSettings)
                             {
@@ -16,8 +18,7 @@
                                 </h1>
                             }
                         </div>
-                    </div> *@
-                    @await Component.InvokeAsync("SiteSettings");
+                    </div>
                     <div class="main-desc">
                         @foreach (var item in Model.siteSettings)
                         {
@@ -45,7 +46,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
     <!-- Home End -->
     <!-- Designs -->
     <div class="container designs-div">
