@@ -56,14 +56,14 @@ namespace Impulse.Areas.Company.Controllers
 
             //    }).ToListAsync();
 
-            var cities = await _context
-                .Cities
-                .Select(c => new CityDto
-                {
-                    CityId = c.Id,
-                    CityName = c.Name
+            //var cities = await _context
+            //    .Cities
+            //    .Select(c => new CityDto
+            //    {
+            //        CityId = c.Id,
+            //        CityName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
 
             var educations = await _context
