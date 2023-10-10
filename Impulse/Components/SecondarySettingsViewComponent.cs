@@ -23,7 +23,9 @@ namespace Impulse.Components
               {
                   DescName = c.DescName,
                   TitleName = c.TitleName,
-                  Description = c.Description
+                  Description = c.Description,
+                  ImageName = c.ImageName
+
               }).ToListAsync();
 
             return View(secondarySettings);

@@ -1,0 +1,40 @@
+﻿@model List<SecondarySiteSettingsDto>
+
+<!-- Discount -->
+<div class="wave-div">
+    <img src="/images/wave-img.png" alt="" />
+</div>
+<div class="container">
+    <div class="align-items-center x">
+        <div class="col-md-6">
+            <div class="discount-desc">
+                @foreach (var item in Model)
+                {
+                    <div class="discount-ad text-primary">
+                        <h3>@item.TitleName</h3>
+                    </div>
+                    <div class="discount-ad text-primary">
+                        <h2>@item.DescName</h2>
+                    </div>
+                    <div class="discount-ad text-primary">
+                        <h5>@item.Description</h5>
+                    </div>
+                }
+                <div class="">
+                    <button class="btn btn-primary" type="submit">
+                        SİFARİŞ ET
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <img src="~/images/@item.ImageName" class="img-fluid" alt="" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Discount End  -->

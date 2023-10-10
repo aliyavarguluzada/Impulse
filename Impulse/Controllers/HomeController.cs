@@ -49,9 +49,9 @@ namespace Impulse.Controllers
 
             //var vm = new HomeIndexVm
             //{
-            //    //siteSettings = siteSettings,
-            //    //Cvs = cvs,
-            //    //SecondarySiteSettings = secondarySettings
+            //    siteSettings = siteSettings,
+            //    Cvs = cvs,
+            //    SecondarySiteSettings = secondarySettings
             //};
 
             return View();
