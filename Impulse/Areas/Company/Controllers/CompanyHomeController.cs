@@ -66,38 +66,34 @@ namespace Impulse.Areas.Company.Controllers
             //    }).ToListAsync();
 
 
-            var educations = await _context
-                .Educations
-                .Select(c => new EducationDto
-                {
-                    EducationId = c.Id,
-                    EducationName = c.Name
+            //var educations = await _context
+            //    .Educations
+            //    .Select(c => new EducationDto
+            //    {
+            //        EducationId = c.Id,
+            //        EducationName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
-            var experiences = await _context
-               .Experiences
-                .Select(c => new ExperienceDto
-                {
-                    ExperienceId = c.Id,
-                    ExperienceName = c.Name
+            //var experiences = await _context
+            //   .Experiences
+            //    .Select(c => new ExperienceDto
+            //    {
+            //        ExperienceId = c.Id,
+            //        ExperienceName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
-            ViewBag.JobTypes = jobTypes;
-            ViewBag.JobCategories = jobCategories;
-            ViewBag.Experiences = experiences;
-            ViewBag.WorkForms = workForms;
-            ViewBag.Cities = cities;
-            ViewBag.Educations = educations;
+            /////
+            //ViewBag.JobTypes = jobTypes;
+            //ViewBag.JobCategories = jobCategories;
+            //ViewBag.Experiences = experiences;
+            //ViewBag.WorkForms = workForms;
+            //ViewBag.Cities = cities;
+            //ViewBag.Educations = educations;
+            /////
 
-
-            //request.WorkForms = workForms;
-            //request.JobTypes = jobTypes;
-            //request.JobCategories = jobCategories;
-            //request.Cities = cities;
-            //request.Educations = educations;
-            //request.Experiences = experiences;
+           
 
             return View();
         }
