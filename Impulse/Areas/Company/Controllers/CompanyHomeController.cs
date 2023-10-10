@@ -47,14 +47,14 @@ namespace Impulse.Areas.Company.Controllers
 
             //    }).ToListAsync();
 
-            var jobCategories = await _context
-                .JobCategories
-                .Select(c => new JobCategoryDto
-                {
-                    JobCategoryId = c.Id,
-                    JobCategoryName = c.Name
+            //var jobCategories = await _context
+            //    .JobCategories
+            //    .Select(c => new JobCategoryDto
+            //    {
+            //        JobCategoryId = c.Id,
+            //        JobCategoryName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
             var cities = await _context
                 .Cities
