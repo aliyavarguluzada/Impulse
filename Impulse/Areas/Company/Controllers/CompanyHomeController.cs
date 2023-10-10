@@ -1,6 +1,7 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.DTOs.CompanyInfo;
+using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,24 +29,23 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public async Task<IActionResult> AddVacancy()
         {
-            //AddVacancyRequest request = new();
 
-            var workForms = await _context
-                .WorkForms
-                .Select(c => new WorkFormDto
-                {
-                    WorkFormId = c.Id,
-                    WorkFormName = c.Name
-                }).ToListAsync();
+            //var workForms = await _context
+            //    .WorkForms
+            //    .Select(c => new WorkFormDto
+            //    {
+            //        WorkFormId = c.Id,
+            //        WorkFormName = c.Name
+            //    }).ToListAsync();
 
-            var jobTypes = await _context
-                .JobTypes
-                .Select(c => new JobTypeDto
-                {
-                    JobTypeId = c.Id,
-                    JobTypeName = c.Name
+            //var jobTypes = await _context
+            //    .JobTypes
+            //    .Select(c => new JobTypeDto
+            //    {
+            //        JobTypeId = c.Id,
+            //        JobTypeName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
             var jobCategories = await _context
                 .JobCategories
