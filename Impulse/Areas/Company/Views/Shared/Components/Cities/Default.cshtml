@@ -1,0 +1,13 @@
+﻿@model List<CityDto>
+
+@* Cities *@
+<div class="form-group">
+    <label for="City">Şəhər:</label>
+    <select class="form-control" id="Cities" name="CityId">
+        @foreach (var City in ViewBag.Cities)
+        {
+            <option selected="@City.CityId" value="@City.CityId">@City.CityName</option>
+        }
+    </select>
+</div>
+@* Cities End *@

@@ -17,7 +17,7 @@ namespace Impulse.Areas.Company.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var experiences = await _context
-              .Experiences
+               .Experiences
                .Select(c => new ExperienceDto
                {
                    ExperienceId = c.Id,

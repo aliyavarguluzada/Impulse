@@ -1,0 +1,13 @@
+﻿@model List<WorkFormDto>
+
+@* WorkForms *@
+<div class="form-group">
+    <label for="workForm">İş Forması:</label>
+    <select asp-for="WorkFormId" class="form-control" id="WorkForms" name="WorkFormId">
+        @foreach (var workForm in ViewBag.WorkForms)
+        {
+            <option selected="@workForm.WorkFormId" value="@workForm.WorkFormId">@workForm.WorkFormName</option>
+        }
+    </select>
+</div>
+@* WorkForms End *@

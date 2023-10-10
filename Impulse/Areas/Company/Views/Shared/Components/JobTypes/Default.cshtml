@@ -1,0 +1,14 @@
+﻿@model List<JobTypeDto>
+
+@* JobTypes *@
+<div class="form-group">
+    <label for="JobType">İş Tipi:</label>
+    <select asp-for="JobTypeId" class="form-control" id="jobTypes" name="JobTypeId">
+        @foreach (var jobType in ViewBag.JobTypes)
+        {
+            <option selected="@jobType.JobTypeId" value="@jobType.JobTypeId">@jobType.JobTypeName</option>
+        }
+
+    </select>
+</div>
+@* JobTypes End *@

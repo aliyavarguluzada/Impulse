@@ -1,0 +1,14 @@
+﻿@model List<ExperienceDto>
+
+@* Experiences *@
+<div class="form-group">
+    <label for="Experience">Təcrübə:</label>
+    <select  class="form-control" id="Experiences" name="ExperienceId">
+        @foreach (var Experience in ViewBag.Experiences)
+        {
+            <option value="@Experience.ExperienceId">@Experience.ExperienceName</option>
+        }
+
+    </select>
+</div>
+@* Experiences End *@

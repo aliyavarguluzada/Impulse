@@ -39,7 +39,7 @@
                     <label for="vacancy-name">Vakansiyanın Adı:</label>
                     @Html.ValidationMessageFor(c => c.VacancyName)
                     <input required type="text" class="form-control" name="vacancyname" />
-
+                    @* WorkForms *@
                     <div class="form-group">
                         <label for="workForm">İş Forması:</label>
                         <select asp-for="WorkFormId" class="form-control" id="WorkForms" name="WorkFormId">
@@ -49,6 +49,8 @@
                             }
                         </select>
                     </div>
+                    @* WorkForms End *@
+                    @* JobTypes *@
                     <div class="form-group">
                         <label for="JobType">İş Tipi:</label>
                         <select asp-for="JobTypeId" class="form-control" id="jobTypes" name="JobTypeId">
@@ -59,6 +61,8 @@
 
                         </select>
                     </div>
+                    @* JobTypes End *@
+                    @* JobCategories *@
                     <div class="form-group">
                         <label for="JobType">İşin kateqoriyası:</label>
                         <select asp-for="JobTypeId" class="form-control" id="JobCategories" name="JobCategoryId">
@@ -69,6 +73,8 @@
                             }
                         </select>
                     </div>
+                    @* JobCategories End *@
+                    @* Cities *@
                     <div class="form-group">
                         <label for="City">Şəhər:</label>
                         <select asp-for="CityId" class="form-control" id="Cities" name="CityId">
@@ -78,6 +84,8 @@
                             }
                         </select>
                     </div>
+                    @* Cities End *@
+                    @* Experiences *@
                     <div class="form-group">
                         <label for="Experience">Təcrübə:</label>
                         <select asp-for="ExperienceId" class="form-control" id="Experiences" name="ExperienceId">
@@ -87,7 +95,10 @@
                             }
 
                         </select>
-                    </div>  <div class="form-group">
+                    </div>
+                    @* Experiences End *@
+                    @* Educations *@
+                    <div class="form-group">
                         <label for="Education">Təhsil:</label>
                         <select asp-for="EducationId" class="form-control" id="Educations" name="EducationId">
                             @foreach (var Education in ViewBag.Educations)
@@ -97,6 +108,7 @@
 
                         </select>
                     </div>
+                    @* Educations *@
                     <div class="form-group">
                         <label for="description">Vakansiya üçün açıqlama:</label>
                         @Html.ValidationMessageFor(c => c.Description)
