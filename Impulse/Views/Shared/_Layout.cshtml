@@ -36,16 +36,25 @@
                         <a class="nav-link" href="@Url.Action("Index","Catalog")">Kataloq</a>
                     </li>
                     <li class="nav-item nav-item">
-                        <a class="nav-link" href="vacancy.html">Vakansiyalar</a>
-                    </li>
-                    <li class="nav-item nav-item">
-                        <a class="nav-link" href="@Url.Action("Register","Account", new {area = "Company"})">Qeydiyyatdan keç</a>
-                    </li><li class="nav-item nav-item">
-                        <a class="nav-link" href="@Url.Action("Login","Account", new {area = "Company"})">Login Ol</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Vacancy")">Vakansiyalar</a>
                     </li>
                     <li class="nav-item nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Contact")">Əlaqə</a>
                     </li>
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        var user = Context.User.Claims.Where(c => c.Type == "Name").FirstOrDefault();
+                        <li class="nav-item nav-item">
+                            <a class="nav-link" href="@Url.Action("Login","Account", new {area = "Company"})">@user?.Value</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item nav-item">
+                            <a class="nav-link" href="@Url.Action("Login","Account", new {area = "Company"})">Login Ol</a>
+                        </li>
+                    }
+                   
                 </ul>
             </div>
         </nav>
