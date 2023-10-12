@@ -46,7 +46,7 @@
                         var user = Context.User.Claims.Where(c => c.Type == "Name").FirstOrDefault();
 
                         <li class="nav-item nav-item">
-                            <a class="nav-link" href="@Url.Action("Login","Account", new {area = "Company"})">@user?.Value</a>
+                            <a class="nav-link" href="@Url.Action("Index","CompanyHome", new {area = "Company"})">@user?.Value</a>
                         </li>
                     }
                     else

@@ -33,6 +33,7 @@ namespace Impulse.Filters
             }
 
             //TODO: Asagidaki kodu seliqeye sal
+
             bool roleCondition = roleClaim.Value.ToUpper().Equals(Role.ToUpper());
 
             if (!roleCondition)
@@ -41,13 +42,7 @@ namespace Impulse.Filters
                 return;
             }
 
-            //if (roleClaim.Value != Role)
-            //{
 
-            //    context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
-            //    return;
-
-            //}
         }
 
     }
