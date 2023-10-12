@@ -25,12 +25,13 @@ namespace Impulse.Filters
 
             var roleClaim = context.HttpContext.User.Claims.Where(c => c.Type == "UserRole").FirstOrDefault();
 
-            if (roleClaim == null)
+            if (roleClaim is null)
             {
                 context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
 
                 return;
             }
+
             //TODO: Asagidaki kodu seliqeye sal
             bool roleCondition = roleClaim.Value.ToUpper().Equals(Role.ToUpper());
 
