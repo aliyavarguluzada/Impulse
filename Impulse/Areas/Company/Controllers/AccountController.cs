@@ -46,13 +46,13 @@ namespace Impulse.Areas.Company.Controllers
                         return View(registerRequest);
 
 
-
                     User user = new User
                     {
                         Name = registerRequest.Name,
                         Phone = registerRequest.Phone,
                         Email = registerRequest.Email,
                         UserRoleId = (int)UserRoleEnum.Company,
+
                     };
 
                     using (SHA256 sha256 = SHA256.Create())
@@ -105,6 +105,7 @@ namespace Impulse.Areas.Company.Controllers
 
             var user = await _context
                 .Users
+                .Include(c => c.UserRole)
                 .Where(c => c.Email == loginRequest.Email)
                 .FirstOrDefaultAsync();
 
@@ -136,8 +137,10 @@ namespace Impulse.Areas.Company.Controllers
             {
                 new Claim("Name",user.Name),
                 new Claim("Email", user.Email),
-                new Claim("RoleId", user.UserRoleId.ToString()),
-                new Claim("Id", user.Id.ToString())
+                new Claim("UserRoleId", user.UserRoleId.ToString()),
+                new Claim("Id", user.Id.ToString()),
+                new Claim("UserRole", user.UserRole.Name)
+
             };
 
             var claimsIdentity = new ClaimsIdentity(claims,

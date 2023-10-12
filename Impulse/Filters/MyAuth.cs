@@ -23,7 +23,7 @@ namespace Impulse.Filters
                 return;
             }
 
-            var roleClaim = context.HttpContext.User.Claims.Where(c => c.Type == "RoleId").FirstOrDefault();
+            var roleClaim = context.HttpContext.User.Claims.Where(c => c.Type == "UserRole").FirstOrDefault();
 
             if (roleClaim == null)
             {
@@ -31,15 +31,22 @@ namespace Impulse.Filters
 
                 return;
             }
+            //TODO: Asagidaki kodu seliqeye sal
+            bool roleCondition = roleClaim.Value.ToUpper().Equals(Role.ToUpper());
 
-
-            if (roleClaim.Value != Role)
+            if (!roleCondition)
             {
-
                 context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
                 return;
-
             }
+
+            //if (roleClaim.Value != Role)
+            //{
+
+            //    context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
+            //    return;
+
+            //}
         }
 
     }

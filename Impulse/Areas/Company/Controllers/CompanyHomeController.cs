@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Impulse.Areas.Company.Controllers
 {
     [Area("Company")]
-    //[MyAuth("Company")]
+    [MyAuth("Company")]
     public class CompanyHomeController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -44,6 +44,7 @@
                     @if (Context.User.Identity.IsAuthenticated)
                     {
                         var user = Context.User.Claims.Where(c => c.Type == "Name").FirstOrDefault();
+
                         <li class="nav-item nav-item">
                             <a class="nav-link" href="@Url.Action("Login","Account", new {area = "Company"})">@user?.Value</a>
                         </li>
@@ -54,7 +55,7 @@
                             <a class="nav-link" href="@Url.Action("Login","Account", new {area = "Company"})">Login Ol</a>
                         </li>
                     }
-                   
+
                 </ul>
             </div>
         </nav>

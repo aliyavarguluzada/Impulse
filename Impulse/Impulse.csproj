@@ -10,6 +10,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Company\Models\" />
     <Folder Include="wwwroot\images\logos\" />
+    <Folder Include="wwwroot\vacancy\" />
   </ItemGroup>
 
   <ItemGroup>
