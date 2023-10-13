@@ -54,7 +54,7 @@ namespace Impulse.Areas.Company.Controllers
 
                     if (emails.Contains(registerRequest.Email))
                     {
-                        ModelState.AddModelError("Email", "Bu email artiq mövcüddur");
+                        ModelState.AddModelError("Email", "Bu emailə bağlı bir istifadəçi artiq mövcüddur");
                         return View(registerRequest);
                     }
 
