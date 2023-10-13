@@ -1,5 +1,6 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
+using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
 using Impulse.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -45,6 +46,17 @@ namespace Impulse.Areas.Company.Controllers
                     if (!ModelState.IsValid)
                         return View(registerRequest);
 
+                    var emails = await _context
+                        .Users
+                        .Select(c => c.Email)
+                        .ToListAsync();
+
+
+                    if (emails.Contains(registerRequest.Email))
+                    {
+                        ModelState.AddModelError("Email", "Bu email artiq mövcüddur");
+                        return View(registerRequest);
+                    }
 
                     User user = new User
                     {
