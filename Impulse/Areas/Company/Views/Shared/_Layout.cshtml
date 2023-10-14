@@ -48,8 +48,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@user?.Value</a>
                             <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">Vakansiya əlavə et</a>
-                                <a class="dropdown-item" href="#">Mənim vakansiyalarım</a>
+                                <a class="dropdown-item" href="@Url.Action("AddVacancy", "CompanyHome", new { area = "Company"})">Vakansiya əlavə et</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "CompanyHome", new { area = "Company"})">Mənim vakansiyalarım</a>
                                 <a class="dropdown-item" href="@Url.Action("Logout", "Account", new { area = "Company" })">Çıxış et</a>
                             </div>
                         </li>
