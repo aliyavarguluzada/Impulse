@@ -30,7 +30,7 @@ namespace Impulse.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "");
+                ModelState.AddModelError("", "Login melumatlarınız yanlışdır");
                 return View();
             }
 
@@ -59,7 +59,7 @@ namespace Impulse.Areas.Admin.Controllers
                     return View(loginRequest);
                 }
             }
-            return RedirectToAction();
+            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
         }
 
 

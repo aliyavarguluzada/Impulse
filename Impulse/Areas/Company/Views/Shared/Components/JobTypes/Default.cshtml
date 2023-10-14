@@ -4,7 +4,7 @@
 <div class="form-group">
     <label for="JobType">İş Tipi:</label>
     <select asp-for="JobTypeId" class="form-control" id="jobTypes" name="JobTypeId">
-        @foreach (var jobType in ViewBag.JobTypes)
+        @foreach (var jobType in Model)
         {
             <option selected="@jobType.JobTypeId" value="@jobType.JobTypeId">@jobType.JobTypeName</option>
         }

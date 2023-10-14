@@ -30,68 +30,68 @@ namespace Impulse.Areas.Company.Controllers
         public async Task<IActionResult> AddVacancy()
         {
 
-            var workForms = await _context
-                .WorkForms
-                .Select(c => new WorkFormDto
-                {
-                    WorkFormId = c.Id,
-                    WorkFormName = c.Name
-                }).ToListAsync();
+            //var workForms = await _context
+            //    .WorkForms
+            //    .Select(c => new WorkFormDto
+            //    {
+            //        WorkFormId = c.Id,
+            //        WorkFormName = c.Name
+            //    }).ToListAsync();
 
-            var jobTypes = await _context
-                .JobTypes
-                .Select(c => new JobTypeDto
-                {
-                    JobTypeId = c.Id,
-                    JobTypeName = c.Name
+            //var jobTypes = await _context
+            //    .JobTypes
+            //    .Select(c => new JobTypeDto
+            //    {
+            //        JobTypeId = c.Id,
+            //        JobTypeName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
-            var jobCategories = await _context
-                .JobCategories
-                .Select(c => new JobCategoryDto
-                {
-                    JobCategoryId = c.Id,
-                    JobCategoryName = c.Name
+            //var jobCategories = await _context
+            //    .JobCategories
+            //    .Select(c => new JobCategoryDto
+            //    {
+            //        JobCategoryId = c.Id,
+            //        JobCategoryName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
-            var cities = await _context
-                .Cities
-                .Select(c => new CityDto
-                {
-                    CityId = c.Id,
-                    CityName = c.Name
+            //var cities = await _context
+            //    .Cities
+            //    .Select(c => new CityDto
+            //    {
+            //        CityId = c.Id,
+            //        CityName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
 
-            var educations = await _context
-                .Educations
-                .Select(c => new EducationDto
-                {
-                    EducationId = c.Id,
-                    EducationName = c.Name
+            //var educations = await _context
+            //    .Educations
+            //    .Select(c => new EducationDto
+            //    {
+            //        EducationId = c.Id,
+            //        EducationName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
-            var experiences = await _context
-               .Experiences
-                .Select(c => new ExperienceDto
-                {
-                    ExperienceId = c.Id,
-                    ExperienceName = c.Name
+            //var experiences = await _context
+            //   .Experiences
+            //    .Select(c => new ExperienceDto
+            //    {
+            //        ExperienceId = c.Id,
+            //        ExperienceName = c.Name
 
-                }).ToListAsync();
+            //    }).ToListAsync();
 
-            ///
-            ViewBag.JobTypes = jobTypes;
-            ViewBag.JobCategories = jobCategories;
-            ViewBag.Experiences = experiences;
-            ViewBag.WorkForms = workForms;
-            ViewBag.Cities = cities;
-            ViewBag.Educations = educations;
-            ///
+            /////
+            //ViewBag.JobTypes = jobTypes;
+            //ViewBag.JobCategories = jobCategories;
+            //ViewBag.Experiences = experiences;
+            //ViewBag.WorkForms = workForms;
+            //ViewBag.Cities = cities;
+            //ViewBag.Educations = educations;
+            /////
 
 
 

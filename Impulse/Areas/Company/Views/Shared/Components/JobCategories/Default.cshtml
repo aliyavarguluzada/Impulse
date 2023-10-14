@@ -5,7 +5,7 @@
     <label for="JobType">İşin kateqoriyası:</label>
     <select asp-for="JobTypeId" class="form-control" id="JobCategories" name="JobCategoryId">
 
-        @foreach (var jobCategory in ViewBag.JobCategories)
+        @foreach (var jobCategory in Model)
         {
             <option selected="@jobCategory.JobCategoryId" value="@jobCategory.JobCategoryId">@jobCategory.JobCategoryName</option>
         }

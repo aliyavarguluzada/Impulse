@@ -4,7 +4,7 @@
 <div class="form-group">
     <label for="Education">Təhsil:</label>
     <select  class="form-control" id="Educations" name="EducationId">
-        @foreach (var Education in ViewBag.Educations)
+        @foreach (var Education in Model)
         {
             <option selected="@Education.EducationId" value="@Education.EducationId">@Education.EducationName</option>
         }

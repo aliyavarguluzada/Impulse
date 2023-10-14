@@ -4,7 +4,7 @@
 <div class="form-group">
     <label for="City">Şəhər:</label>
     <select class="form-control" id="Cities" name="CityId">
-        @foreach (var City in ViewBag.Cities)
+        @foreach (var City in Model)
         {
             <option selected="@City.CityId" value="@City.CityId">@City.CityName</option>
         }

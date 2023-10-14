@@ -4,7 +4,7 @@
 <div class="form-group">
     <label for="workForm">İş Forması:</label>
     <select asp-for="WorkFormId" class="form-control" id="WorkForms" name="WorkFormId">
-        @foreach (var workForm in ViewBag.WorkForms)
+        @foreach (var workForm in Model)
         {
             <option selected="@workForm.WorkFormId" value="@workForm.WorkFormId">@workForm.WorkFormName</option>
         }
