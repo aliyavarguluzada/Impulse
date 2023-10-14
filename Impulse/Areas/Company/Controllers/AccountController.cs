@@ -19,7 +19,7 @@ namespace Impulse.Areas.Company.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        // TODO: interface e bax istifade et. ViewComponentlere ayir Controlleri . loglama qalib input validation ele
+        // TODO: interface e bax istifade et.loglama qalib input validation ele
         public AccountController(ApplicationDbContext context,
                                     IHttpContextAccessor httpContextAccessor)
         {
@@ -171,7 +171,7 @@ namespace Impulse.Areas.Company.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = "default"});
         }
     }
 }
