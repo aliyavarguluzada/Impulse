@@ -162,7 +162,7 @@ namespace Impulse.Areas.Company.Controllers
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
 
-            return RedirectToAction("AddVacancy", "CompanyHome", new { area = "Company" });
+            return RedirectToAction("Index", "CompanyHome", new { area = "Company" });
         }
 
 

@@ -23,6 +23,8 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            //var vacancies = _context
+            //    .Vacancies
             return View();
         }
 
