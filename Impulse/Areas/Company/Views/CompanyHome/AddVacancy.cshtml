@@ -36,9 +36,11 @@
                 @Html.ValidationSummary(true)
                 <div class="form-group">
 
-                    <label for="vacancy-name">Vakansiyanın Adı:</label>
-                    @Html.ValidationMessageFor(c => c.VacancyName)
-                    <input required type="text" class="form-control" name="vacancyname" />
+                    <div class="form-group">
+                        <label for="vacancy-name">Vakansiyanın Adı:</label>
+                        @Html.ValidationMessageFor(c => c.VacancyName)
+                        <input required type="text" class="form-control" name="vacancyname" />
+                    </div>
 
                     @await Component.InvokeAsync("WorkForms")
                     @await Component.InvokeAsync("JobTypes")
