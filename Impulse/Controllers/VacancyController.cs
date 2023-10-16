@@ -21,13 +21,14 @@ namespace Impulse.Controllers
             var vacancies = await _context
                 .Vacancies
                 .Include(c => c.City)
-                //.Include(c => c.Companies)
-                //.Include(c => c.JobTypes)
-                //.Include(c => c.JobCategories)
-                //.Include(c => c.Educations)
-                //.Include(c => c.Experiences)
+                .Include(c => c.Company)
+                .Include(c => c.JobType)
+                .Include(c => c.JobCategory)
+                .Include(c => c.Education)
+                .Include(c => c.Experience)
                 .Select(c => new VacancyDto
                 {
+                    VacancyName = c.Name,
                     CityName = c.City.Name,
                     JobTypeName = c.JobType.Name,
                     JobCategoryName = c.JobType.Name,
