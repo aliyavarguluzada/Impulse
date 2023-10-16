@@ -6,7 +6,7 @@ namespace Impulse.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? CompanyId { get; set; }
+        public string CompanyName { get; set; }
         public int JobTypeId { get; set; }
         public int JobCategoryId { get; set; }
         public int WorkFormId { get; set; }

@@ -1,11 +1,8 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
-using Impulse.DTOs.CompanyInfo;
 using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
 namespace Impulse.Areas.Company.Controllers
 {
@@ -57,6 +54,10 @@ namespace Impulse.Areas.Company.Controllers
                         ModelState.AddModelError("Email", "Email is required");
 
 
+                    string userName = _httpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == "Name").Select(c => c.Value).FirstOrDefault();
+
+
+                    
 
                     var requiredProperties = new[]
                     {
@@ -87,9 +88,8 @@ namespace Impulse.Areas.Company.Controllers
                         JobCategoryId = addRequest.JobCategoryId,
                         JobTypeId = addRequest.JobTypeId,
                         WorkFormId = addRequest.WorkFormId,
-                        CityId = addRequest.CityId
-
-
+                        CityId = addRequest.CityId,
+                        CompanyName = userName
 
 
                         /////

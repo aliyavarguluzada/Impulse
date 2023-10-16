@@ -53,7 +53,7 @@ namespace Impulse.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanySocialId")
+                    b.Property<int?>("CompanySocialId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Created")
@@ -391,6 +391,10 @@ namespace Impulse.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
@@ -479,9 +483,7 @@ namespace Impulse.Migrations
                 {
                     b.HasOne("Impulse.Models.CompanySocial", "CompanySocial")
                         .WithMany()
-                        .HasForeignKey("CompanySocialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanySocialId");
 
                     b.HasOne("Impulse.Models.User", "User")
                         .WithMany()
