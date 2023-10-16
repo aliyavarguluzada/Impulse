@@ -3,7 +3,7 @@
     public class VacancyDto
     {
         public string VacancyName { get; set; }
-        public int? CompanyId { get; set; }
+        public string CompanyName { get; set; }
         public string JobTypeName { get; set; }
         public string JobCategoryName { get; set; }
         public string WorkFormName { get; set; }

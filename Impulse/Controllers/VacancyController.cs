@@ -35,6 +35,7 @@ namespace Impulse.Controllers
                     EducationName = c.Education.Name,
                     ExperienceName = c.Experience.Name,
                     CompanyLogoImage = c.CompanyLogoImage,
+                    CompanyName = c.CompanyName,
                     StartDate = c.StartDate,
                     ExpireDate = c.ExpireDate
                 })
