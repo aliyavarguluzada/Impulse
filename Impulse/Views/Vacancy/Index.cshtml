@@ -1,5 +1,6 @@
 ﻿@model List<VacancyDto>
 
+
 <main>
     <!-- Example job vacancy listings using Bootstrap classes -->
     <div class="container">
@@ -22,7 +23,7 @@
                                         <p><i class="fas fa-building"></i> Company</p>
                                     </div>
                                     <div class="col-md-4">
-                                        <p><i class="fas fa-map-marker"></i></p>
+                                        <p><i class="fas fa-map-marker"></i> @item.CityName</p>
                                     </div>
                                     <div class="col-md-4">
                                         <p><i class="fas fa-calendar"></i> Son gün: @item.ExpireDate</p>
@@ -32,7 +33,7 @@
                             <div class="col-md-4">
                                 <div class="floating-div" style="width: 33%; float: right">
                                     <p class="full-time">
-                                        <i class="fas fa-clock"></i> Full-time
+                                        <i class="fas fa-clock"></i> @item.JobTypeName
                                     </p>
                                     <p><i class="fas fa-calendar"></i> @item.StartDate</p>
                                 </div>
