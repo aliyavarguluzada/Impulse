@@ -67,6 +67,7 @@ namespace Impulse.Areas.Company.Controllers
 
                     };
 
+
                     using (SHA256 sha256 = SHA256.Create())
                     {
                         var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
@@ -155,12 +156,16 @@ namespace Impulse.Areas.Company.Controllers
 
             };
 
+
             var claimsIdentity = new ClaimsIdentity(claims,
                 CookieAuthenticationDefaults.AuthenticationScheme);
 
 
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
+
+            var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+            var userRoleId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserRoleId")?.Value;
 
             return RedirectToAction("Index", "CompanyHome", new { area = "Company" });
         }
@@ -171,7 +176,7 @@ namespace Impulse.Areas.Company.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home", new { area = "default"});
+            return RedirectToAction("Index", "Home", new { area = "default" });
         }
     }
 }

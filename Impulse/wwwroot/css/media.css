@@ -2,30 +2,39 @@
 
     /* About */
     .about-content {
-        width: 100%!important;
+        width: 100% !important;
     }
+
     .social-media {
-        display: flex!important;
-        flex-direction: row!important;
+        display: flex !important;
+        flex-direction: row !important;
     }
+
     .social-media-icons {
         width: 33%;
     }
     /* About End */
     /* Footer */
     .footer-border {
-        display: flex!important;
-        flex-direction: row!important;
+        display: flex !important;
+        flex-direction: row !important;
     }
+
     .left-p {
-        width: 49%!important;
+        width: 49% !important;
     }
-    
+
     .right-p {
-        width: 49%!important;
+        width: 49% !important;
     }
 
     /* Footer End */
+    /* Vacancies */
+    .floating-div {
+        width: 100% !important;
+        float: none !important;
+    }
+    /* Vacancies End */
 }
 
 
@@ -44,5 +53,8 @@
 
 
 
-@media only screen and (max-width:992px) {}
-@media only screen and (max-width:992px) {}
+@media only screen and (max-width:992px) {
+}
+
+@media only screen and (max-width:992px) {
+}

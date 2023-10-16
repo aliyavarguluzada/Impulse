@@ -6,7 +6,7 @@
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Logo { get; set; }
-        public int CompanySocialId { get; set; }
+        public int? CompanySocialId { get; set; }
         public DateTime? Created { get; set; }
         public DateTime? Updated { get; set; }
         public User User { get; set; }

@@ -5,6 +5,7 @@ using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Impulse.Areas.Company.Controllers
 {
@@ -13,10 +14,12 @@ namespace Impulse.Areas.Company.Controllers
     public class CompanyHomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CompanyHomeController(ApplicationDbContext context)
+        public CompanyHomeController(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
@@ -92,6 +95,7 @@ namespace Impulse.Areas.Company.Controllers
                         /////
 
                     };
+
 
                     if (addRequest.Logo != null && addRequest.Logo.Length > 0)
                     {
