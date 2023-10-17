@@ -57,7 +57,7 @@ namespace Impulse.Areas.Company.Controllers
                     string userName = _httpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == "Name").Select(c => c.Value).FirstOrDefault();
 
 
-                    
+
 
                     var requiredProperties = new[]
                     {

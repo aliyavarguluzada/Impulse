@@ -41,7 +41,35 @@ namespace Impulse.Controllers
                 })
                 .ToListAsync();
 
+            var jobCategories = await _context
+             .JobCategories
+             .Select(c => new JobCategoryDto
+             {
+                 JobCategoryId = c.Id,
+                 JobCategoryName = c.Name
 
+             }).ToListAsync();
+
+            var jobTypes = await _context
+             .JobTypes
+             .Select(c => new JobTypeDto
+             {
+                 JobTypeId = c.Id,
+                 JobTypeName = c.Name
+
+             }).ToListAsync();
+
+            var workForms = await _context
+              .WorkForms
+              .Select(c => new WorkFormDto
+              {
+                  WorkFormId = c.Id,
+                  WorkFormName = c.Name
+              }).ToListAsync();
+
+            ViewBag.JobTypes = jobTypes;
+            ViewBag.JobCategories = jobCategories;
+            ViewBag.WorkForms = workForms;
 
             return View(vacancies);
         }
