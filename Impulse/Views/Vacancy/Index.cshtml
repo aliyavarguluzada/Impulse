@@ -12,9 +12,10 @@
                         <label for="jobCategory" class="search-label">Job Category</label>
                         <select class="form-control" id="jobCategory" name="jobCategory">
                             <!-- Populate with job category options -->
-                            @foreach(var item in ViewBag.JobCategories){
-                            
-                            <option value="@item.JobCategoryId">@item.JobCategoryName</option>
+                            @foreach (var item in ViewBag.JobCategories)
+                            {
+
+                                <option value="@item.JobCategoryId">@item.JobCategoryName</option>
                             }
                             <!-- Add more job category options as needed -->
                         </select>
@@ -25,9 +26,10 @@
                         <label for="jobType" class="search-label">Job Type</label>
                         <select class="form-control" id="jobType" name="jobType">
                             <!-- Populate with job type options -->
-                            @foreach(var item in ViewBag.JobTypes){
-                            
-                            <option value="type1">Type 1</option>
+                            @foreach (var item in ViewBag.JobTypes)
+                            {
+
+                                <option value="@item.JobTypeId">@item.JobTypeName</option>
                             }
                             <!-- Add more job type options as needed -->
                         </select>
@@ -35,7 +37,7 @@
                 </div>
                 <div class="col-md-3 search-option">
                     <div class="form-group">
-                        <label for="workForm" class="search-label">Work Form</label>
+                        <label for="workForm" class="search-label">WorkForm</label>
                         <select class="form-control" id="workForm" name="workForm">
                             <!-- Populate with work form options -->
                             <option value="form1">Form 1</option>
