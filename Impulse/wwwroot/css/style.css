@@ -330,7 +330,55 @@ html {
 .search-form {
     padding-bottom: 20px;
 }
-.search-btn{
+
+.search-btn {
     margin-bottom: 15px;
 }
+
+/* Style the pagination container */
+.paginating-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom:20px
+}
+
+/* Style the pagination list */
+.pagination {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    
+}
+    /* Style the individual pagination items */
+    .pagination li {
+        margin: 0 5px;
+    }
+
+        /* Style the previous and next buttons */
+        .pagination li.prev,
+        .pagination li.next {
+            font-weight: bold;
+        }
+
+        /* Style the active page */
+        .pagination li.active {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+    /* Style the links within pagination items */
+    .pagination a {
+        text-decoration: none;
+        background-color: #007bff;
+        color:#fff;
+        padding: 5px 10px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+    }
+
+       
 /* End Add-Vacancy */

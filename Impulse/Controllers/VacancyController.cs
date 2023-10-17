@@ -15,7 +15,7 @@ namespace Impulse.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
 
             var vacancies = await _context
@@ -39,6 +39,8 @@ namespace Impulse.Controllers
                     StartDate = c.StartDate,
                     ExpireDate = c.ExpireDate
                 })
+                .Skip((page - 1) * 10)
+                .Take(10)
                 .ToListAsync();
 
             var jobCategories = await _context

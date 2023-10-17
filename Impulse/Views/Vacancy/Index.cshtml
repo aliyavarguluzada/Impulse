@@ -1,6 +1,5 @@
 ﻿@model List<VacancyDto>
 
-
 <main>
     <!-- Example job vacancy listings using Bootstrap classes -->
     <div class="container mt-4 search-form">
@@ -40,16 +39,18 @@
                         <label for="workForm" class="search-label">WorkForm</label>
                         <select class="form-control" id="workForm" name="workForm">
                             <!-- Populate with work form options -->
-                            <option value="form1">Form 1</option>
-                            <option value="form2">Form 2</option>
+                            @foreach (var item in ViewBag.WorkForms)
+                            {
+                                <option value="@item.WorkFormId">@item.WorkFormName</option>
+                            }
                             <!-- Add more work form options as needed -->
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3 search-option">
                     <div class="form-group">
-                        <label for="keywords" class="search-label">Keywords</label>
-                        <input type="text" class="form-control" id="keywords" name="keywords" placeholder="Optional Keywords">
+                        <label for="VacancyName" class="search-label">Vakansiya adı</label>
+                        <input type="text" class="form-control" id="keywords" name="vacancyName" placeholder="">
                     </div>
                 </div>
                 <div class="col-md-3 search-option">
@@ -104,7 +105,34 @@
                     </div>
                 </div>
             }
-
+            <div class="paginating-container pagination-default">
+                <ul class="pagination">
+                    <li class="prev"><a href="javascript:void(0);">Prev</a></li>
+                    <li><a href="javascript:void(0);">1</a></li>
+                    <li class="active"><a href="javascript:void(0);">2</a></li>
+                    <li><a href="javascript:void(0);">3</a></li>
+                    <li class="next"><a href="javascript:void(0);">Next</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+
 </main>
+
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<script src="~/company/bootstrap/js/popper.min.js"></script>
+<script src="~/company/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/company/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="~/company/assets/js/app.js"></script>
+
+<script>
+    $(document).ready(function () {
+        App.init();
+    });
+</script>
+<script src="~/company/plugins/highlight/highlight.pack.js"></script>
+<script src="~/company/assets/js/custom.js"></script>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="~/company/assets/js/scrollspyNav.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
