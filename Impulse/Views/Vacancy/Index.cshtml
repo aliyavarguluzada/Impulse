@@ -12,8 +12,10 @@
                         <label for="jobCategory" class="search-label">Job Category</label>
                         <select class="form-control" id="jobCategory" name="jobCategory">
                             <!-- Populate with job category options -->
-                            <option value="category1">Category 1</option>
-                            <option value="category2">Category 2</option>
+                            @foreach(var item in ViewBag.JobCategories){
+                            
+                            <option value="@item.JobCategoryId">@item.JobCategoryName</option>
+                            }
                             <!-- Add more job category options as needed -->
                         </select>
                     </div>
@@ -23,8 +25,10 @@
                         <label for="jobType" class="search-label">Job Type</label>
                         <select class="form-control" id="jobType" name="jobType">
                             <!-- Populate with job type options -->
+                            @foreach(var item in ViewBag.JobTypes){
+                            
                             <option value="type1">Type 1</option>
-                            <option value="type2">Type 2</option>
+                            }
                             <!-- Add more job type options as needed -->
                         </select>
                     </div>
