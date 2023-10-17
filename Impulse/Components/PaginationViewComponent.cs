@@ -1,4 +1,4 @@
-﻿using Impulse.Models;
+﻿using Impulse.ViewModels.Company;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Impulse.Components

@@ -1,4 +1,5 @@
-﻿using Impulse.Core.Requests;
+﻿using Impulse.Core;
+using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
@@ -58,6 +59,8 @@ namespace Impulse.Areas.Company.Controllers
                         return View(registerRequest);
                     }
 
+                    ServiceResult<LoginRequest> serviceResult = new ServiceResult<LoginRequest>();
+
                     User user = new User
                     {
                         Name = registerRequest.Name,
@@ -115,57 +118,6 @@ namespace Impulse.Areas.Company.Controllers
                 return View();
             }
 
-
-            var user = await _context
-                .Users
-                .Include(c => c.UserRole)
-                .Where(c => c.Email == loginRequest.Email)
-                .FirstOrDefaultAsync();
-
-
-            if (user is null)
-            {
-                ModelState.AddModelError("", "Belə bir istifadəçi yoxdur");
-                return View(loginRequest);
-            }
-
-
-
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                var buffer = Encoding.UTF8.GetBytes(loginRequest.Password);
-                var hash = sha256.ComputeHash(buffer);
-
-                if (!user.Password.SequenceEqual(hash))
-                {
-                    ModelState.AddModelError("", "Şifrə yanlışdır");
-                    return View(loginRequest);
-                }
-            }
-
-
-
-
-            var claims = new List<Claim>
-            {
-                new Claim("Name",user.Name),
-                new Claim("Email", user.Email),
-                new Claim("UserRoleId", user.UserRoleId.ToString()),
-                new Claim("Id", user.Id.ToString()),
-                new Claim("UserRole", user.UserRole.Name)
-
-            };
-
-
-            var claimsIdentity = new ClaimsIdentity(claims,
-                CookieAuthenticationDefaults.AuthenticationScheme);
-
-
-            await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity));
-
-            var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
-            var userRoleId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserRoleId")?.Value;
 
             return RedirectToAction("Index", "CompanyHome", new { area = "Company" });
         }

@@ -54,7 +54,8 @@ namespace Impulse.Controllers
             ViewBag.Pagination = new PaginationModel
             {
                 Url = "/Vacancy/Index",
-                Count = pageCount
+                Count = pageCount,
+                Page = (int)pageCount
             };
 
             var jobCategories = await _context
