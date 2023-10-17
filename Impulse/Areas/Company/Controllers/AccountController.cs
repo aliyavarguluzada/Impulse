@@ -3,10 +3,12 @@ using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.DTOs.CompanyAccount;
 using Impulse.Enums;
+using Impulse.Interfaces;
 using Impulse.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -19,13 +21,15 @@ namespace Impulse.Areas.Company.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IAccountService _accountService;
 
-        // TODO: interface e bax istifade et.loglama qalib input validation ele
         public AccountController(ApplicationDbContext context,
-                                    IHttpContextAccessor httpContextAccessor)
+                                    IHttpContextAccessor httpContextAccessor,
+                                        IAccountService accountService)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _accountService = accountService;
 
         }
 
@@ -59,7 +63,6 @@ namespace Impulse.Areas.Company.Controllers
                         return View(registerRequest);
                     }
 
-                    ServiceResult<LoginRequest> serviceResult = new ServiceResult<LoginRequest>();
 
                     User user = new User
                     {
@@ -117,6 +120,18 @@ namespace Impulse.Areas.Company.Controllers
                 ModelState.AddModelError("", "");
                 return View();
             }
+            var result = await _accountService.Login(loginRequest);
+
+            if (result.Status != 200)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.Key, item.Value);
+                }
+
+                return View(loginRequest);
+            }
+
 
 
             return RedirectToAction("Index", "CompanyHome", new { area = "Company" });

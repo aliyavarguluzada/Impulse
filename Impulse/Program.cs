@@ -1,4 +1,5 @@
 using Impulse.Data;
+using Impulse.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
     options.UseSqlServer(builder.Configuration["Database:Connection"]));
 
-
+builder.Services.AddTransient<IAccountService, AccountService>();
 
 builder.Services.AddHttpContextAccessor();
 

@@ -1,4 +1,4 @@
-﻿namespace Impulse.ViewModels.Company
+﻿namespace Impulse.Models
 {
     public class PaginationModel
     {

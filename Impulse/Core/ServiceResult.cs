@@ -7,7 +7,7 @@
         public Dictionary<string, string> Errors { get; set; }
         public string Description { get; set; }
 
-        public static ServiceResult<T> ERROR(string key, string value, int status = 400) 
+        public static ServiceResult<T> ERROR(string key, string value, int status = 400)
         {
             return new ServiceResult<T>
             {
@@ -16,7 +16,8 @@
                 Description = "An Error has occured",
                 Errors = new Dictionary<string, string> { { key, value } }
             };
-        }public static ServiceResult<T> OK(string key, string value, int status) 
+        }
+        public static ServiceResult<T> OK(T response)
         {
             return new ServiceResult<T>
             {

@@ -2,6 +2,7 @@
 using Impulse.Core.Requests;
 using Impulse.Core.Responses;
 using Impulse.Data;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -13,9 +14,11 @@ namespace Impulse.Interfaces
     public class AccountService : IAccountService
     {
         private readonly ApplicationDbContext _context;
-        public AccountService(ApplicationDbContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AccountService(ApplicationDbContext context, IHttpContextAccessor contextAccessor)
         {
             _context = context;
+            _httpContextAccessor = contextAccessor;
         }
         public async Task<ServiceResult<LoginResponse>> Login(LoginRequest loginRequest)
         {
@@ -64,6 +67,17 @@ namespace Impulse.Interfaces
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
 
+
+            var response = new LoginResponse
+            {
+                Name = user.Name,
+                Email = user.Email,
+                UserId = user.Id,
+                Role = user.UserRole.Name,
+                RoleId = user.UserRoleId
+            };
+
+            return ServiceResult<LoginResponse>.OK(response);
         }
 
 

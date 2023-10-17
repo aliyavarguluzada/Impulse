@@ -2,6 +2,7 @@
 using Impulse.DTOs.CompanyInfo;
 using Impulse.DTOs.Vacancies;
 using Impulse.Models;
+using Impulse.ViewModels.Company;
 using Impulse.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
