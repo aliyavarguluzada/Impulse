@@ -34,6 +34,19 @@
         width: 100% !important;
         float: none !important;
     }
+
+    .search-btn {
+        width: -webkit-fill-available;
+    }
+
+    .search-option {
+        padding-bottom: 15px;
+    }
+
+    .search-label {
+        padding-bottom: 5px;
+    }
+
     /* Vacancies End */
 }
 

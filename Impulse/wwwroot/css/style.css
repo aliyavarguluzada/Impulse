@@ -327,4 +327,10 @@ html {
     padding: 15px;
 }
 
+.search-form {
+    padding-bottom: 20px;
+}
+.search-btn{
+    margin-bottom: 15px;
+}
 /* End Add-Vacancy */

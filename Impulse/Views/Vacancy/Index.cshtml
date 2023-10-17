@@ -3,6 +3,59 @@
 
 <main>
     <!-- Example job vacancy listings using Bootstrap classes -->
+    <div class="container mt-4 search-form">
+        <form method="get" action="/Search">
+            <!-- Replace '/Search' with your actual search URL -->
+            <div class="row">
+                <div class="col-md-3 search-option">
+                    <div class="form-group">
+                        <label for="jobCategory" class="search-label">Job Category</label>
+                        <select class="form-control" id="jobCategory" name="jobCategory">
+                            <!-- Populate with job category options -->
+                            <option value="category1">Category 1</option>
+                            <option value="category2">Category 2</option>
+                            <!-- Add more job category options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 search-option">
+                    <div class="form-group">
+                        <label for="jobType" class="search-label">Job Type</label>
+                        <select class="form-control" id="jobType" name="jobType">
+                            <!-- Populate with job type options -->
+                            <option value="type1">Type 1</option>
+                            <option value="type2">Type 2</option>
+                            <!-- Add more job type options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 search-option">
+                    <div class="form-group">
+                        <label for="workForm" class="search-label">Work Form</label>
+                        <select class="form-control" id="workForm" name="workForm">
+                            <!-- Populate with work form options -->
+                            <option value="form1">Form 1</option>
+                            <option value="form2">Form 2</option>
+                            <!-- Add more work form options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 search-option">
+                    <div class="form-group">
+                        <label for="keywords" class="search-label">Keywords</label>
+                        <input type="text" class="form-control" id="keywords" name="keywords" placeholder="Optional Keywords">
+                    </div>
+                </div>
+                <div class="col-md-3 search-option">
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-primary float-right search-btn">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @* //////// *@
     <div class="container">
         <div class="row">
             @foreach (var item in Model)
