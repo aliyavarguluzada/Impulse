@@ -1,0 +1,14 @@
+﻿@model PaginationModel
+
+<div class="paginating-container pagination-default">
+    <ul class="pagination">
+        <li class="prev"><a href="javascript:void(0);">Prev</a></li>
+        @for (var i = 1; i <= ViewBag.Pagination.Count; i++)
+        {
+
+            <li><a href="@(ViewBag.Pagination.Url + "?page=" + i)">@i</a></li>
+        }
+
+        <li class="next"><a href="javascript:void(0);">Next</a></li>
+    </ul>
+</div>

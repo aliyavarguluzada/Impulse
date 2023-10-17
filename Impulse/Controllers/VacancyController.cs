@@ -1,6 +1,8 @@
 ﻿using Impulse.Data;
 using Impulse.DTOs.CompanyInfo;
 using Impulse.DTOs.Vacancies;
+using Impulse.Models;
+using Impulse.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +22,7 @@ namespace Impulse.Controllers
 
             var vacancies = await _context
                 .Vacancies
+                .OrderByDescending(c => c.Id)
                 .Include(c => c.City)
                 .Include(c => c.Company)
                 .Include(c => c.JobType)
@@ -42,6 +45,17 @@ namespace Impulse.Controllers
                 .Skip((page - 1) * 10)
                 .Take(10)
                 .ToListAsync();
+
+
+            var count = await _context.Vacancies.CountAsync();
+
+            decimal pageCount = Math.Ceiling(count / (decimal)10);
+
+            ViewBag.Pagination = new PaginationModel
+            {
+                Url = "/Vacancy/Index",
+                Count = pageCount
+            };
 
             var jobCategories = await _context
              .JobCategories
