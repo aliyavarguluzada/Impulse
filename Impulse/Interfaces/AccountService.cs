@@ -27,7 +27,7 @@ namespace Impulse.Interfaces
             var user = await _context
               .Users
               .Include(c => c.UserRole)
-              .Where(c=> c.Email == loginRequest.Email)
+              .Where(c => c.Email == loginRequest.Email)
               .FirstOrDefaultAsync();
 
 
@@ -36,22 +36,14 @@ namespace Impulse.Interfaces
                 return ServiceResult<LoginResponse>.ERROR("", "Belə bir istifadəçi yoxdur");
 
 
-            if (isAdmin)
-            {
-                if (user.UserRoleId != (int)UserRoleEnum.Admin)
-                {
+            if (isAdmin && user.UserRoleId != (int)UserRoleEnum.Admin)
+                return ServiceResult<LoginResponse>.ERROR("", "Siz admin deyilsiz.");
 
-                    return ServiceResult<LoginResponse>.ERROR("", "Siz admin deyilsiz.");
-                }
-            }
-            if (isCompany)
-            {
-                if(user.UserRoleId != (int)UserRoleEnum.Company)
-                {
-                    return ServiceResult<LoginResponse>.ERROR("", "İstifadəçi məlumatları yanlışdır");
 
-                }
-            }
+            if (isCompany && user.UserRoleId != (int)UserRoleEnum.Company)
+                return ServiceResult<LoginResponse>.ERROR("", "İstifadəçi məlumatları yanlışdır");
+
+
 
             using (SHA256 sha256 = SHA256.Create())
             {
