@@ -1,19 +1,9 @@
-﻿using Impulse.Core;
-using Impulse.Core.Requests;
+﻿using Impulse.Core.Requests;
 using Impulse.Data;
-using Impulse.DTOs.CompanyAccount;
-using Impulse.Enums;
 using Impulse.Interfaces;
-using Impulse.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
+
 
 namespace Impulse.Areas.Company.Controllers
 {
@@ -46,65 +36,21 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {
-            using (var transaction = _context.Database.BeginTransaction())
+
+
+            if (!ModelState.IsValid)
+                return View(registerRequest);
+
+            var result = await _accountService.Register(registerRequest);
+
+            if (result.Status != 200)
             {
-                try
+                foreach (var item in result.Errors)
                 {
-
-                    if (!ModelState.IsValid)
-                        return View(registerRequest);
-
-                    var result = await _accountService.Register(registerRequest);
-
-                    if (result.Status != 200)
-                    {
-                        foreach (var item in result.Errors)
-                        {
-                            ModelState.AddModelError(item.Key, item.Value);
-                            return View(registerRequest);
-                        }
-
-                        //var emails = await _context
-                        //    .Users
-                        //    .Select(c => c.Email)
-                        //    .ToListAsync();
-
-
-                        //if (emails.Contains(registerRequest.Email))
-                        //{
-                        //    ModelState.AddModelError("Email", "Bu emailə bağlı bir istifadəçi artiq mövcüddur");
-                        //    return View(registerRequest);
-                        //}
-
-
-                        //User user = new User
-                        //{
-                        //    Name = registerRequest.Name,
-                        //    Phone = registerRequest.Phone,
-                        //    Email = registerRequest.Email,
-                        //    UserRoleId = (int)UserRoleEnum.Company,
-
-                        //};
-
-
-                        //using (SHA256 sha256 = SHA256.Create())
-                        //{
-                        //    var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
-                        //    var hash = sha256.ComputeHash(buffer);
-
-                        //    user.Password = hash;
-                        //}
-
-                        //await _context.AddAsync(user);
-                        //await _context.SaveChangesAsync();
-
-                        await transaction.CommitAsync();
-                    }
+                    ModelState.AddModelError(item.Key, item.Value);
+                    return View(registerRequest);
                 }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                }
+
             }
             return RedirectToAction("Login", "Account", new { area = "Company" });
 

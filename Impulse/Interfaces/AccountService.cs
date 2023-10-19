@@ -4,10 +4,7 @@ using Impulse.Core.Responses;
 using Impulse.Data;
 using Impulse.Enums;
 using Impulse.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -51,16 +48,9 @@ namespace Impulse.Interfaces
                 var hash = sha256.ComputeHash(buffer);
 
                 if (!user.Password.SequenceEqual(hash))
-                {
                     return ServiceResult<LoginResponse>.ERROR("", "Şifrə yanlışdır");
-                }
+
             }
-
-
-
-
-
-
 
             var response = new LoginResponse
             {
@@ -74,53 +64,59 @@ namespace Impulse.Interfaces
             return ServiceResult<LoginResponse>.OK(response);
         }
 
+
         public async Task<ServiceResult<RegisterResponse>> Register(RegisterRequest registerRequest)
         {
+            using var transaction = await _context.Database.BeginTransactionAsync();
 
-
-            var emails = await _context
-                        .Users
-                        .Include(c => c.UserRole)
-                        .Select(c => c.Email)
-                        .ToListAsync();
-
-
-            if (emails.Contains(registerRequest.Email))
+            try
             {
-                return ServiceResult<RegisterResponse>.ERROR("", "Belə bir istifadəçi artıq mövcuddur");
+                var user = await _context.Users
+                    .Include(c => c.UserRole)
+                    .Where(c => c.Email == registerRequest.Email)
+                    .FirstOrDefaultAsync();
+
+                if (user is not null)
+                    return ServiceResult<RegisterResponse>.ERROR("", "Belə bir istifadəçi artıq mövcuddur");
+
+                user = new User
+                {
+                    Name = registerRequest.Name,
+                    Phone = registerRequest.Phone,
+                    Email = registerRequest.Email,
+                    UserRoleId = (int)UserRoleEnum.Company,
+                };
+
+                using (SHA256 sha256 = SHA256.Create())
+                {
+                    var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
+                    var hash = sha256.ComputeHash(buffer);
+                    user.Password = hash;
+                }
+
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                transaction.Commit();
+
+                var response = new RegisterResponse
+                {
+                    UserId = user.Id,
+                    Name = user.Name,
+                    Email = user.Email,
+                    RoleId = user.UserRoleId,
+                    Role = nameof(UserRoleEnum.Company)
+                };
+
+                return ServiceResult<RegisterResponse>.OK(response);
             }
-
-
-            User user = new User
+            catch (Exception)
             {
-                Name = registerRequest.Name,
-                Phone = registerRequest.Phone,
-                Email = registerRequest.Email,
-                UserRoleId = (int)UserRoleEnum.Company
-
-            };
-
-
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
-                var hash = sha256.ComputeHash(buffer);
-
-                user.Password = hash;
+                transaction.Rollback();
+                return ServiceResult<RegisterResponse>.ERROR("", "Uçdu ");
             }
-            var response = new RegisterResponse
-            {
-                Name = user.Name,
-                Email = user.Email,
-                UserId = user.Id,
-                RoleId = user.UserRoleId,
-                Role = "company"
-            };
-            await _context.AddAsync(user);
-            await _context.SaveChangesAsync();
-
-
-            return ServiceResult<RegisterResponse>.OK(response);
         }
+
+
     }
 }

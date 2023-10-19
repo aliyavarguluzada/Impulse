@@ -1,8 +1,10 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
+using Impulse.DTOs.Vacancies;
 using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Impulse.Areas.Company.Controllers
 {
@@ -13,7 +15,8 @@ namespace Impulse.Areas.Company.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CompanyHomeController(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public CompanyHomeController(ApplicationDbContext context,
+                                                           IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
@@ -21,11 +24,36 @@ namespace Impulse.Areas.Company.Controllers
 
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            //var vacancies = _context
-            //    .Vacancies
-            return View();
+            var user = _httpContextAccessor
+                .HttpContext
+                .User
+                .Claims
+                .Where(c => c.Type == "Name").FirstOrDefault();
+
+
+
+            var userVacancies = await _context
+                .Vacancies
+                .Where(c => c.CompanyName == user.Value)
+                .Select(c => new VacancyDto
+                {
+
+                    VacancyName = c.Name,
+                    CityName = c.City.Name,
+                    JobTypeName = c.JobType.Name,
+                    JobCategoryName = c.JobType.Name,
+                    EducationName = c.Education.Name,
+                    ExperienceName = c.Experience.Name,
+                    CompanyLogoImage = c.CompanyLogoImage,
+                    CompanyName = c.CompanyName,
+                    StartDate = c.StartDate,
+                    ExpireDate = c.ExpireDate
+                })
+                .ToListAsync();
+
+            return View(userVacancies);
         }
 
         [HttpGet]
