@@ -14,11 +14,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
     });
 
+builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
     options.UseSqlServer(builder.Configuration["Database:Connection"]));
 
-builder.Services.AddTransient<IAccountService, AccountService>();
 
 builder.Services.AddHttpContextAccessor();
 

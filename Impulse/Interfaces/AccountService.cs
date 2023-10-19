@@ -2,6 +2,8 @@
 using Impulse.Core.Requests;
 using Impulse.Core.Responses;
 using Impulse.Data;
+using Impulse.Enums;
+using Impulse.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -49,23 +51,7 @@ namespace Impulse.Interfaces
 
 
 
-            var claims = new List<Claim>
-            {
-                new Claim("Name",user.Name),
-                new Claim("Email", user.Email),
-                new Claim("UserRoleId", user.UserRoleId.ToString()),
-                new Claim("Id", user.Id.ToString()),
-                new Claim("UserRole", user.UserRole.Name)
 
-            };
-
-
-            var claimsIdentity = new ClaimsIdentity(claims,
-                CookieAuthenticationDefaults.AuthenticationScheme);
-
-
-            await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity));
 
 
             var response = new LoginResponse
@@ -80,6 +66,53 @@ namespace Impulse.Interfaces
             return ServiceResult<LoginResponse>.OK(response);
         }
 
+        public async Task<ServiceResult<RegisterResponse>> Register(RegisterRequest registerRequest)
+        {
 
+
+            var emails = await _context
+                        .Users
+                        .Include(c => c.UserRole)
+                        .Select(c => c.Email)
+                        .ToListAsync();
+
+
+            if (emails.Contains(registerRequest.Email))
+            {
+                return ServiceResult<RegisterResponse>.ERROR("", "Belə bir istifadəçi artıq mövcuddur");
+            }
+
+
+            User user = new User
+            {
+                Name = registerRequest.Name,
+                Phone = registerRequest.Phone,
+                Email = registerRequest.Email,
+                UserRoleId = (int)UserRoleEnum.Company,
+
+            };
+
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
+                var hash = sha256.ComputeHash(buffer);
+
+                user.Password = hash;
+            }
+            var response = new RegisterResponse
+            {
+                Name = user.Name,
+                Email = user.Email,
+                UserId = user.Id,
+                RoleId = user.UserRoleId,
+                Role = user.UserRole.Name
+            };
+            await _context.AddAsync(user);
+            await _context.SaveChangesAsync();
+
+
+            return ServiceResult<RegisterResponse>.OK(response);
+        }
     }
 }

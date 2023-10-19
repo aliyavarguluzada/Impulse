@@ -6,6 +6,7 @@ namespace Impulse.Interfaces
 {
     public interface IAccountService
     {
-       Task<ServiceResult<LoginResponse>> Login(LoginRequest request);
+       Task<ServiceResult<LoginResponse>> Login(LoginRequest loginRequest);
+       Task<ServiceResult<RegisterResponse>> Register(RegisterRequest registerRequest);
     }
 }
