@@ -1,12 +1,9 @@
 ﻿using Impulse.Data;
 using Impulse.DTOs.CompanyInfo;
 using Impulse.DTOs.Vacancies;
-using Impulse.Models;
-using Impulse.ViewModels.Company;
-using Impulse.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Impulse.ViewModels.Pagination;
 namespace Impulse.Controllers
 {
     public class VacancyController : Controller

@@ -3,6 +3,7 @@ using Impulse.Data;
 using Impulse.DTOs.Vacancies;
 using Impulse.Filters;
 using Impulse.Models;
+using Impulse.ViewModels.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +25,7 @@ namespace Impulse.Areas.Company.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var user = _httpContextAccessor
                 .HttpContext
@@ -51,8 +52,19 @@ namespace Impulse.Areas.Company.Controllers
                     StartDate = c.StartDate,
                     ExpireDate = c.ExpireDate
                 })
+                .Skip((page - 1) * 10)
+                .Take(10)
                 .ToListAsync();
+            var count = await _context.Vacancies.Where(c => c.CompanyName == user.Value).CountAsync();
 
+            decimal pageCount = Math.Ceiling(count / (decimal)10);
+
+            ViewBag.Pagination = new PaginationModel
+            {
+                Url = "/Company/CompanyHome/Index",
+                Count = pageCount,
+                Page = (int)pageCount
+            };
             return View(userVacancies);
         }
 

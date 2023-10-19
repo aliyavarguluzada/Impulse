@@ -1,4 +1,4 @@
-﻿using Impulse.Models;
+﻿using Impulse.ViewModels.Pagination;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Impulse.Components
