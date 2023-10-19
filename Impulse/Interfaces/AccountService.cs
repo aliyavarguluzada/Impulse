@@ -27,8 +27,9 @@ namespace Impulse.Interfaces
             var user = await _context
               .Users
               .Include(c => c.UserRole)
-              .Where(c => c.Email == loginRequest.Email)
+              .Where(c => c.Email == loginRequest.Email && c.UserRoleId == (int)UserRoleEnum.Company)
               .FirstOrDefaultAsync();
+
 
 
             if (user is null)
@@ -106,7 +107,7 @@ namespace Impulse.Interfaces
                 Email = user.Email,
                 UserId = user.Id,
                 RoleId = user.UserRoleId,
-                Role = user.UserRole.Name
+                //Role = user.UserRole.Name
             };
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();
