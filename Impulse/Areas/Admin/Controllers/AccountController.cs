@@ -1,6 +1,8 @@
-﻿using Impulse.Core.Requests;
+﻿using Azure.Core;
+using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.Enums;
+using Impulse.Interfaces;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +15,13 @@ namespace Impulse.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         public readonly ApplicationDbContext _context;
+        private readonly IAccountService _accountService;
 
-        public AccountController(ApplicationDbContext context)
+        public AccountController(ApplicationDbContext context,
+                                              IAccountService accountService)
         {
             _context = context;
+            _accountService = accountService;
         }
 
         [HttpGet]
@@ -26,39 +31,25 @@ namespace Impulse.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdminLogin(AdminLoginRequest loginRequest)
+        public async Task<IActionResult> AdminLogin(LoginRequest loginRequest)
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Login melumatlarınız yanlışdır");
-                return View();
-            }
-
-            var user = await _context
-                .Users
-                .Where(c => c.Email == loginRequest.Email && c.UserRoleId == (int)UserRoleEnum.Admin)
-                .FirstOrDefaultAsync();
-
-
-            if (user is null)
-            {
-                ModelState.AddModelError("", "Belə bir istifadəçi yoxdur");
                 return View(loginRequest);
             }
 
+            var result = await _accountService.Login(loginRequest, true, false);
 
-
-            using (SHA256 sha256 = SHA256.Create())
+            if (result.Status != 200)
             {
-                var buffer = Encoding.UTF8.GetBytes(loginRequest.Password);
-                var hash = sha256.ComputeHash(buffer);
-
-                if (!user.Password.SequenceEqual(hash))
+                foreach (var item in result.Errors)
                 {
-                    ModelState.AddModelError("", "Şifrə yanlışdır");
-                    return View(loginRequest);
+                    ModelState.AddModelError(item.Key, item.Value);
                 }
+
+                return View(loginRequest);
             }
+
             return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
         }
 

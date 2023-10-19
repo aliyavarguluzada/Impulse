@@ -22,12 +22,12 @@ namespace Impulse.Interfaces
             _context = context;
             _httpContextAccessor = contextAccessor;
         }
-        public async Task<ServiceResult<LoginResponse>> Login(LoginRequest loginRequest)
+        public async Task<ServiceResult<LoginResponse>> Login(LoginRequest loginRequest, bool isAdmin, bool isCompany)
         {
             var user = await _context
               .Users
               .Include(c => c.UserRole)
-              .Where(c => c.Email == loginRequest.Email && c.UserRoleId == (int)UserRoleEnum.Company)
+              .Where(c=> c.Email == loginRequest.Email)
               .FirstOrDefaultAsync();
 
 
@@ -36,7 +36,22 @@ namespace Impulse.Interfaces
                 return ServiceResult<LoginResponse>.ERROR("", "Belə bir istifadəçi yoxdur");
 
 
+            if (isAdmin)
+            {
+                if (user.UserRoleId != (int)UserRoleEnum.Admin)
+                {
 
+                    return ServiceResult<LoginResponse>.ERROR("", "Siz admin deyilsiz.");
+                }
+            }
+            if (isCompany)
+            {
+                if(user.UserRoleId != (int)UserRoleEnum.Company)
+                {
+                    return ServiceResult<LoginResponse>.ERROR("", "İstifadəçi məlumatları yanlışdır");
+
+                }
+            }
 
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -89,7 +104,7 @@ namespace Impulse.Interfaces
                 Name = registerRequest.Name,
                 Phone = registerRequest.Phone,
                 Email = registerRequest.Email,
-                UserRoleId = (int)UserRoleEnum.Company,
+                UserRoleId = (int)UserRoleEnum.Company
 
             };
 
@@ -107,7 +122,7 @@ namespace Impulse.Interfaces
                 Email = user.Email,
                 UserId = user.Id,
                 RoleId = user.UserRoleId,
-                //Role = user.UserRole.Name
+                Role = "company"
             };
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();

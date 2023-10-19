@@ -121,7 +121,7 @@ namespace Impulse.Areas.Company.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginRequest loginRequest)
+        public async Task<IActionResult> Login(LoginRequest loginRequest, bool isAdmin, bool isCompany)
         {
             if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
             {
@@ -133,7 +133,7 @@ namespace Impulse.Areas.Company.Controllers
                 ModelState.AddModelError("", "");
                 return View();
             }
-            var result = await _accountService.Login(loginRequest);
+            var result = await _accountService.Login(loginRequest, false, true);
 
             if (result.Status != 200)
             {
