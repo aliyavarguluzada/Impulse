@@ -15,12 +15,15 @@ namespace Impulse.Areas.Company.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
 
         public CompanyHomeController(ApplicationDbContext context,
-                                                           IHttpContextAccessor httpContextAccessor)
+                                                        IHttpContextAccessor httpContextAccessor,
+                                                                IConfiguration configuration)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _configuration = configuration;
         }
 
 
@@ -61,7 +64,7 @@ namespace Impulse.Areas.Company.Controllers
 
             ViewBag.Pagination = new PaginationModel
             {
-                Url = "/Company/CompanyHome/Index",
+                Url = _configuration["VacancyPath;privatePath"],
                 Count = pageCount,
                 Page = (int)pageCount
             };
@@ -111,7 +114,7 @@ namespace Impulse.Areas.Company.Controllers
 
                     if (requiredProperties.Any(value => value == null || value == 0))
                     {
-                        ModelState.AddModelError(string.Empty, "Select values for all required fields.");
+                        ModelState.AddModelError(string.Empty, "Bütün bölmələr üzrə seçim edin.");
                         return View(addRequest);
                     }
 
@@ -140,7 +143,7 @@ namespace Impulse.Areas.Company.Controllers
                     if (addRequest.Logo != null && addRequest.Logo.Length > 0)
                     {
                         var fileName = Guid.NewGuid() + Path.GetExtension(addRequest.Logo.FileName);
-                        var filePath = Path.Combine("wwwroot/images/logos", fileName);
+                        var filePath = Path.Combine(_configuration["LogoPath:Path"], fileName);
 
                         using (var fileStream = new FileStream(filePath, FileMode.Create))
                         {

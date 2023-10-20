@@ -9,10 +9,13 @@ namespace Impulse.Controllers
     public class VacancyController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public VacancyController(ApplicationDbContext context)
+        public VacancyController(ApplicationDbContext context,
+                                                    IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
         [HttpGet]
         public async Task<IActionResult> Index(int page = 1)
@@ -51,7 +54,7 @@ namespace Impulse.Controllers
 
             ViewBag.Pagination = new PaginationModel
             {
-                Url = "/Vacancy/Index",
+                Url = _configuration["VacancyPath:Path"],
                 Count = pageCount,
                 Page = (int)pageCount
             };

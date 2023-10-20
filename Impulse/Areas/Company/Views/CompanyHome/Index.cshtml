@@ -28,7 +28,7 @@
                                         <p><i class="fas fa-map-marker"></i> @item.CityName</p>
                                     </div>
                                     <div class="col-md-4">
-                                        <p><i class="fas fa-calendar"></i> Son gün: @item.ExpireDate</p>
+                                        <p><i class="fas fa-calendar"></i> Son gün: @item.ExpireDate.ToString("dd.MM.yyyy")</p>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <p class="full-time">
                                         <i class="fas fa-clock"></i> @item.JobTypeName
                                     </p>
-                                    <p><i class="fas fa-calendar"></i> @item.StartDate</p>
+                                    <p><i class="fas fa-calendar"></i> @item.StartDate.ToString("dd.MM.yyyy")</p>
                                 </div>
                             </div>
                         </div>
