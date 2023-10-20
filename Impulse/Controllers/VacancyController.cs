@@ -91,5 +91,11 @@ namespace Impulse.Controllers
 
             return View(vacancies);
         }
+
+
+        public async Task<IActionResult> Chosen(int vacancyId)
+        {
+            return View();
+        }
     }
 }
