@@ -1,20 +1,32 @@
-﻿ <div class="container">
+﻿@model List<VacancyDto>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
         <div class="row">
             <div class="col-md-3">
-                <img src="/images/company_logo_cb7fde11c9cd9c952f5bbaf8075ee7fbe73326c7.png" alt="Company Logo">
+                <img src="~/images/logos/@item.CompanyLogoImage" alt="Company Logo">
             </div>
             <div class="col-md-12">
-                <h1 class="job-title">Job Title</h1>
+                <h1 class="job-title" style="color:#0061AA;padding:20px 0px 20px 0px">@item.VacancyName</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="color:#415161">
+                <span style="padding:0px 5px"><i class="fas fa-map-marker"></i> @item.CityName</span>
+                <span style="padding:0px 5px"><i class="fas fa-calendar"></i> Son gün: @item.ExpireDate.ToString("dd.MM.yyyy")</span>
+                <span style ="padding:0px 5px" class="full-time"><i class="fas fa-clock"></i> @item.JobTypeName</span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <span><i class="fas fa-map-marker"></i> item.CityName</span>
-                <span><i class="fas fa-calendar"></i> Son gün: item.ExpireDate.ToString("dd.MM.yyyy")</span>
-                <span class="full-time"><i class="fas fa-clock"></i> item.JobTypeName</span>
+                <div class="description">
+                    @Html.Raw(@item.Description)
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <h1>Job Description</h1>
-    </div>
+        <div class="row">
+            <p style="color:#415161">Əlaqə üçün <a href="mailto:@item.Email"> @item.Email</a></p>
+        </div>
+    }
+</div>

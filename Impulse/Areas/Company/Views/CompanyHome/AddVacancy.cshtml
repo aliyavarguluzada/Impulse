@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="container mt-5 add-vacancy">
-            <form asp-action="AddVacancy" enctype="multipart/form-data" method="post" @Url.Action("AddVacancy", "CompanyHome", new {area="Company"})>
+            <form asp-action="AddVacancy" novalidate enctype="multipart/form-data" method="post" @Url.Action("AddVacancy", "CompanyHome", new {area="Company"})>
 
                 @Html.ValidationSummary(true)
                 <div class="form-group">
@@ -91,13 +91,23 @@
         </div>
     </main>
     <!-- Main End -->
-
-
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="~/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <script src="https://cdn.tiny.cloud/1/rg4zfvzliigproiora198l55j6avarupsqq5j8yg4iyp563x/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#description',
+            plugins: 'lists link',
+            toolbar: 'bold italic bullist numlist link',
+        });
+    </script>
+
+    <script src="~/js/main.js"></script>
+   
 </body>
 </html>

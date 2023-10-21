@@ -32,6 +32,7 @@ namespace Impulse.Controllers
                 .Include(c => c.Experience)
                 .Select(c => new VacancyDto
                 {
+                    VacancyId = c.Id,
                     VacancyName = c.Name,
                     CityName = c.City.Name,
                     JobTypeName = c.JobType.Name,
@@ -93,9 +94,36 @@ namespace Impulse.Controllers
         }
 
 
-        public async Task<IActionResult> Chosen(int vacancyId)
+        public async Task<IActionResult> Chosen(int id)
         {
-            return View();
+            var vacancy = await _context
+                .Vacancies
+                .Include(c => c.City)
+                .Include(c => c.Company)
+                .Include(c => c.JobType)
+                .Include(c => c.JobCategory)
+                .Include(c => c.Education)
+                .Include(c => c.Experience)
+                .Select(c => new VacancyDto
+                {
+                    VacancyId = c.Id,
+                    VacancyName = c.Name,
+                    CityName = c.City.Name,
+                    JobTypeName = c.JobType.Name,
+                    JobCategoryName = c.JobType.Name,
+                    EducationName = c.Education.Name,
+                    ExperienceName = c.Experience.Name,
+                    CompanyLogoImage = c.CompanyLogoImage,
+                    CompanyName = c.CompanyName,
+                    Email = c.Email,
+                    StartDate = c.StartDate,
+                    ExpireDate = c.ExpireDate,
+                    Description = c.Description
+                })
+                .Where(c => c.VacancyId == id)
+                .ToListAsync();
+
+            return View(vacancy);
         }
     }
 }

@@ -26,10 +26,7 @@ html {
 /* Header */
 /* Navbar */
 
-/* .logo-img-div{
-    width: 50px!important;
-    height: 50px!important;
-} */
+
 .logo img {
     width: 100px;
     height: 100px;
@@ -135,13 +132,8 @@ html {
 .about {
     background-image: url(/images/hero11-free-img.png);
     background-color: #f9f9f9;
-    /* opacity: .68; */
     padding-bottom: 5%;
     background-position: center;
-    /* Todo  */
-    /* mix-blend-mode: luminosity; */
-    /* Todo  */
-    /* height: 100vh; */
     display: flex;
     align-items: center;
 }
@@ -246,7 +238,6 @@ html {
 .modal-lg .modal-content .modal-body .enlarged-image {
     max-width: 100%;
     max-height: calc(100vh - 120px);
-    /* Adjust the value to control the height */
     margin: 0 auto;
     display: block;
 }
@@ -255,7 +246,6 @@ html {
     border: none;
     background-color: transparent;
     color: #313131;
-    /* Change the color as needed */
     font-size: 24px;
     font-weight: bold;
     opacity: 1;
@@ -341,7 +331,7 @@ html {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    margin-bottom:20px
+    margin-bottom: 20px
 }
 
 /* Style the pagination list */
@@ -350,7 +340,6 @@ html {
     display: flex;
     padding: 0;
     margin: 0;
-    
 }
     /* Style the individual pagination items */
     .pagination li {
@@ -374,11 +363,14 @@ html {
     .pagination a {
         text-decoration: none;
         background-color: #007bff;
-        color:#fff;
+        color: #fff;
         padding: 5px 10px;
         border: 1px solid #007bff;
         border-radius: 5px;
     }
 
-       
+.description {
+    padding: 35px 0px 35px 0px;
+    width: 75%
+}
 /* End Add-Vacancy */
