@@ -94,6 +94,6 @@ namespace Impulse.Areas.Admin.Controllers
             return RedirectToAction("Login", "Account", new { area = "Admin" });
         }
 
-        //Bir defe register yazilmalidi ki passwordu hashlayib bazaya atasan sonra register silinmelidi
+        
     }
 }

@@ -1,3 +1,4 @@
+using EcommerceApp.MVC.Middlewares;
 using Impulse.Data;
 using Impulse.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -5,6 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddLogging();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+
 
 builder.Services.AddControllersWithViews();
 
@@ -25,6 +34,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+app.UseMyLogging();
 
 
 app.MapControllerRoute("Admin",
@@ -53,8 +63,3 @@ app.Run();
 
 
 
-// TODO: interface e bax istifade et ViewComponentlere ayir Controlleri  loglama qalib input validation ele
-// MyAuth problemlidi redirect elemir AddVacany islemir evvel request icindekiler null idi (elnen yazilanlardan basqa)
-// indi Count = 0 gelir View da Model.WorkForms falan null gelir
-// Daha sonra Admin panelin frontu tamamlanmayib Company Frontu tamamlanmayib
-// Vakansiyalarin yigildigi hissenin frontu qalib ora pagination eleve edilmelidi

@@ -37,47 +37,19 @@ namespace Impulse.Areas.Admin.Controllers
                         return View(request);
                     }
 
+                    var optCity = new City() { Name = request.City };
 
-                    // TODO: asagidakilari interface e yigmaq lazimdi
+                    var optJobType = new JobType() { Name = request.JobType };
 
-                    var optCity = new City()
-                    {
-                        Name = request.City
-                    };
+                    var optJobCategory = new JobCategory() { Name = request.JobCategory };
 
-                    var optJobType = new JobType()
-                    {
-                        Name = request.JobType
-                    };
+                    var optWorkForm = new WorkForm() { Name = request.WorkForm };
 
-                    var optJobCategory = new JobCategory()
-                    {
-                        Name = request.JobCategory
-                    };
+                    var optEducation = new Education() { Name = request.Education };
 
-                    var optWorkForm = new WorkForm()
-                    {
-                        Name = request.WorkForm
-                    };
+                    var optExperience = new Experience() { Name = request.Experience };
 
-                    var optEducation = new Education()
-                    {
-                        Name = request.Education
-                    };
 
-                    var optExperience = new Experience()
-                    {
-                        Name = request.Experience
-                    };
-
-                    // TODO: isdese asagidaki commentleri sil
-
-                    //await _context.AddAsync(optCity);
-                    //await _context.AddAsync(optJobType);
-                    //await _context.AddAsync(optJobCategory);
-                    //await _context.AddAsync(optWorkForm);
-                    //await _context.AddAsync(optEducation);
-                    //await _context.AddAsync(optExperience);
 
                     var objectsToCreate = new object[] { optCity,
                                                             optJobType,
@@ -95,7 +67,7 @@ namespace Impulse.Areas.Admin.Controllers
 
                     await transaction.CommitAsync();
 
-                    //return Ok("Options created successfully.");
+                    return Ok("Options created successfully.");
 
 
                 }

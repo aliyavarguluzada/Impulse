@@ -7,7 +7,7 @@ namespace Impulse.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        // TODO: Models elave edilmelidi
+        public virtual DbSet<Log> Logs { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<City> Cities { get; set; }
