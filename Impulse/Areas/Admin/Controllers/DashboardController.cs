@@ -17,7 +17,7 @@ namespace Impulse.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
 
             return View();
@@ -42,7 +42,7 @@ namespace Impulse.Areas.Admin.Controllers
 
                     var optCity = new City()
                     {
-                        Name = request.JobType
+                        Name = request.City
                     };
 
                     var optJobType = new JobType()
@@ -95,7 +95,7 @@ namespace Impulse.Areas.Admin.Controllers
 
                     await transaction.CommitAsync();
 
-                    return Ok("Options created successfully.");
+                    //return Ok("Options created successfully.");
 
 
                 }
@@ -105,7 +105,7 @@ namespace Impulse.Areas.Admin.Controllers
                 }
             }
 
-            return RedirectToAction("index");
+            return RedirectToAction("Index", "Dashboard", "Admin");
         }
     }
 }
