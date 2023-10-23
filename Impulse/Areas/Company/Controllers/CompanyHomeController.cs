@@ -2,6 +2,7 @@
 using Impulse.Data;
 using Impulse.DTOs.Vacancies;
 using Impulse.Filters;
+using Impulse.Interfaces;
 using Impulse.Models;
 using Impulse.ViewModels.Pagination;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +17,16 @@ namespace Impulse.Areas.Company.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
-
+        private readonly IAddVacancyService _vacancyService;
         public CompanyHomeController(ApplicationDbContext context,
                                                         IHttpContextAccessor httpContextAccessor,
-                                                                IConfiguration configuration)
+                                                                IConfiguration configuration,
+                                                                        IAddVacancyService vacancyService)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
+            _vacancyService = vacancyService;
         }
 
 
@@ -58,6 +61,7 @@ namespace Impulse.Areas.Company.Controllers
                 .Skip((page - 1) * 10)
                 .Take(10)
                 .ToListAsync();
+
             var count = await _context.Vacancies.Where(c => c.CompanyName == user.Value).CountAsync();
 
             decimal pageCount = Math.Ceiling(count / (decimal)10);
@@ -81,92 +85,104 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> AddVacancy(AddVacancyRequest addRequest)
         {
-            using (var transaction = _context.Database.BeginTransaction())
+            //using (var transaction = _context.Database.BeginTransaction())
+            //{
+            //    try
+            //    {
+
+
+            //        if (String.IsNullOrEmpty(addRequest.VacancyName))
+            //            ModelState.AddModelError("VacancyName", "The vacancy name is required.");
+
+            //        if (String.IsNullOrEmpty(addRequest.Description))
+            //            ModelState.AddModelError("Description", "The Description is required.");
+
+            //        if (String.IsNullOrEmpty(addRequest.Email))
+            //            ModelState.AddModelError("Email", "Email is required");
+
+
+            //        string userName = _httpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == "Name").Select(c => c.Value).FirstOrDefault();
+
+
+
+
+            //        var requiredProperties = new[]
+            //        {
+            //             addRequest.CityId,
+            //             addRequest.EducationId,
+            //             addRequest.ExperienceId,
+            //             addRequest.JobCategoryId,
+            //             addRequest.JobTypeId,
+            //             addRequest.WorkFormId
+            //        };
+
+            //        if (requiredProperties.Any(value => value == null || value == 0))
+            //        {
+            //            ModelState.AddModelError(string.Empty, "Bütün bölmələr üzrə seçim edin.");
+            //            return View(addRequest);
+            //        }
+
+            //        Vacancy vacancy = new()
+            //        {
+            //            Name = addRequest.VacancyName,
+            //            Description = addRequest.Description,
+            //            Email = addRequest.Email,
+            //            StartDate = DateTime.Now,
+            //            ExpireDate = DateTime.Now.AddDays(30), // Hangfire
+
+            //            EducationId = addRequest.WorkFormId,
+            //            ExperienceId = addRequest.ExperienceId,
+            //            JobCategoryId = addRequest.JobCategoryId,
+            //            JobTypeId = addRequest.JobTypeId,
+            //            WorkFormId = addRequest.WorkFormId,
+            //            CityId = addRequest.CityId,
+            //            CompanyName = userName
+
+
+            //            /////
+
+            //        };
+
+
+            //        if (addRequest.Logo != null && addRequest.Logo.Length > 0)
+            //        {
+            //            var fileName = Guid.NewGuid() + Path.GetExtension(addRequest.Logo.FileName);
+            //            var filePath = Path.Combine(_configuration["LogoPath:Path"], fileName);
+
+            //            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            //            {
+            //                await addRequest.Logo.CopyToAsync(fileStream);
+            //            }
+
+            //            vacancy.LogoFilePath = fileName;
+            //            vacancy.CompanyLogoImage = fileName;
+            //        }
+
+            //        await _context.AddAsync(vacancy);
+            //        await _context.SaveChangesAsync();
+            //        await transaction.CommitAsync();
+            //    }
+            //    catch (NullReferenceException)
+            //    {
+            //        transaction.Rollback();
+            //    }
+            //    catch (Exception)
+            //    {
+            //        transaction.Rollback();
+
+            //    }
+            //}
+
+            var result = await _vacancyService.AddVacancy(addRequest);
+
+            if (result.Status != 200)
             {
-                try
+                foreach (var item in result.Errors)
                 {
-
-
-                    if (String.IsNullOrEmpty(addRequest.VacancyName))
-                        ModelState.AddModelError("VacancyName", "The vacancy name is required.");
-
-                    if (String.IsNullOrEmpty(addRequest.Description))
-                        ModelState.AddModelError("Description", "The Description is required.");
-
-                    if (String.IsNullOrEmpty(addRequest.Email))
-                        ModelState.AddModelError("Email", "Email is required");
-
-
-                    string userName = _httpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == "Name").Select(c => c.Value).FirstOrDefault();
-
-
-
-
-                    var requiredProperties = new[]
-                    {
-                         addRequest.CityId,
-                         addRequest.EducationId,
-                         addRequest.ExperienceId,
-                         addRequest.JobCategoryId,
-                         addRequest.JobTypeId,
-                         addRequest.WorkFormId
-                    };
-
-                    if (requiredProperties.Any(value => value == null || value == 0))
-                    {
-                        ModelState.AddModelError(string.Empty, "Bütün bölmələr üzrə seçim edin.");
-                        return View(addRequest);
-                    }
-
-                    Vacancy vacancy = new()
-                    {
-                        Name = addRequest.VacancyName,
-                        Description = addRequest.Description,
-                        Email = addRequest.Email,
-                        StartDate = DateTime.Now,
-                        ExpireDate = DateTime.Now.AddDays(30), // Hangfire
-
-                        EducationId = addRequest.WorkFormId,
-                        ExperienceId = addRequest.ExperienceId,
-                        JobCategoryId = addRequest.JobCategoryId,
-                        JobTypeId = addRequest.JobTypeId,
-                        WorkFormId = addRequest.WorkFormId,
-                        CityId = addRequest.CityId,
-                        CompanyName = userName
-
-
-                        /////
-
-                    };
-
-
-                    if (addRequest.Logo != null && addRequest.Logo.Length > 0)
-                    {
-                        var fileName = Guid.NewGuid() + Path.GetExtension(addRequest.Logo.FileName);
-                        var filePath = Path.Combine(_configuration["LogoPath:Path"], fileName);
-
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await addRequest.Logo.CopyToAsync(fileStream);
-                        }
-
-                        vacancy.LogoFilePath = fileName;
-                        vacancy.CompanyLogoImage = fileName;
-                    }
-
-                    await _context.AddAsync(vacancy);
-                    await _context.SaveChangesAsync();
-                    await transaction.CommitAsync();
+                    ModelState.AddModelError(item.Key, item.Value);
+                    return View(addRequest);
                 }
-                catch (NullReferenceException)
-                {
-                    transaction.Rollback();
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
 
-                }
             }
 
             return RedirectToAction("Index", "Home", new { area = "default" });

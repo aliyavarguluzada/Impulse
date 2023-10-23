@@ -2,7 +2,6 @@ using EcommerceApp.MVC.Middlewares;
 using Impulse.Data;
 using Impulse.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +24,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
-
+builder.Services.AddTransient<IAddVacancyService, AddVacancyService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
     options.UseSqlServer(builder.Configuration["Database:Connection"]));

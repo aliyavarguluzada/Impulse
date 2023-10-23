@@ -1,11 +1,9 @@
-﻿using Azure.Core;
-using Impulse.Core.Requests;
+﻿using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.Enums;
 using Impulse.Interfaces;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
 

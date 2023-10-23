@@ -55,7 +55,7 @@ namespace EcommerceApp.MVC.Middlewares
                 using (MemoryStream ms = new MemoryStream())
                 {
                     await context.Request.Body.CopyToAsync(ms);
-                    ms.Seek(0, SeekOrigin.Begin); // Rewind the MemoryStream to the beginning
+                    ms.Seek(0, SeekOrigin.Begin);
 
                     using (StreamReader reader = new StreamReader(ms))
                     {
