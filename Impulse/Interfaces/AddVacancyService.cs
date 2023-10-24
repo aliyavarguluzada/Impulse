@@ -28,13 +28,13 @@ namespace Impulse.Interfaces
             {
 
                 if (String.IsNullOrEmpty(addRequest.VacancyName))
-                    return ServiceResult<AddVacancyResponse>.ERROR("VacancyName", "The vacancy name is required.");
+                    return ServiceResult<AddVacancyResponse>.ERROR("", "Vakansiyanın adını daxil edin.");
 
                 if (String.IsNullOrEmpty(addRequest.Description))
-                    return ServiceResult<AddVacancyResponse>.ERROR("Description", "Description is required.");
+                    return ServiceResult<AddVacancyResponse>.ERROR("", "Vakansiya üçün açıqlama daxil edilməlidir.");
 
                 if (String.IsNullOrEmpty(addRequest.Email))
-                    return ServiceResult<AddVacancyResponse>.ERROR("Email", "Email is required.");
+                    return ServiceResult<AddVacancyResponse>.ERROR("", "Email daxil edin.");
 
 
                 string userName = _httpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == "Name").Select(c => c.Value).FirstOrDefault();

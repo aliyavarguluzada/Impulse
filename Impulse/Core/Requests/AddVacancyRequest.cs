@@ -13,8 +13,8 @@ namespace Impulse.Core.Requests
 
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Düzgün Email daxil edin")]
-        [EmailAddress(ErrorMessage = "Düzgün Email daxil edin")]
+        [Required(ErrorMessage = "Email daxil edin")]
+        [EmailAddress(ErrorMessage = "Format düzgün deyil")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Logo üçün fayl daxil edin")]

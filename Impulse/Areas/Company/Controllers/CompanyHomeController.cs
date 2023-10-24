@@ -85,7 +85,10 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> AddVacancy(AddVacancyRequest addRequest)
         {
-
+            if (!ModelState.IsValid)
+            {
+                return View(addRequest);
+            }
             var result = await _vacancyService.AddVacancy(addRequest);
 
             if (result.Status != 200)
