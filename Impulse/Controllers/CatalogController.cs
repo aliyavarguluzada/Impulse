@@ -24,6 +24,7 @@ namespace Impulse.Controllers
                     CvId = c.Id,
                     MainPage = c.MainPage,
                     ImageName = c.ImageName
+
                 }).ToListAsync();
 
             return View(catalogImages);

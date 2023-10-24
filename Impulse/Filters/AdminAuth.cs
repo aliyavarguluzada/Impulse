@@ -33,7 +33,6 @@ namespace Impulse.Filters
                 return;
             }
 
-            //TODO: Asagidaki kodu seliqeye sal
 
             bool roleCondition = roleClaim.Value.ToUpper().Equals(Role.ToUpper());
 

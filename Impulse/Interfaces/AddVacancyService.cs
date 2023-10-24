@@ -63,7 +63,7 @@ namespace Impulse.Interfaces
                     Description = addRequest.Description,
                     Email = addRequest.Email,
                     StartDate = DateTime.Now,
-                    ExpireDate = DateTime.Now.AddDays(30), // Hangfire
+                    ExpireDate = DateTime.Now.AddDays(30),
 
                     EducationId = addRequest.WorkFormId,
                     ExperienceId = addRequest.ExperienceId,

@@ -8,8 +8,6 @@ namespace Impulse.Core.Requests
         [Required]
         public string VacancyName { get; set; }
 
-        public string CompanyName { get; set; }
-
         [Required]
         public string Description { get; set; }
 

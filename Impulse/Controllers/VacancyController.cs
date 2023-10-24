@@ -98,49 +98,6 @@ namespace Impulse.Controllers
 
 
 
-        [HttpPost]
-        public async Task<JsonResult> Index(SearchModel searchModel)
-        {
-            var newVacancies = await _context
-                .Vacancies
-                .Select(c => new VacancyDto
-                {
-                    VacancyId = c.Id,
-                    VacancyName = c.Name,
-                    CityName = c.City.Name,
-                    JobTypeName = c.JobType.Name,
-                    JobCategoryName = c.JobType.Name,
-                    EducationName = c.Education.Name,
-                    ExperienceName = c.Experience.Name,
-                    CompanyLogoImage = c.CompanyLogoImage,
-                    CompanyName = c.CompanyName,
-                    JobCategoryId = c.JobType.Id,
-                    JobTypeId = c.JobType.Id,
-                    WorkFormId = c.WorkFormId,
-                    StartDate = c.StartDate,
-                    ExpireDate = c.ExpireDate
-                })
-                .Where(c => c.JobTypeId == searchModel.JobTypeId
-
-                &&
-
-                c.JobCategoryId == searchModel.JobCategoryId
-
-                &&
-
-                c.WorkFormId == searchModel.WorkFormId)
-
-                .ToListAsync();
-
-            return Json(new
-            {
-                status = HttpStatusCode.OK,
-                data = newVacancies
-            });
-        }
-
-
-
 
 
         [HttpGet]

@@ -37,12 +37,14 @@ namespace Impulse.Areas.Company.Controllers
                 .HttpContext
                 .User
                 .Claims
-                .Where(c => c.Type == "Name").FirstOrDefault();
+                .Where(c => c.Type == "Name")
+                .FirstOrDefault();
 
 
 
             var userVacancies = await _context
                 .Vacancies
+                .OrderByDescending(c => c.Id)
                 .Where(c => c.CompanyName == user.Value)
                 .Select(c => new VacancyDto
                 {
@@ -85,6 +87,7 @@ namespace Impulse.Areas.Company.Controllers
         [HttpPost]
         public async Task<IActionResult> AddVacancy(AddVacancyRequest addRequest)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(addRequest);
