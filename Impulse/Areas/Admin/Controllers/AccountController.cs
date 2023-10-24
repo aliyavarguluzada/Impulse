@@ -1,6 +1,7 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
 using Impulse.Enums;
+using Impulse.Filters;
 using Impulse.Interfaces;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,16 @@ namespace Impulse.Areas.Admin.Controllers
     {
         public readonly ApplicationDbContext _context;
         private readonly IAccountService _accountService;
+        private readonly IAuthService _authService;
+
 
         public AccountController(ApplicationDbContext context,
-                                              IAccountService accountService)
+                                              IAccountService accountService,
+                                              IAuthService authService)
         {
             _context = context;
             _accountService = accountService;
+            _authService = authService;
         }
 
         [HttpGet]
@@ -41,6 +46,30 @@ namespace Impulse.Areas.Admin.Controllers
             if (result.Status != 200)
             {
                 foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.Key, item.Value);
+                }
+
+                return View(loginRequest);
+            }
+            var cookieAuthModel = new CookieAuthRequest
+            {
+                UserId = result.Response.UserId,
+                Name = result.Response.Name,
+                Email = result.Response.Email,
+                RoleId = result.Response.RoleId,
+                Role = result.Response.Role
+            };
+
+
+
+
+
+            var cookieAuthResult = await _authService.CookieAuth(cookieAuthModel);
+
+            if (cookieAuthResult.Status != 200)
+            {
+                foreach (var item in cookieAuthResult.Errors)
                 {
                     ModelState.AddModelError(item.Key, item.Value);
                 }
@@ -92,6 +121,6 @@ namespace Impulse.Areas.Admin.Controllers
             return RedirectToAction("Login", "Account", new { area = "Admin" });
         }
 
-        
+
     }
 }

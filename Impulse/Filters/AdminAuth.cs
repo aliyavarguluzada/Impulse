@@ -1,24 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Impulse.Filters
 {
-    public class MyAuth : Attribute, IAsyncAuthorizationFilter
+    public class AdminAuth : Attribute, IAsyncAuthorizationFilter
     {
 
         private readonly string Role;
-        public MyAuth(string role)
+        public AdminAuth(string role)
         {
             Role = role;
         }
+
+
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
-
             bool isAuthenticated = context.HttpContext.User.Identity.IsAuthenticated;
 
             if (!isAuthenticated)
             {
-                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
+                context.Result = new RedirectToActionResult("AdminLogin", "Account", new { area = "Admin" });
 
                 return;
             }
@@ -27,22 +28,20 @@ namespace Impulse.Filters
 
             if (roleClaim is null)
             {
-                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
+                context.Result = new RedirectToActionResult("AdminLogin", "Account", new { area = "Admin" });
 
                 return;
             }
 
+            //TODO: Asagidaki kodu seliqeye sal
 
             bool roleCondition = roleClaim.Value.ToUpper().Equals(Role.ToUpper());
 
             if (!roleCondition)
             {
-                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Company" });
+                context.Result = new RedirectToActionResult("AdminLogin", "Account", new { area = "Admin" });
                 return;
             }
-
-
         }
-
     }
 }

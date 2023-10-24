@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Impulse.Core.RequestValidation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Impulse.Core.Requests
 {
@@ -10,11 +11,11 @@ namespace Impulse.Core.Requests
         public string CompanyName { get; set; }
 
         [Required]
-
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Email daxil edin")]
         [EmailAddress(ErrorMessage = "Format düzgün deyil")]
+
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Logo üçün fayl daxil edin")]

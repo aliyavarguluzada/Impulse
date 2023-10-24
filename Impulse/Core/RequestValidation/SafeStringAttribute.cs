@@ -5,7 +5,7 @@ namespace Impulse.Core.RequestValidation
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
     public class SafeStringAttribute : ValidationAttribute
     {
-        private const int MaxLength = 50;
+        private const int MaxLength = 55500;
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {

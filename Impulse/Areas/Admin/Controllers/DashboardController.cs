@@ -1,11 +1,14 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
+using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Impulse.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AdminAuth("admin")]
+
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -67,7 +70,6 @@ namespace Impulse.Areas.Admin.Controllers
 
                     await transaction.CommitAsync();
 
-                    return Ok("Options created successfully.");
 
 
                 }
