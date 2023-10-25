@@ -6,7 +6,7 @@ namespace Impulse.Data
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
+        public DbSet<Status> Statuses { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
         public DbSet<User> Users { get; set; }

@@ -342,6 +342,29 @@ namespace Impulse.Migrations
                     b.ToTable("SiteSettings");
                 });
 
+            modelBuilder.Entity("Impulse.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statuses");
+                });
+
             modelBuilder.Entity("Impulse.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -423,7 +446,6 @@ namespace Impulse.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Created")
@@ -462,6 +484,9 @@ namespace Impulse.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
 
@@ -481,6 +506,8 @@ namespace Impulse.Migrations
                     b.HasIndex("JobCategoryId");
 
                     b.HasIndex("JobTypeId");
+
+                    b.HasIndex("StatusId");
 
                     b.HasIndex("WorkFormId");
 
@@ -581,6 +608,12 @@ namespace Impulse.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Impulse.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Impulse.Models.WorkForm", "WorkForm")
                         .WithMany()
                         .HasForeignKey("WorkFormId")
@@ -598,6 +631,8 @@ namespace Impulse.Migrations
                     b.Navigation("JobCategory");
 
                     b.Navigation("JobType");
+
+                    b.Navigation("Status");
 
                     b.Navigation("WorkForm");
                 });

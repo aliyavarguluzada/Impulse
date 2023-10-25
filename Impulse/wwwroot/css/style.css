@@ -374,4 +374,8 @@ html {
     padding: 35px 0px 35px 0px;
     width: 75%
 }
+
+.vaccancy {
+    padding-top: 15px !important;
+}
 /* End Add-Vacancy */

@@ -1,4 +1,5 @@
 ﻿@model List<VacancyDto>
+<link rel="stylesheet" href="~/css/media.css">
 
 <main>
 
@@ -7,7 +8,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-12">
-                    <div class="vacancy mb-3 border p-3">
+                    <div class="vacancy mb-3 border p-3" style="padding-top:15px">
                         <div class="row">
                             <div class="col-md-2 vacancy-mobile">
                                 <a href="@Url.Action("Chosen","Vacancy", new { id = item.VacancyId})">

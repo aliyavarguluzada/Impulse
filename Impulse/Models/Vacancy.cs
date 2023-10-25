@@ -1,10 +1,9 @@
-﻿using Microsoft.Identity.Client;
-
-namespace Impulse.Models
+﻿namespace Impulse.Models
 {
     public class Vacancy
     {
         public int Id { get; set; }
+        public int StatusId { get; set; }
         public string Name { get; set; }
         public string? CompanyName { get; set; }
         public int? CompanyId { get; set; } = 0;
@@ -23,6 +22,7 @@ namespace Impulse.Models
         public DateTime? Created { get; set; }
         public DateTime? Updated { get; set; }
 
+        public virtual Status Status { get; set; }
         public virtual Company Company { get; set; }
         public virtual JobType JobType { get; set; }
         public virtual WorkForm WorkForm { get; set; }
