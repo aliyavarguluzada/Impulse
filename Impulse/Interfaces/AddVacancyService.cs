@@ -3,6 +3,7 @@ using Impulse.Core.Requests;
 using Impulse.Core.Responses;
 using Impulse.Data;
 using Impulse.Models;
+using Impulse.Enums;
 
 namespace Impulse.Interfaces
 {
@@ -71,7 +72,8 @@ namespace Impulse.Interfaces
                     JobTypeId = addRequest.JobTypeId,
                     WorkFormId = addRequest.WorkFormId,
                     CityId = addRequest.CityId,
-                    CompanyName = userName
+                    CompanyName = userName,
+                    StatusId = (int)StatusEnum.Deactive
 
 
                     /////

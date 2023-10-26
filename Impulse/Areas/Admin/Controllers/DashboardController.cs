@@ -88,7 +88,7 @@ namespace Impulse.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Users()
         {
-            var users = _context
+            var users =  await _context
                 .Users
                 .OrderByDescending(c => c.Id)
                 .Include(c => c.UserRole)

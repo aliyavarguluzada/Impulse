@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Impulse.DTOs.adminPanel;
+
+@model List<UserDto>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -269,47 +273,30 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <form method="post" action="@Url.Action("Index", "Dashboard", new { area = "Admin" })">
-                                    <div class="" style="padding:20px">
-
-                                        <!-- WorkForm -->
-                                        <div class="form-group">
-                                            <label for="workForm">Work Form:</label>
-                                            <input type="text" class="form-control" id="workForm" name="workform" required>
-                                        </div>
-
-                                        <!-- JobType -->
-                                        <div class="form-group">
-                                            <label for="jobType">Job Type:</label>
-                                            <input type="text" class="form-control" id="jobType" name="jobtype" required>
-                                        </div>
-
-                                        <!-- JobCategory -->
-                                        <div class="form-group">
-                                            <label for="jobCategory">Job Category:</label>
-                                            <input type="text" class="form-control" id="jobCategory" name="jobcategory" required>
-                                        </div>
-
-                                        <!-- City -->
-                                        <div class="form-group">
-                                            <label for="city">City:</label>
-                                            <input type="text" class="form-control" id="city" name="city" required>
-                                        </div>
-
-                                        <!-- Education -->
-                                        <div class="form-group">
-                                            <label for="education">Education:</label>
-                                            <input type="text" class="form-control" id="education" name="education" required>
-                                        </div>
-
-                                        <!-- Experience -->
-                                        <div class="form-group">
-                                            <label for="experience">Experience:</label>
-                                            <input type="text" class="form-control" id="experience" name="experience" required>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" style="margin:15px 15px 15px 20px">Submit</button>
-                                </form>
+                                <div class="container">
+                                    <h2>Bootstrap Table Example</h2>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>UserId</th>
+                                                <th>UserRole</th>
+                                                <th>CompanyName</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>@item.UserId</td>
+                                                    <td>@item.UserRole</td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Email</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
