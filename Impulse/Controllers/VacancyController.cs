@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Impulse.ViewModels.Pagination;
 using Impulse.ViewModels.Search;
 using System.Net;
+using Impulse.Enums;
 
 namespace Impulse.Controllers
 {
@@ -33,6 +34,7 @@ namespace Impulse.Controllers
                 .Include(c => c.JobCategory)
                 .Include(c => c.Education)
                 .Include(c => c.Experience)
+                .Where(c => c.StatusId == (int)StatusEnum.Active)
                 .Select(c => new VacancyDto
                 {
                     VacancyId = c.Id,
@@ -62,36 +64,6 @@ namespace Impulse.Controllers
                 Count = pageCount,
                 Page = (int)pageCount
             };
-
-            //var jobCategories = await _context
-            // .JobCategories
-            // .Select(c => new JobCategoryDto
-            // {
-            //     JobCategoryId = c.Id,
-            //     JobCategoryName = c.Name
-
-            // }).ToListAsync();
-
-            //var jobTypes = await _context
-            // .JobTypes
-            // .Select(c => new JobTypeDto
-            // {
-            //     JobTypeId = c.Id,
-            //     JobTypeName = c.Name
-
-            // }).ToListAsync();
-
-            //var workForms = await _context
-            //  .WorkForms
-            //  .Select(c => new WorkFormDto
-            //  {
-            //      WorkFormId = c.Id,
-            //      WorkFormName = c.Name
-            //  }).ToListAsync();
-
-            //ViewBag.JobTypes = jobTypes;
-            //ViewBag.JobCategories = jobCategories;
-            //ViewBag.WorkForms = workForms;
 
             return View(vacancies);
         }

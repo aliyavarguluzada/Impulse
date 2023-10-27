@@ -1,6 +1,6 @@
-﻿@using Impulse.DTOs.adminPanel;
+﻿@using Impulse.DTOs.Vacancies;
 
-@model List<UserDto>
+@model List<VacancyDto>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -277,8 +277,8 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>UserId</th>
-                                                <th>UserRole</th>
+                                                <th>VacancyId</th>
+                                                <th>VacancyName</th>
                                                 <th>CompanyName</th>
                                                 <th>Email</th>
                                             </tr>
@@ -287,9 +287,9 @@
                                             @foreach (var item in Model)
                                             {
                                                 <tr>
-                                                    <td>@item.UserId</td>
-                                                    <td>@item.UserRole</td>
-                                                    <td>@item.Name</td>
+                                                    <td>@item.VacancyId</td>
+                                                    <td>@item.VacancyName</td>
+                                                    <td>@item.CompanyName</td>
                                                     <td>@item.Email</td>
                                                 </tr>
                                             }

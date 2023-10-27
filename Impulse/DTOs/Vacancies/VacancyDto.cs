@@ -5,6 +5,7 @@
         public int VacancyId { get; set; }
         public int JobTypeId { get; set; }
         public int JobCategoryId { get; set; }
+        public int StatusId { get; set; }
         public int WorkFormId { get; set; }
         public string VacancyName { get; set; }
         public string CompanyName { get; set; }

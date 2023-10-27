@@ -71,7 +71,8 @@ namespace Impulse.Interfaces
 
             try
             {
-                var user = await _context.Users
+                var user = await _context
+                    .Users
                     .Include(c => c.UserRole)
                     .Where(c => c.Email == registerRequest.Email)
                     .FirstOrDefaultAsync();
@@ -97,7 +98,7 @@ namespace Impulse.Interfaces
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
 
-                transaction.Commit();
+                transaction.CommitAsync();
 
                 var response = new RegisterResponse
                 {

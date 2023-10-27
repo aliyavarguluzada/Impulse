@@ -2,6 +2,7 @@
 using Impulse.Data;
 using Impulse.DTOs.adminPanel;
 using Impulse.DTOs.Vacancies;
+using Impulse.Enums;
 using Impulse.Filters;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -88,7 +89,7 @@ namespace Impulse.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Users()
         {
-            var users =  await _context
+            var users = await _context
                 .Users
                 .OrderByDescending(c => c.Id)
                 .Include(c => c.UserRole)
@@ -105,6 +106,71 @@ namespace Impulse.Areas.Admin.Controllers
                 .ToListAsync();
 
             return View(users);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Vacancies()
+        {
+            var vacancies = await _context
+                .Vacancies
+                .Where(c => c.StatusId == (int)StatusEnum.Deactive)
+                .Select(c => new VacancyDto
+                {
+                    VacancyId = c.Id,
+                    VacancyName = c.Name,
+                    StatusId = c.StatusId,
+                    Email = c.Email,
+                    CompanyName = c.CompanyName
+                })
+                .ToListAsync();
+
+            return View(vacancies);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> VacanciesA(int id)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+
+            var vacancies = await
+            _context
+            .Vacancies
+            .Select(c => new VacancyDto
+            {
+                VacancyId = c.Id,
+                VacancyName = c.Name,
+                Email = c.Email,
+                CompanyName = c.CompanyName
+
+            })
+            .Where(c => c.StatusId == (int)StatusEnum.Deactive)
+            .ToListAsync();
+
+            try
+            {
+
+
+                //await _context.Vacancies.AddAsync(vacancy);
+
+                await _context.SaveChangesAsync();
+
+                transaction.CommitAsync();
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+
+            return RedirectToAction("Vacancies", "Dashboard", "Admin");
+        }
+
+        public void ChangeStatus(int id)
+        {
+
         }
     }
 }
