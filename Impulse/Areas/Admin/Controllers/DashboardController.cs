@@ -130,30 +130,21 @@ namespace Impulse.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> VacanciesA(int id)
+        public async Task<IActionResult> Accept(int id)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
 
+            var vacancy = await _context.Vacancies.FirstOrDefaultAsync(c => c.Id == id);
 
-            var vacancies = await
-            _context
-            .Vacancies
-            .Select(c => new VacancyDto
-            {
-                VacancyId = c.Id,
-                VacancyName = c.Name,
-                Email = c.Email,
-                CompanyName = c.CompanyName
 
-            })
-            .Where(c => c.StatusId == (int)StatusEnum.Deactive)
-            .ToListAsync();
+            if (vacancy is null)
+                return RedirectToAction("Vacancies", "Dashboard", "Admin");
 
             try
             {
+                vacancy.StatusId = (int)StatusEnum.Active;
 
-
-                //await _context.Vacancies.AddAsync(vacancy);
+                _context.Update(vacancy);
 
                 await _context.SaveChangesAsync();
 
@@ -162,15 +153,14 @@ namespace Impulse.Areas.Admin.Controllers
             }
             catch (Exception)
             {
+                await transaction.RollbackAsync();
+
                 throw new Exception();
             }
 
             return RedirectToAction("Vacancies", "Dashboard", "Admin");
         }
 
-        public void ChangeStatus(int id)
-        {
 
-        }
     }
 }

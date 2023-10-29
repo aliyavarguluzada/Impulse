@@ -291,6 +291,12 @@
                                                     <td>@item.VacancyName</td>
                                                     <td>@item.CompanyName</td>
                                                     <td>@item.Email</td>
+                                                    <td>
+                                                        <form method="post" action="@Url.Action("Accept", "Dashboard", new { id = item.VacancyId })">
+                                                            <input type="hidden" name="vacancyId" value="@item.VacancyId">
+                                                            <button type="submit">Activate</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             }
                                         </tbody>
