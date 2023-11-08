@@ -1,5 +1,7 @@
 ﻿using Impulse.Data;
+using Impulse.DTOs.CompanyInfo;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 
 namespace Impulse.Components
@@ -14,6 +16,17 @@ namespace Impulse.Components
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            var category = await _context
+                .JobCategories
+                .Select(c => new JobCategoryDto
+                {
+                    JobCategoryId = c.Id,
+                    JobCategoryName = c.Name
+                })
+                .ToListAsync();
+
+            ViewBag.JobCategory = category;
+
             return View();
         }
     }

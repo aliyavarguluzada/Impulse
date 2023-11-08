@@ -99,46 +99,27 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            // Function to load vacancies using AJAX
-            function loadVacancies() {
-                // Get the filter data from the form
-                var formData = $("#filterForm").serialize();
-
-                // Make an AJAX request to your controller action
+            $("#btn_add").click(function () {
+                let email = $("#email").val();
+                let subject = $("#subject").val();
+                let description = $("#description").val();
                 $.ajax({
-                    type: "POST", // Use POST to send filter data to the server
-                    url: "/Vacancy/Index", // Update with the actual URL
-                    data: formData,
-                    dataType: "json", // Expect JSON response
-                    success: function (result) {
-                        if (result.status === 200) {
-                            var vacancies = result.data;
-                            var html = ""; // Initialize an empty HTML string
-                            vacancies.forEach(function (vacancy) {
-                                html += '<div class="col-md-12">';
-                                html += '<div class="vacancy mb-3 border p-3">';
-                                // Add vacancy details here
-                                html += '</div>';
-                                html += '</div>';
-                            });
-                            // Update the vacancyListContainer with the generated HTML
-                            $("#vacancyListContainer .row").html(html);
-                        } else {
-                            // Handle error
-                            console.log("Error: " + result.status);
-                        }
+                    url: "/Contact/Index",
+                    method: "post",
+                    type: "json",
+                    dataType: "json",
+                    data: {
+                        email: email,
+                        subject: subject,
+                        description: description
                     },
-                    error: function (xhr, status, error) {
-                        // Handle AJAX error
-                        console.log("AJAX error: " + error);
+                    success: function (response) {
+                        if (response.status == 200) {
+                            alert("Operation Successfull");
+                        }
                     }
                 });
-            }
-
-            // Event handler for the filter button
-            $("#filterButton").click(function (e) {
-                e.preventDefault(); // Prevent the form from submitting
-                loadVacancies(); // Load vacancies using AJAX
+                event.preventDefault();
             });
         });
     </script>

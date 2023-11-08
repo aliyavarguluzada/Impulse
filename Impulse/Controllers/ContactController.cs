@@ -27,7 +27,6 @@ namespace Impulse.Controllers
         [HttpPost]
         public async Task<JsonResult> Index(string email, string subject, string description)
         {
-            // TODO: Bax gor bura transaction elave etmek olur yoxsa yox
 
             if (email is null)
             {
