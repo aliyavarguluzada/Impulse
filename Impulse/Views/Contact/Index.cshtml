@@ -117,6 +117,9 @@
                         if (response.status == 200) {
                             alert("Operation Successfull");
                         }
+                        $("#email").val('');
+                        $("#subject").val('');
+                        $("#description").val('');
                     }
                 });
                 event.preventDefault();
