@@ -68,7 +68,21 @@ namespace Impulse.Controllers
             return View(vacancies);
         }
 
+        [HttpGet]
+        public 
 
+
+        [HttpGet]
+        public async Task<IActionResult> Search()
+        {
+            var vacancies = _context
+                .Vacancies
+                .Include(c => c.Company)
+                .Include(c => c.WorkForm)
+                .Include(c => c.JobCategory)
+                .Where(c => c.JobCategoryId)
+            return View();
+        }
 
 
 
