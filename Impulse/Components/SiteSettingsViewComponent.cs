@@ -2,7 +2,6 @@
 using Impulse.DTOs.SiteSettings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Impulse.Components
 {

@@ -26,10 +26,10 @@
                     }
                 </div>
                 <div class="button-div">
-                    <button class="btn btn-primary" action="@Url.Action("Index", "Catalog") type="submit">
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Catalog", new {area = "default"}) type="button">
                         Nümunələrə Bax
-                    </button>
-                    <button class="btn btn-danger" action="@Url.Action("Index", "Contact") type="submit">Əlaqə</button>
+                    </a>
+                    <a class="btn btn-danger" href="@Url.Action("Index", "Contact", new {area = "default"}) type="button">Əlaqə</a>
                 </div>
             </div>
             <!-- Right Column -->
