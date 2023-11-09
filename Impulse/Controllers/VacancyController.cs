@@ -68,23 +68,31 @@ namespace Impulse.Controllers
             return View(vacancies);
         }
 
-        //[HttpGet]
-        //public
 
 
-        //[HttpGet]
-        //public async Task<IActionResult> Search()
-        //{
-        //    var vacancies = _context
-        //        .Vacancies
-        //        .Include(c => c.Company)
-        //        .Include(c => c.WorkForm)
-        //        .Include(c => c.JobCategory)
-        //        .Where(c => c.JobCategoryId)
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Search()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> SearchBtn(string vacancyName)
+        {
 
+            if (vacancyName is null)
+                return RedirectToAction("Index", "Vacancy", "default");
+
+            var vacancies = _context
+                .Vacancies
+                .Include(c => c.Company)
+                .Include(c => c.WorkForm)
+                .Include(c => c.JobCategory)
+                .Where(c => c.Name.ToLower() == vacancyName.ToLower())
+                .ToListAsync();
+
+            return RedirectToAction("Search", "Vacancy", "default");
+        }
 
         [HttpGet]
         public async Task<IActionResult> Chosen(int id)

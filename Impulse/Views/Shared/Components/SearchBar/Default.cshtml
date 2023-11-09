@@ -3,19 +3,15 @@
 
 <div class="container mt-3">
     <div class="row">
-        <div class="col-md-6">
-            <div class="input-group">
-                <select class="form-control" id="category">
-                    @foreach (var item in ViewBag.JobCategory)
-                    {
-                        <option value="@item.JobCategoryId">@item.JobCategoryName</option>
-                    }
-                </select>
-                <input type="text" class="form-control" id="search" placeholder="Search...">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" id="searchBtn" type="button">Search</button>
+        <form action="@Url.Action("Search", "Vacancy")" method="post">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input required type="text" class="form-control" id="search" name="vacancyName" placeholder="Search...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="searchBtn" type="button">Search</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
