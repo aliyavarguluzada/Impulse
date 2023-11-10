@@ -21,6 +21,7 @@ namespace Impulse.Controllers
             _context = context;
             _configuration = configuration;
         }
+
         [HttpGet]
         public async Task<IActionResult> Index(int page = 1)
         {
@@ -68,30 +69,49 @@ namespace Impulse.Controllers
             return View(vacancies);
         }
 
-
-
-        [HttpGet]
-        public async Task<IActionResult> Search()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public async Task<IActionResult> SearchBtn(string vacancyName)
+        public async Task<IActionResult> Index(string vacancyName, int page = 1)
         {
 
             if (vacancyName is null)
                 return RedirectToAction("Index", "Vacancy", "default");
 
-            var vacancies = _context
+            var vacancies = await _context
                 .Vacancies
                 .Include(c => c.Company)
                 .Include(c => c.WorkForm)
                 .Include(c => c.JobCategory)
-                .Where(c => c.Name.ToLower() == vacancyName.ToLower())
+                .Where(c => c.Name.ToLower().Contains(vacancyName.ToLower()))
+                .Select(c => new VacancyDto
+                {
+                    VacancyId = c.Id,
+                    VacancyName = c.Name,
+                    CityName = c.City.Name,
+                    JobTypeName = c.JobType.Name,
+                    JobCategoryName = c.JobType.Name,
+                    EducationName = c.Education.Name,
+                    ExperienceName = c.Experience.Name,
+                    CompanyLogoImage = c.CompanyLogoImage,
+                    CompanyName = c.CompanyName,
+                    StartDate = c.StartDate,
+                    ExpireDate = c.ExpireDate
+                })
+                .Skip((page - 1) * 10)
+                .Take(10)
                 .ToListAsync();
 
-            return RedirectToAction("Search", "Vacancy", "default");
+            var count = await _context.Vacancies.CountAsync();
+
+            decimal pageCount = Math.Ceiling(count / (decimal)10);
+
+            ViewBag.Pagination = new PaginationModel
+            {
+                Url = _configuration["VacancyPath:Path"],
+                Count = pageCount,
+                Page = (int)pageCount
+            };
+
+            return View(vacancies);
         }
 
         [HttpGet]

@@ -1,14 +1,12 @@
-﻿@using Impulse.DTOs.CompanyInfo
-
-
-<div class="container mt-3">
+﻿
+<div class="container mt-3" style="padding:15px 10px">
     <div class="row">
-        <form action="@Url.Action("Search", "Vacancy")" method="post">
+        <form action="@Url.Action("Index", "Vacancy", "default")" method="post">
             <div class="col-md-6">
                 <div class="input-group">
                     <input required type="text" class="form-control" id="search" name="vacancyName" placeholder="Search...">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" id="searchBtn" type="button">Search</button>
+                        <button class="btn btn-primary" id="searchBtn" type="submit">Search</button>
                     </div>
                 </div>
             </div>

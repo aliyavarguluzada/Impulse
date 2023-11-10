@@ -2,7 +2,6 @@
 using Impulse.DTOs.CompanyInfo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
 
 namespace Impulse.Components
 {
@@ -29,5 +28,6 @@ namespace Impulse.Components
 
             return View();
         }
+
     }
 }
