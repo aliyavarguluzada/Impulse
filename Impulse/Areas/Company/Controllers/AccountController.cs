@@ -70,9 +70,8 @@ namespace Impulse.Areas.Company.Controllers
         public async Task<IActionResult> Login(LoginRequest loginRequest, bool isAdmin, bool isCompany)
         {
             if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
-            {
                 return RedirectToAction("AddVacancy", "CompanyHome", new { area = "Company" });
-            }
+
 
             if (!ModelState.IsValid)
             {

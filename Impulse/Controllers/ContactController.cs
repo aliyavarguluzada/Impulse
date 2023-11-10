@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Impulse.Models;
 using System.Net;
+using Impulse.Core;
 
 namespace Impulse.Controllers
 {
@@ -27,12 +28,7 @@ namespace Impulse.Controllers
         [HttpPost]
         public async Task<JsonResult> Index(string email, string subject, string description)
         {
-
-            if (email is null)
-            {
-                Console.WriteLine("Email is empty");
-            }
-
+            //TODO: ContactRequest gonder
             var contactInfo = new ContactInfo
             {
                 Email = email,

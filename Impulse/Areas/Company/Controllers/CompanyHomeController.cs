@@ -89,9 +89,8 @@ namespace Impulse.Areas.Company.Controllers
         {
 
             if (!ModelState.IsValid)
-            {
                 return View(addRequest);
-            }
+
             var result = await _vacancyService.AddVacancy(addRequest);
 
             if (result.Status != 200)

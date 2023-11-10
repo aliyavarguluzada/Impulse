@@ -37,9 +37,8 @@ namespace Impulse.Areas.Admin.Controllers
         public async Task<IActionResult> AdminLogin(LoginRequest loginRequest)
         {
             if (!ModelState.IsValid)
-            {
                 return View(loginRequest);
-            }
+
 
             var result = await _accountService.Login(loginRequest, true, false);
 
