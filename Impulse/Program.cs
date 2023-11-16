@@ -3,6 +3,8 @@ using Impulse.Data;
 using Impulse.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,10 @@ builder.Services.AddLogging();
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
+
+builder.Services.AddOutputCache();
+
+builder.Services.AddResponseCaching();
 
 
 builder.Services.AddControllersWithViews();
@@ -25,6 +31,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IAddVacancyService, AddVacancyService>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
     options.UseSqlServer(builder.Configuration["Database:Connection"]));
@@ -33,8 +40,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
+
+
 app.UseMyLogging();
 
+app.UseOutputCache();
 
 app.MapControllerRoute("Admin",
                       "{area:exists}/{controller=Account}/{action=AdminLogin}");
@@ -56,7 +67,6 @@ app.MapControllerRoute("default",
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
-
 
 app.Run();
 

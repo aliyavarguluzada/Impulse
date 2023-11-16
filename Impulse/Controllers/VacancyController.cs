@@ -7,9 +7,12 @@ using Impulse.ViewModels.Pagination;
 using Impulse.ViewModels.Search;
 using System.Net;
 using Impulse.Enums;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace Impulse.Controllers
 {
+
+    [OutputCache]
     public class VacancyController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,6 +26,7 @@ namespace Impulse.Controllers
         }
 
         [HttpGet]
+        [OutputCache]
         public async Task<IActionResult> Index(int page = 1)
         {
 
