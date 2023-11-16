@@ -2,7 +2,7 @@
 
 namespace Impulse.DTOs.CompanyAccount
 {
-    public class CompanyAccountDto
+    public record CompanyAccountDto
     {
         public string Name { get; set; }
         public string Email { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Impulse.DTOs.CompanyInfo
 {
-    public class JobTypeDto
+    public record JobTypeDto
     {
         public int JobTypeId { get; set; }
         public string JobTypeName { get; set; }

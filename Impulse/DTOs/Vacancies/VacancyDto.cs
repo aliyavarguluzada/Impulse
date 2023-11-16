@@ -1,6 +1,6 @@
 ﻿namespace Impulse.DTOs.Vacancies
 {
-    public class VacancyDto
+    public record VacancyDto
     {
         public int VacancyId { get; set; }
         public int JobTypeId { get; set; }

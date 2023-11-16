@@ -2,7 +2,7 @@
 
 namespace Impulse.DTOs.adminPanel
 {
-    public class UserDto
+    public record UserDto
     {
         public int UserId { get; set; }
         public int UserRoleId { get; set; }

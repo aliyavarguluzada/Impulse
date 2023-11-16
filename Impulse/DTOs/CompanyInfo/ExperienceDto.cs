@@ -1,6 +1,6 @@
 ﻿namespace Impulse.DTOs.CompanyInfo
 {
-    public class ExperienceDto
+    public record ExperienceDto
     {
         public int ExperienceId { get; set; }
         public string ExperienceName { get; set; }

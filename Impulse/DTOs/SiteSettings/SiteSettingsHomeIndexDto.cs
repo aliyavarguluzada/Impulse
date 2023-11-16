@@ -1,6 +1,6 @@
 ﻿namespace Impulse.DTOs.SiteSettings
 {
-    public class SiteSettingsHomeIndexDto
+    public record SiteSettingsHomeIndexDto
     {
         public string MainImage { get; set; }
         public string SecondaryImage { get; set; }

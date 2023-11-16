@@ -1,8 +1,6 @@
 ﻿using Impulse.Data;
 using Impulse.DTOs.Cvs;
-using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Impulse.Controllers

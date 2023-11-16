@@ -1,6 +1,6 @@
 ﻿namespace Impulse.DTOs.Cvs
 {
-    public class CvsDto
+    public record CvsDto
     {
         public int CvId { get; set; }
         public string ImageName { get; set; }
