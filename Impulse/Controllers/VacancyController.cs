@@ -1,13 +1,10 @@
 ﻿using Impulse.Data;
-using Impulse.DTOs.CompanyInfo;
 using Impulse.DTOs.Vacancies;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Impulse.ViewModels.Pagination;
-using Impulse.ViewModels.Search;
-using System.Net;
 using Impulse.Enums;
+using Impulse.ViewModels.Pagination;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
+using Microsoft.EntityFrameworkCore;
 
 namespace Impulse.Controllers
 {

@@ -60,7 +60,6 @@ namespace Impulse.Areas.Company.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-
             return View();
         }
 

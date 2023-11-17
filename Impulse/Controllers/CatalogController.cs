@@ -9,13 +9,10 @@ namespace Impulse.Controllers
     public class CatalogController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IOutputCacheStore _cache;
 
-        public CatalogController(ApplicationDbContext context,
-                                        IOutputCacheStore cache)
+        public CatalogController(ApplicationDbContext context)
         {
             _context = context;
-            _cache = cache;
         }
 
         [HttpGet]

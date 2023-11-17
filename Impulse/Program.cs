@@ -45,6 +45,11 @@ var app = builder.Build();
 
 app.UseMyLogging();
 
+app.UseStaticFiles();
+
+
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseOutputCache();
 
 app.MapControllerRoute("Admin",
@@ -64,9 +69,7 @@ app.MapControllerRoute("default",
     "{controller=Home}/{action=Index}");
 
 
-app.UseStaticFiles();
-app.UseAuthentication();
-app.UseAuthorization();
+
 
 app.Run();
 
