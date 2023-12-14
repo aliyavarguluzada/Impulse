@@ -9,7 +9,7 @@ namespace Impulse.Core.RequestValidation
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value == null)
+            if (value is null)
             {
                 return ValidationResult.Success; // Null values are allowed.
             }

@@ -1,5 +1,4 @@
-﻿using Impulse.Core.RequestValidation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Impulse.Core.Requests
 {
