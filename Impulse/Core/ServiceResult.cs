@@ -16,7 +16,7 @@
                 Description = "An Error has occured",
                 Errors = new Dictionary<string, string> { { key, value } }
             };
-        }   
+        }
         public static ServiceResult<T> OK(T response)
         {
             return new ServiceResult<T>
