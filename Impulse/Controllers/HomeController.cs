@@ -7,7 +7,6 @@ namespace Impulse.Controllers
     {
         [HttpGet]
         [OutputCache]
-
         public async Task<IActionResult> Index()
         {
             return View();

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Impulse.Models;
 using System.Net;
 using Impulse.Core;
+using Impulse.Core.Requests;
 
 namespace Impulse.Controllers
 {
@@ -26,14 +27,13 @@ namespace Impulse.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> Index(string email, string subject, string description)
+        public async Task<JsonResult> Index(ContactRequest request)
         {
-            //TODO: ContactRequest gonder
             var contactInfo = new ContactInfo
             {
-                Email = email,
-                Subject = subject,
-                Description = description
+                Email = request.Email,
+                Subject = request.Subject,
+                Description = request.Description
 
             };
 
