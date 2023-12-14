@@ -1,5 +1,4 @@
 ﻿using Impulse.Core.Requests;
-using Impulse.Data;
 using Impulse.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -10,17 +9,14 @@ namespace Impulse.Areas.Company.Controllers
     [Area("Company")]
     public class AccountController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IAccountService _accountService;
         private readonly IAuthService _authService;
 
-        public AccountController(ApplicationDbContext context,
-                                    IHttpContextAccessor httpContextAccessor,
+        public AccountController(IHttpContextAccessor httpContextAccessor,
                                         IAccountService accountService,
                                         IAuthService authService)
         {
-            _context = context;
             _httpContextAccessor = httpContextAccessor;
             _accountService = accountService;
             _authService = authService;
