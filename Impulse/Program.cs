@@ -29,9 +29,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddServices();
 
-//builder.Services.AddTransient<IAccountService, AccountService>();
-//builder.Services.AddTransient<IAuthService, AuthService>();
-//builder.Services.AddTransient<IAddVacancyService, AddVacancyService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
