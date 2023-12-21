@@ -8,14 +8,16 @@ namespace Impulse.Components
     public class CvsViewComponent : ViewComponent
     {
         private readonly ApplicationDbContext _context;
-
-        public CvsViewComponent(ApplicationDbContext context)
+        private readonly IConfiguration _configuration;
+        public CvsViewComponent(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            var count = int.Parse(_configuration["Pagination:PageCount"]);
             var cvs = await _context
                 .Cvs
                 .Select(c => new CvsDto
@@ -23,7 +25,7 @@ namespace Impulse.Components
                     CvId = c.Id,
                     MainPage = c.MainPage,
                     ImageName = c.ImageName
-                }).OrderBy(c => c.CvId).Take(3).ToListAsync();
+                }).OrderBy(c => c.CvId).Take(count).ToListAsync();
 
             return View(cvs);
         }

@@ -33,8 +33,8 @@ namespace Impulse.Interfaces
                         var count = _context.Cvs.Count();
 
                         var cv = new Cv();
-
-                        bool main = count >= 3 ? true : false;
+                        int MainPageCount = int.Parse(_configuration["MainPage:Count"]);
+                        bool main = count >= MainPageCount ? true : false;
 
                         cv.MainPage = main;
 
