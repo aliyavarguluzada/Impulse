@@ -49,7 +49,6 @@ namespace Impulse.Interfaces
                 }
 
 
-                //await _context.AddAsync(files);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 var response = new CvUploadResponse();

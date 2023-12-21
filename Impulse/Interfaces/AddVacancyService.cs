@@ -74,10 +74,6 @@ namespace Impulse.Interfaces
                     CityId = addRequest.CityId,
                     CompanyName = userName,
                     StatusId = (int)StatusEnum.Deactive
-
-
-                    /////
-
                 };
 
 

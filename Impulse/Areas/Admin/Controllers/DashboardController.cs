@@ -202,7 +202,7 @@ namespace Impulse.Areas.Admin.Controllers
                     return View(files);
                 }
             }
-            return RedirectToAction("Cv", "Dashboard", "Admin");
+            return RedirectToAction("CvAdd", "Dashboard", "Admin");
         }
     }
 }
