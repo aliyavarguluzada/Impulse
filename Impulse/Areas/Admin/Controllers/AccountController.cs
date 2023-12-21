@@ -1,7 +1,11 @@
 ﻿using Impulse.Core.Requests;
 using Impulse.Data;
+using Impulse.Enums;
 using Impulse.Interfaces;
+using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Impulse.Areas.Admin.Controllers
 {
@@ -75,45 +79,45 @@ namespace Impulse.Areas.Admin.Controllers
         }
 
 
-        //[HttpGet]
-        //public async Task<IActionResult> AdminRegister()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> AdminRegister()
+        {
+            return View();
+        }
 
 
 
 
-        //[HttpPost]
-        //public async Task<IActionResult> AdminRegister(AdminRegisterRequest registerRequest)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(registerRequest);
+        [HttpPost]
+        public async Task<IActionResult> AdminRegister(AdminRegisterRequest registerRequest)
+        {
+            if (!ModelState.IsValid)
+                return View(registerRequest);
 
 
 
-        //    User user = new User
-        //    {
-        //        Name = registerRequest.Name,
-        //        Phone = registerRequest.Phone,
-        //        Email = registerRequest.Email,
-        //        UserRoleId = (int)UserRoleEnum.Admin
-        //    };
+            User user = new User
+            {
+                Name = registerRequest.Name,
+                Phone = registerRequest.Phone,
+                Email = registerRequest.Email,
+                UserRoleId = (int)UserRoleEnum.Admin
+            };
 
-        //    using (SHA256 sha256 = SHA256.Create())
-        //    {
-        //        var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
-        //        var hash = sha256.ComputeHash(buffer);
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                var buffer = Encoding.UTF8.GetBytes(registerRequest.Password);
+                var hash = sha256.ComputeHash(buffer);
 
-        //        user.Password = hash;
-        //    }
+                user.Password = hash;
+            }
 
-        //    await _context.AddAsync(user);
+            await _context.AddAsync(user);
 
-        //    await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-        //    return RedirectToAction("Login", "Account", new { area = "Admin" });
-        //}
+            return RedirectToAction("Login", "Account", new { area = "Admin" });
+        }
 
 
     }

@@ -38,32 +38,52 @@ namespace Impulse.Areas.Admin.Controllers
             {
                 try
                 {
-
                     if (!ModelState.IsValid)
                     {
                         return View(request);
                     }
 
-                    var optCity = new City() { Name = request.City };
+                    var objectsToCreate = new List<object>();
 
-                    var optJobType = new JobType() { Name = request.JobType };
+                    if (!string.IsNullOrEmpty(request.City))
+                    {
+                        var optCity = new City() { Name = request.City };
+                        objectsToCreate.Add(optCity);
+                    }
 
-                    var optJobCategory = new JobCategory() { Name = request.JobCategory };
+                    if (!string.IsNullOrEmpty(request.JobType))
+                    {
+                        var optJobType = new JobType() { Name = request.JobType };
+                        objectsToCreate.Add(optJobType);
+                    }
 
-                    var optWorkForm = new WorkForm() { Name = request.WorkForm };
+                    if (!string.IsNullOrEmpty(request.Education))
+                    {
+                        var optEducation = new Education() { Name = request.Education };
+                        objectsToCreate.Add(optEducation);
+                    }
 
-                    var optEducation = new Education() { Name = request.Education };
+                    if (!string.IsNullOrEmpty(request.WorkForm))
+                    {
+                        var optWorkForm = new WorkForm() { Name = request.WorkForm };
+                        objectsToCreate.Add(optWorkForm);
+                    }
 
-                    var optExperience = new Experience() { Name = request.Experience };
+                    if (!string.IsNullOrEmpty(request.Experience))
+                    {
+                        var optExperience = new Experience() { Name = request.Experience };
+                        objectsToCreate.Add(optExperience);
+                    }
+
+                    if (!string.IsNullOrEmpty(request.JobCategory))
+                    {
+                        var optJobCategory = new JobCategory() { Name = request.JobCategory };
+                        objectsToCreate.Add(optJobCategory);
+                    }
 
 
 
-                    var objectsToCreate = new object[] { optCity,
-                                                            optJobType,
-                                                                 optJobCategory,
-                                                                     optWorkForm,
-                                                                        optEducation,
-                                                                            optExperience };
+
 
                     foreach (var obj in objectsToCreate)
                     {
@@ -73,9 +93,6 @@ namespace Impulse.Areas.Admin.Controllers
                     await _context.SaveChangesAsync();
 
                     await transaction.CommitAsync();
-
-
-
                 }
                 catch (Exception)
                 {
@@ -84,7 +101,9 @@ namespace Impulse.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index", "Dashboard", "Admin");
+
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Users()
