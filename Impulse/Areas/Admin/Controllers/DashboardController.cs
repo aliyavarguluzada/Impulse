@@ -180,6 +180,17 @@ namespace Impulse.Areas.Admin.Controllers
             return RedirectToAction("Vacancies", "Dashboard", "Admin");
         }
 
+        [HttpGet]
+        public IActionResult CvAdd()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> CvAdd(IFormFile files)
+        {
+           
+            return RedirectToAction("Cv", "Dashboard", "Admin");
+        }
     }
 }

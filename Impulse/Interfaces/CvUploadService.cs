@@ -1,0 +1,57 @@
+﻿using Impulse.Core;
+using Impulse.Core.Responses;
+using Impulse.Data;
+using Impulse.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace Impulse.Interfaces
+{
+    public class CvUploadService : ICvUploadService
+    {
+        private readonly IConfiguration _configuration;
+        private readonly ApplicationDbContext _context;
+        public CvUploadService(IConfiguration configuration,
+                                    ApplicationDbContext context)
+        {
+            _configuration = configuration;
+            _context = context;
+        }
+        public async Task<ServiceResult<CvUploadResponse>> CvUpload(IEnumerable<IFormFile> files)
+        {
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                if (files is null)
+                    transaction.RollbackAsync();
+
+                foreach (var file in files)
+                {
+                    if (file.Length > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var filePath = Path.Combine(_configuration["Cv:Path"], fileName);
+
+                        using (var filestream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(filestream);
+                        }
+                    }
+                }
+
+                await _context.AddAsync(files);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                var response = new CvUploadResponse();
+
+
+                return ServiceResult<CvUploadResponse>.OK(response);
+            }
+            catch (Exception)
+            {
+                transaction.RollbackAsync();
+                return ServiceResult<CvUploadResponse>.ERROR("", "Uçdu ");
+
+            }
+        }
+    }
+}

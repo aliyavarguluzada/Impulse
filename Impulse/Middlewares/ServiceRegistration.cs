@@ -9,6 +9,7 @@ namespace Impulse.Middlewares
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IAddVacancyService, AddVacancyService>();
+            services.AddTransient<ICvUploadService, CvUploadService>();
         }
     }
 }
