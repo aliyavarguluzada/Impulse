@@ -4,6 +4,7 @@ using Impulse.DTOs.adminPanel;
 using Impulse.DTOs.Vacancies;
 using Impulse.Enums;
 using Impulse.Filters;
+using Impulse.Interfaces;
 using Impulse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +17,13 @@ namespace Impulse.Areas.Admin.Controllers
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICvUploadService _cvUploadService;
 
-
-        public DashboardController(ApplicationDbContext context)
+        public DashboardController(ApplicationDbContext context,
+                                            ICvUploadService cvUploadService)
         {
             _context = context;
+            _cvUploadService = cvUploadService;
         }
 
         [HttpGet]
@@ -187,9 +190,18 @@ namespace Impulse.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CvAdd(IFormFile files)
+        public async Task<IActionResult> CvAdd(IEnumerable<IFormFile> files)
         {
-           
+            var result = await _cvUploadService.CvUpload(files);
+
+            if (result.Status != 200)
+            {
+                foreach(var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.Key, item.Value);
+                    return View(files);
+                }
+            }
             return RedirectToAction("Cv", "Dashboard", "Admin");
         }
     }

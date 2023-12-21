@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\logos\" />
+    <Folder Include="wwwroot\uploads\cvs\" />
     <Folder Include="wwwroot\vacancy\" />
   </ItemGroup>
 

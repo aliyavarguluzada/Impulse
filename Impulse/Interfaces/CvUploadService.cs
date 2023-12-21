@@ -30,15 +30,26 @@ namespace Impulse.Interfaces
                     {
                         var fileName = Path.GetFileName(file.FileName);
                         var filePath = Path.Combine(_configuration["Cv:Path"], fileName);
+                        var count = _context.Cvs.Count();
+
+                        var cv = new Cv();
+
+                        bool main = count >= 3 ? true : false;
+
+                        cv.MainPage = main;
 
                         using (var filestream = new FileStream(filePath, FileMode.Create))
                         {
                             await file.CopyToAsync(filestream);
                         }
+                        cv.ImageName = fileName;
+                        await _context.Cvs.AddAsync(cv);
+
                     }
                 }
 
-                await _context.AddAsync(files);
+
+                //await _context.AddAsync(files);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 var response = new CvUploadResponse();

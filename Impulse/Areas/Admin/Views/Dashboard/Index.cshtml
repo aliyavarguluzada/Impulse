@@ -245,14 +245,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="@Url.Action("Users", "Dashboard", new { area = "Admin" })">
+                        <a class="nav-link" href="@Url.Action("Users", "Dashboard", new { area = "Admin" })">
                             <i class="typcn typcn-document-text menu-icon"></i>
                             <span class="menu-title">Users</span>
                         </a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="@Url.Action("Vacancies", "Dashboard", new { area = "Admin" })">
+                        <a class="nav-link" href="@Url.Action("Vacancies", "Dashboard", new { area = "Admin" })">
+                            <i class="typcn typcn-document-text menu-icon"></i>
+                            <span class="menu-title">Vacancies</span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("CvAdd", "Dashboard", new { area = "Admin" })">
                             <i class="typcn typcn-document-text menu-icon"></i>
                             <span class="menu-title">Vacancies</span>
                         </a>
@@ -274,37 +281,37 @@
                                         <!-- WorkForm -->
                                         <div class="form-group">
                                             <label for="workForm">Work Form:</label>
-                                            <input type="text" class="form-control" id="workForm" name="workform" >
+                                            <input type="text" class="form-control" id="workForm" name="workform">
                                         </div>
 
                                         <!-- JobType -->
                                         <div class="form-group">
                                             <label for="jobType">Job Type:</label>
-                                            <input type="text" class="form-control" id="jobType" name="jobtype" >
+                                            <input type="text" class="form-control" id="jobType" name="jobtype">
                                         </div>
 
                                         <!-- JobCategory -->
                                         <div class="form-group">
                                             <label for="jobCategory">Job Category:</label>
-                                            <input type="text" class="form-control" id="jobCategory" name="jobcategory" >
+                                            <input type="text" class="form-control" id="jobCategory" name="jobcategory">
                                         </div>
 
                                         <!-- City -->
                                         <div class="form-group">
                                             <label for="city">City:</label>
-                                            <input type="text" class="form-control" id="city" name="city" >
+                                            <input type="text" class="form-control" id="city" name="city">
                                         </div>
 
                                         <!-- Education -->
                                         <div class="form-group">
                                             <label for="education">Education:</label>
-                                            <input type="text" class="form-control" id="education" name="education" >
+                                            <input type="text" class="form-control" id="education" name="education">
                                         </div>
 
                                         <!-- Experience -->
                                         <div class="form-group">
                                             <label for="experience">Experience:</label>
-                                            <input type="text" class="form-control" id="experience" name="experience" >
+                                            <input type="text" class="form-control" id="experience" name="experience">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary" style="margin:15px 15px 15px 20px">Submit</button>
