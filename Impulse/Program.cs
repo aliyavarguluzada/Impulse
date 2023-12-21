@@ -1,11 +1,8 @@
 using EcommerceApp.MVC.Middlewares;
 using Impulse.Data;
-using Impulse.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
-
+using Impulse.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -28,9 +25,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
     });
 
-builder.Services.AddTransient<IAccountService, AccountService>();
-builder.Services.AddTransient<IAuthService, AuthService>();
-builder.Services.AddTransient<IAddVacancyService, AddVacancyService>();
+
+
+builder.Services.AddServices();
+
+//builder.Services.AddTransient<IAccountService, AccountService>();
+//builder.Services.AddTransient<IAuthService, AuthService>();
+//builder.Services.AddTransient<IAddVacancyService, AddVacancyService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
