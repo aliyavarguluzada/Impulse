@@ -10,7 +10,7 @@
         {
             _httpClient = new HttpClient();
             _configuration = configuration;
-            _botToken = _configuration["TelegramBot:ApiKey"];
+            _botToken = _configuration["TelegramBot:Token"];
             _chatId = _configuration["TelegramBot:ChatId"];
         }
 
