@@ -28,7 +28,7 @@ namespace Impulse.Interfaces
                 {
                     if (file.Length > 0)
                     {
-                        var fileName = Path.GetFileName(file.FileName);
+                        var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         var filePath = Path.Combine(_configuration["Cv:Path"], fileName);
                         var count = _context.Cvs.Count();
 
@@ -43,8 +43,8 @@ namespace Impulse.Interfaces
                             await file.CopyToAsync(filestream);
                         }
                         cv.ImageName = fileName;
-                        await _context.Cvs.AddAsync(cv);
 
+                        await _context.AddAsync(cv);
                     }
                 }
 

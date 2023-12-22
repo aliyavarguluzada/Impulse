@@ -20,6 +20,7 @@ namespace Impulse.Components
             var count = int.Parse(_configuration["Pagination:PageCount"]);
             var cvs = await _context
                 .Cvs
+                .Where(c => c.MainPage == true)
                 .Select(c => new CvsDto
                 {
                     CvId = c.Id,

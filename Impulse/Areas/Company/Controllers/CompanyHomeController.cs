@@ -70,7 +70,7 @@ namespace Impulse.Areas.Company.Controllers
 
             ViewBag.Pagination = new PaginationModel
             {
-                Url = _configuration["VacancyPath;privatePath"],
+                Url = _configuration["VacancyPath:privatePath"],
                 Count = pageCount,
                 Page = (int)pageCount
             };
