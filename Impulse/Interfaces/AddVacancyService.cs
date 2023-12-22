@@ -4,6 +4,7 @@ using Impulse.Core.Responses;
 using Impulse.Data;
 using Impulse.Models;
 using Impulse.Enums;
+using Impulse.Telegram;
 
 namespace Impulse.Interfaces
 {
@@ -12,14 +13,17 @@ namespace Impulse.Interfaces
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
+        private readonly TelegramNotifier _telegramNotifier;
 
         public AddVacancyService(ApplicationDbContext context,
                                                         IHttpContextAccessor httpContextAccessor,
-                                                                IConfiguration configuration)
+                                                                IConfiguration configuration
+                                                                ,TelegramNotifier telegramNotifier)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
+            _telegramNotifier = telegramNotifier;
         }
         public async Task<ServiceResult<AddVacancyResponse>> AddVacancy(AddVacancyRequest addRequest)
         {
@@ -94,6 +98,9 @@ namespace Impulse.Interfaces
                 await _context.AddAsync(vacancy);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
+
+                await _telegramNotifier.NotifyNewVacancyAsync($"Title: {vacancy.Name}, Description: {vacancy.Description}");
+
 
                 var response = new AddVacancyResponse
                 {

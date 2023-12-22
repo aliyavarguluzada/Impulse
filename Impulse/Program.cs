@@ -3,6 +3,7 @@ using Impulse.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Impulse.Middlewares;
+using Impulse.Telegram;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -29,6 +30,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddServices();
 
+//builder.Services.AddScoped<TelegramNotifier>();
+//builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
