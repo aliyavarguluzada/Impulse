@@ -95,7 +95,7 @@ namespace Impulse.Interfaces
                     vacancy.CompanyLogoImage = fileName;
                 }
 
-                await _context.AddAsync(vacancy);
+                await _context.Vacancies.AddAsync(vacancy);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
 

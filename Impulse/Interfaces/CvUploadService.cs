@@ -28,7 +28,8 @@ namespace Impulse.Interfaces
                 {
                     if (file.Length > 0)
                     {
-                        var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                        //TODO: var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                        var fileName = Path.GetFileName(file.FileName);
                         var filePath = Path.Combine(_configuration["Cv:Path"], fileName);
                         var count = _context.Cvs.Count();
 
