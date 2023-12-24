@@ -17,7 +17,7 @@ namespace Impulse.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var count = int.Parse(_configuration["Pagination:PageCount"]);
+            var count = int.Parse(_configuration["MainPage:Count"]);
             var cvs = await _context
                 .Cvs
                 .Where(c => c.MainPage == true)
