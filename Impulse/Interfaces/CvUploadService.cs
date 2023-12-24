@@ -3,6 +3,7 @@ using Impulse.Core.Responses;
 using Impulse.Data;
 using Impulse.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace Impulse.Interfaces
 {
@@ -31,7 +32,7 @@ namespace Impulse.Interfaces
                         //TODO: var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         var fileName = Path.GetFileName(file.FileName);
                         var filePath = Path.Combine(_configuration["Cv:Path"], fileName);
-                        var count = _context.Cvs.Count();
+                        var count = await _context.Cvs.CountAsync();
 
                         var cv = new Cv();
                         int MainPageCount = int.Parse(_configuration["MainPage:Count"]);
@@ -45,7 +46,7 @@ namespace Impulse.Interfaces
                         }
                         cv.ImageName = fileName;
 
-                        await _context.AddAsync(cv);
+                        await _context.Cvs.AddAsync(cv);
                     }
                 }
 
