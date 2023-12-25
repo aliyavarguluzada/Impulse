@@ -190,16 +190,16 @@ namespace Impulse.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CvAdd(IEnumerable<IFormFile> files)
+        public async Task<IActionResult> CvAdd(CvAddRequest request)
         {
-            var result = await _cvUploadService.CvUpload(files);
+            var result = await _cvUploadService.CvUpload(request);
 
             if (result.Status != 200)
             {
                 foreach(var item in result.Errors)
                 {
                     ModelState.AddModelError(item.Key, item.Value);
-                    return View(files);
+                    return View(request);
                 }
             }
             return RedirectToAction("CvAdd", "Dashboard", "Admin");

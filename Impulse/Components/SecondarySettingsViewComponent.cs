@@ -2,7 +2,6 @@
 using Impulse.DTOs.SecondarySiteSettings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.AccessControl;
 
 namespace Impulse.Components
 {

@@ -1,4 +1,5 @@
 ﻿using Impulse.Core;
+using Impulse.Core.Requests;
 using Impulse.Core.Responses;
 using Impulse.Data;
 using Impulse.Models;
@@ -17,39 +18,39 @@ namespace Impulse.Interfaces
             _configuration = configuration;
             _context = context;
         }
-        public async Task<ServiceResult<CvUploadResponse>> CvUpload(IEnumerable<IFormFile> files)
+        public async Task<ServiceResult<CvUploadResponse>> CvUpload(CvAddRequest request)
         {
             using var transaction = _context.Database.BeginTransaction();
             try
             {
-                if (files is null)
+                if (request.Cvs is null)
                     transaction.RollbackAsync();
 
-                foreach (var file in files)
+                foreach (var file in request.Cvs)
                 {
                     if (file.Length > 0)
                     {
-                        //TODO: var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                        var fileName = Path.GetFileName(file.FileName);
+                        var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         var filePath = Path.Combine(_configuration["Cv:Path"], fileName);
                         var count = await _context.Cvs.CountAsync();
 
-                        var cv = new Cv();
+                        var cvs = new Cv();
                         int MainPageCount = int.Parse(_configuration["MainPage:Count"]);
                         bool main = count <= MainPageCount ? true : false;
 
-                        cv.MainPage = main;
+                        cvs.MainPage = main;
 
                         using (var filestream = new FileStream(filePath, FileMode.Create))
                         {
                             await file.CopyToAsync(filestream);
                         }
-                        cv.ImageName = fileName;
+                        cvs.ImageName = fileName;
+                        cvs.FilePath = filePath;
 
-                        await _context.Cvs.AddAsync(cv);
+                        await _context.Cvs.AddAsync(cvs);
                     }
-                }
 
+                }
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();

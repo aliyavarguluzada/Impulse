@@ -6,6 +6,6 @@ namespace Impulse.Interfaces
 {
     public interface ICvUploadService
     {
-        Task<ServiceResult<CvUploadResponse>> CvUpload(IEnumerable<IFormFile> files);
+        Task<ServiceResult<CvUploadResponse>> CvUpload(CvAddRequest request);
     }
 }

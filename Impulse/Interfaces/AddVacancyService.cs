@@ -16,9 +16,9 @@ namespace Impulse.Interfaces
         private readonly TelegramNotifier _telegramNotifier;
 
         public AddVacancyService(ApplicationDbContext context,
-                                                        IHttpContextAccessor httpContextAccessor,
-                                                                IConfiguration configuration
-                                                                ,TelegramNotifier telegramNotifier)
+                                      IHttpContextAccessor httpContextAccessor,
+                                              IConfiguration configuration
+                                                      , TelegramNotifier telegramNotifier)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
