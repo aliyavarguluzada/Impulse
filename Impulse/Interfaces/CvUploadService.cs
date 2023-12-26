@@ -3,7 +3,6 @@ using Impulse.Core.Requests;
 using Impulse.Core.Responses;
 using Impulse.Data;
 using Impulse.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Impulse.Interfaces
