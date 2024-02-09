@@ -2,9 +2,8 @@
 using Impulse.Core.Requests;
 using Impulse.Core.Responses;
 using Impulse.Data;
-using Impulse.Models;
 using Impulse.Enums;
-using Impulse.Telegram;
+using Impulse.Models;
 
 namespace Impulse.Interfaces
 {
@@ -13,12 +12,12 @@ namespace Impulse.Interfaces
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
-        private readonly TelegramNotifier _telegramNotifier;
+        private readonly ITelegramService _telegramNotifier;
 
         public AddVacancyService(ApplicationDbContext context,
                                       IHttpContextAccessor httpContextAccessor,
                                               IConfiguration configuration
-                                                      , TelegramNotifier telegramNotifier)
+                                                      , ITelegramService telegramNotifier)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
@@ -79,6 +78,7 @@ namespace Impulse.Interfaces
                     CompanyName = userName,
                     StatusId = (int)StatusEnum.Deactive
                 };
+                
 
 
                 if (addRequest.Logo != null && addRequest.Logo.Length > 0)

@@ -1,4 +1,3 @@
-using EcommerceApp.MVC.Middlewares;
 using Impulse.Data;
 using Impulse.Middlewares;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -25,18 +24,18 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 
+
 builder.Services.AddServices();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
     options.UseSqlServer(builder.Configuration["Database:Connection"]));
 
-
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-app.UseMyLogging();
+//app.UseMyLogging();
 
 app.UseOutputCache();
 
@@ -46,7 +45,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute("Admin",
-                      "{area:exists}/{controller=Account}/{action=AdminLogin}");
+                      "{area:exists}/{controller=Account}/{action=AdminLogin}"); 
+app.MapControllerRoute("Admin",
+                      "{area:exists}/{controller=Account}/{action=AdminRegister}");
 
 app.MapControllerRoute("Admin",
                         "{area:exists}/{controller=Dashboard}/{action=Index}");

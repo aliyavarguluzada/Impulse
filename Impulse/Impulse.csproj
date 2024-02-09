@@ -5,10 +5,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="wwwroot\vacancy\**" />
+    <Content Remove="wwwroot\vacancy\**" />
+    <EmbeddedResource Remove="wwwroot\vacancy\**" />
+    <None Remove="wwwroot\vacancy\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Views\Catalog\" />
     <Folder Include="wwwroot\images\logos\" />
     <Folder Include="wwwroot\uploads\cvs\" />
-    <Folder Include="wwwroot\vacancy\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />

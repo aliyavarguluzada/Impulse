@@ -12,6 +12,8 @@ namespace Impulse.Middlewares
             services.AddTransient<ICvUploadService, CvUploadService>();
             services.AddSingleton<ITelegramService, TelegramService>();
             services.AddHttpClient();
+
+
         }
     }
 }

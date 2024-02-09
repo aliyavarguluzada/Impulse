@@ -116,7 +116,7 @@ namespace Impulse.Areas.Admin.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Login", "Account", new { area = "Admin" });
+            return RedirectToAction("AdminLogin", "Account", new { area = "Admin" });
         }
 
 

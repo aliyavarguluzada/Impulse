@@ -6,7 +6,7 @@
         public int StatusId { get; set; }
         public string Name { get; set; }
         public string? CompanyName { get; set; }
-        public int? CompanyId { get; set; } = 0;
+        public int? CompanyId { get; set; }
         public int JobTypeId { get; set; }
         public int JobCategoryId { get; set; }
         public int WorkFormId { get; set; }
