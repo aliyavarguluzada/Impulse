@@ -27,9 +27,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddServices();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-
-    options.UseSqlServer(builder.Configuration["Database:Connection"]));
 
 builder.Services.AddHttpContextAccessor();
 
@@ -45,7 +42,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute("Admin",
-                      "{area:exists}/{controller=Account}/{action=AdminLogin}"); 
+                      "{area:exists}/{controller=Account}/{action=AdminLogin}");
 app.MapControllerRoute("Admin",
                       "{area:exists}/{controller=Account}/{action=AdminRegister}");
 
