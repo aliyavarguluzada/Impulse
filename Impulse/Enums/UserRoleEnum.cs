@@ -2,8 +2,8 @@
 {
     public enum UserRoleEnum
     {
-        Admin = 1,
-        Company = 2
+        Admin = 10,
+        Company = 20
     }
 
 }
