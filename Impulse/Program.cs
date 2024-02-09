@@ -14,7 +14,6 @@ builder.Logging.AddConsole();
 
 builder.Services.AddOutputCache();
 
-builder.Services.AddResponseCaching();
 
 
 builder.Services.AddControllersWithViews();
@@ -39,11 +38,12 @@ var app = builder.Build();
 
 app.UseMyLogging();
 
+app.UseOutputCache();
+
 app.UseStaticFiles();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseOutputCache();
 
 app.MapControllerRoute("Admin",
                       "{area:exists}/{controller=Account}/{action=AdminLogin}");

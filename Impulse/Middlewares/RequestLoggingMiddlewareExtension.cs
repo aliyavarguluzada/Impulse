@@ -74,12 +74,12 @@ namespace EcommerceApp.MVC.Middlewares
 
 
 
-            await dbContext.Logs.AddAsync(log);
-            await dbContext.SaveChangesAsync();
+            //await dbContext.Logs.AddAsync(log);
+            //await dbContext.SaveChangesAsync();
 
 
 
-            await _next(context);
+            //await _next(context);
 
 
             logger.LogInformation("---------REQUEST ENDED--------");
