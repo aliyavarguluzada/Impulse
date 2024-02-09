@@ -1,5 +1,4 @@
 ﻿using Impulse.Interfaces;
-using Impulse.Telegram;
 
 namespace Impulse.Middlewares
 {
@@ -11,7 +10,7 @@ namespace Impulse.Middlewares
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IAddVacancyService, AddVacancyService>();
             services.AddTransient<ICvUploadService, CvUploadService>();
-            services.AddSingleton<TelegramNotifier>();
+            services.AddSingleton<ITelegramService, TelegramService>();
             services.AddHttpClient();
         }
     }

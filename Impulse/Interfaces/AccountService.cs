@@ -3,6 +3,7 @@ using Impulse.Core.Requests;
 using Impulse.Core.Responses;
 using Impulse.Data;
 using Impulse.Enums;
+using Impulse.Interfaces;
 using Impulse.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;

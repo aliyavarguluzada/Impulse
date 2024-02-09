@@ -1,12 +1,12 @@
-﻿namespace Impulse.Telegram
+﻿namespace Impulse.Interfaces
 {
-    public class TelegramNotifier
+    public class TelegramService : ITelegramService
     {
         private readonly HttpClient _httpClient;
         private readonly string _botToken;
         private readonly string _chatId;
         private readonly IConfiguration _configuration;
-        public TelegramNotifier(IConfiguration configuration)
+        public TelegramService(IConfiguration configuration)
         {
             _httpClient = new HttpClient();
             _configuration = configuration;
