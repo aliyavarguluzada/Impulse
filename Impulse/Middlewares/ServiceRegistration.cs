@@ -13,7 +13,6 @@ namespace Impulse.Middlewares
 
             var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
             IConfiguration cfg = builder.Build();
-
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IAddVacancyService, AddVacancyService>();

@@ -12,7 +12,7 @@ namespace Impulse.Interfaces
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
-        private readonly ITelegramService _telegramNotifier;
+        private readonly ITelegramService _telegramService;
 
         public AddVacancyService(ApplicationDbContext context,
                                       IHttpContextAccessor httpContextAccessor,
@@ -22,7 +22,7 @@ namespace Impulse.Interfaces
             _context = context;
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
-            _telegramNotifier = telegramNotifier;
+            _telegramService = telegramNotifier;
         }
         public async Task<ServiceResult<AddVacancyResponse>> AddVacancy(AddVacancyRequest addRequest)
         {
@@ -99,7 +99,7 @@ namespace Impulse.Interfaces
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
 
-                await _telegramNotifier.NotifyNewVacancyAsync($"Title: {vacancy.Name}, Description: {vacancy.Description}");
+                await _telegramService.NotifyNewVacancyAsync($"Title: {vacancy.Name}, Description: {vacancy.Description}");
 
 
                 var response = new AddVacancyResponse
