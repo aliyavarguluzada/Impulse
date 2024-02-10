@@ -16,8 +16,8 @@ namespace Impulse.Interfaces
 
         public AddVacancyService(ApplicationDbContext context,
                                       IHttpContextAccessor httpContextAccessor,
-                                              IConfiguration configuration
-                                                      , ITelegramService telegramNotifier)
+                                              IConfiguration configuration,
+                                                       ITelegramService telegramNotifier)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;

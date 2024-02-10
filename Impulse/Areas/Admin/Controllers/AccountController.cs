@@ -112,7 +112,7 @@ namespace Impulse.Areas.Admin.Controllers
                 user.Password = hash;
             }
 
-            await _context.AddAsync(user);
+            await _context.Users.AddAsync(user);
 
             await _context.SaveChangesAsync();
 

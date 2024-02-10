@@ -13,7 +13,8 @@ builder.Logging.AddConsole();
 
 builder.Services.AddOutputCache();
 
-
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+            policy.WithOrigins().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
 builder.Services.AddControllersWithViews();
 
